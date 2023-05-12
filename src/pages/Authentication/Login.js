@@ -113,6 +113,7 @@ const Login = (props) => {
 
     useEffect(() => {
         if (Phone[0] !== null && Phone.length !== 0) {
+            console.log(Phone, 'Phone')
             const appVerifier = window.recaptchaVerifier;
             const formatPh = '+' + ph;
             signInWithPhoneNumber(auth, formatPh, appVerifier)
@@ -124,6 +125,8 @@ const Login = (props) => {
                     console.log(error);
                     setLoading(false);
                 });
+        } else {
+            console.log('Phone Number Not Exists');
         }
     }, [Phone]);
 
@@ -143,6 +146,7 @@ const Login = (props) => {
                 }
                 if (res.user) {
                    sessionStorage.setItem('auth', JSON.stringify(responseObj))
+                    console.log(res);
                     props.router.navigate('/dashboard');
                     setUser(res.user);
                     setLoading(false);

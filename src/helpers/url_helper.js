@@ -253,6 +253,22 @@ export const GET_CIRCLES = '/GetCircles';
 export const GET_CIRCLES_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_CIRCLES = '/ActivateCircles'
 
+// REFER_VOTERS  
+export const POST_REFER_VOTERS = '/SaveReferVoterTest';
+export const UPDATE_REFER_VOTERS = '/UpdateReferVoters';
+export const DELETE_REFER_VOTERS= '/DeleteReferVoters';
+export const GET_REFER_VOTERS = '/GetVoterTest';
+export const GET_REFER_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_REFER_VOTERS = '/ActivateReferVoters'
+
+// UPLOAD VOTERS
+export const POST_UPLOAD_VOTERS = '/AddUploadVoters';
+export const UPDATE_UPLOAD_VOTERS = '/UpdateUploadVoters';
+export const DELETE_UPLOAD_VOTERS= '/DeleteUploadVoters';
+export const GET_UPLOAD_VOTERS = '/GetUploadVoters';
+export const GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_UPLOAD_VOTERS = '/ActivateUploadVoters'
+
 // Candidate
 export const POST_CANDIDATES = '/AddCandidates';
 export const UPDATE_CANDIDATES = '/UpdateCandidates';
