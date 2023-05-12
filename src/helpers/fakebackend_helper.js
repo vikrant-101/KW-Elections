@@ -423,36 +423,79 @@ export const getAPIKey = () => api.get(url.GET_API_KEY);
 
 //Localization
 export const getLocalization = () => api.get(url.GET_LOCALIZATION);
-export const getLocalizationTableColumnNames = ({ moduleName: module }) => api.create(url.GET_LOCALIZATION_TABLE_COLUMN_NAMES, { module });
-export const addLocalization = (localization) => api.create(url.POST_LOCALIZATION, localization);
-export const updateLocalization = (localization) => api.update(url.UPDATE_LOCALIZATION, localization);
-export const deleteLocalization = (localization) => api.create(url.DELETE_LOCALIZATION, localization);
+export const getLocalizationTableColumnNames = ({ moduleName: module }) =>
+  api.create(url.GET_LOCALIZATION_TABLE_COLUMN_NAMES, { module });
+export const addLocalization = (localization) =>
+  api.create(url.POST_LOCALIZATION, localization);
+export const updateLocalization = (localization) =>
+  api.update(url.UPDATE_LOCALIZATION, localization);
+export const deleteLocalization = (localization) =>
+  api.create(url.DELETE_LOCALIZATION, localization);
 export const getScreens = () => api.get(url.GET_SCREENS);
 export const getDevices = () => api.get(url.GET_DEVICES);
 
 //Elections
 export const getElections = () => api.get(url.GET_ELECTIONS);
-export const getElectionsTableColumnNames = ({ moduleName: module }) => api.create(url.GET_ELECTIONS_TABLE_COLUMN_NAMES, { module });
-export const addElections = (elections) => api.create(url.POST_ELECTIONS, elections);
-export const updateElections = (elections) => api.update(url.UPDATE_ELECTIONS, elections);
-export const deleteElections = (elections) => api.create(url.DELETE_ELECTIONS, elections);
-export const activateDeactivateElections = (elections) => api.update(url.ACTIVATE_DEACTIVATE_ELECTIONS, elections);
+export const getElectionsTableColumnNames = ({ moduleName: module }) =>
+  api.create(url.GET_ELECTIONS_TABLE_COLUMN_NAMES, { module });
+export const addElections = (elections) =>
+  api.create(url.POST_ELECTIONS, elections);
+export const updateElections = (elections) =>
+  api.update(url.UPDATE_ELECTIONS, elections);
+export const deleteElections = (elections) =>
+  api.create(url.DELETE_ELECTIONS, elections);
+export const activateDeactivateElections = (elections) =>
+  api.update(url.ACTIVATE_DEACTIVATE_ELECTIONS, elections);
 
 //Circles
 export const getCircles = () => api.get(url.GET_CIRCLES);
-export const getCirclesTableColumnNames = ({ moduleName: module }) => api.create(url.GET_CIRCLES_TABLE_COLUMN_NAMES, { module });
+export const getCirclesTableColumnNames = ({ moduleName: module }) =>
+  api.create(url.GET_CIRCLES_TABLE_COLUMN_NAMES, { module });
 export const addCircles = (circles) => api.create(url.POST_CIRCLES, circles);
-export const updateCircles = (circles) => api.update(url.UPDATE_CIRCLES, circles);
-export const deleteCircles = (circles) => api.create(url.DELETE_CIRCLES, circles);
-export const activateDeactivateCircles = (circles) => api.update(url.ACTIVATE_DEACTIVATE_CIRCLES, circles)
+export const updateCircles = (circles) =>
+  api.update(url.UPDATE_CIRCLES, circles);
+export const deleteCircles = (circles) =>
+  api.create(url.DELETE_CIRCLES, circles);
+export const activateDeactivateCircles = (circles) =>
+  api.update(url.ACTIVATE_DEACTIVATE_CIRCLES, circles);
 
+//Refer Voters
+export const getReferVoters = () => api.get(url.GET_REFER_VOTERS);
+export const getReferVotersTableColumnNames = ({ moduleName: module }) =>
+  api.create(url.GET_REFER_VOTERS_TABLE_COLUMN_NAMES, { module });
+export const addReferVoters = (referVoters) =>
+  api.create(url.POST_REFER_VOTERS, referVoters);
+export const updateReferVoters = (referVoters) =>
+  api.update(url.UPDATE_REFER_VOTERS, referVoters);
+export const deleteReferVoters = (referVoters) =>
+  api.create(url.DELETE_REFER_VOTERS, referVoters);
+export const activateDeactivateReferVoters = (referVoters) =>
+  api.update(url.ACTIVATE_DEACTIVATE_REFER_VOTERS, referVoters);
+
+//Upload Voters
+export const getUploadVoters = () => api.get(url.GET_UPLOAD_VOTERS);
+export const getUploadVotersTableColumnNames = ({ moduleName: module }) =>
+  api.create(url.GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES, { module });
+export const addUploadVoters = (uploadVoters) =>
+  api.create(url.POST_UPLOAD_VOTERS, uploadVoters);
+export const updateUploadVoters = (uploadVoters) =>
+  api.update(url.UPDATE_UPLOAD_VOTERS, uploadVoters);
+export const deleteUploadVoters = (uploadVoters) =>
+  api.create(url.DELETE_UPLOAD_VOTERS, uploadVoters);
+export const activateDeactivateUploadVoters = (uploadVoters) =>
+  api.update(url.ACTIVATE_DEACTIVATE_UPLOAD_VOTERS, uploadVoters);
 
 //Candidates
 export const getCandidates = () => api.get(url.GET_CANDIDATES);
-export const getCandidatesTableColumnNames = ({ moduleName: module }) => api.create(url.GET_CANDIDATES_TABLE_COLUMN_NAMES, { module });
-export const addCandidates = (candidates) => api.create(url.POST_CANDIDATES, candidates);
-export const updateCandidates = (candidates) => api.update(url.UPDATE_CANDIDATES, candidates);
-export const deleteCandidates = (candidates) => api.create(url.DELETE_CANDIDATES, candidates);
-export const activateDeactivateCandidates = (candidates) => api.update(url.ACTIVATE_DEACTIVATE_CANDIDATES, candidates);
-export const checkPhoneNumber = (phone) => api.create(url.CHECK_PHONE_NUMBER, phone)
-
+export const getCandidatesTableColumnNames = ({ moduleName: module }) =>
+  api.create(url.GET_CANDIDATES_TABLE_COLUMN_NAMES, { module });
+export const addCandidates = (candidates) =>
+  api.create(url.POST_CANDIDATES, candidates);
+export const updateCandidates = (candidates) =>
+  api.update(url.UPDATE_CANDIDATES, candidates);
+export const deleteCandidates = (candidates) =>
+  api.create(url.DELETE_CANDIDATES, candidates);
+export const activateDeactivateCandidates = (candidates) =>
+  api.update(url.ACTIVATE_DEACTIVATE_CANDIDATES, candidates);
+export const checkPhoneNumber = (phone) =>
+  api.create(url.CHECK_PHONE_NUMBER, phone);

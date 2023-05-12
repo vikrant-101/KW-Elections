@@ -71,6 +71,9 @@ import APIKey from "./apikey/reducer";
 import Localization from './localization/reducer';
 import Elections from './elections/reducer';
 import Circles from './circles/reducer';
+import MyReferedVoters from './myReferedVoters/reducer';
+import ReferVoters from './referVoters/reducer';
+import UploadVoters from './uploadVoters/reducer';
 import Candidates from './candidates/reducer';
 import Phone from './phone/reducer';
 const rootReducer = combineReducers({
@@ -105,6 +108,9 @@ const rootReducer = combineReducers({
   Localization,
   Elections,
   Circles,
+  MyReferedVoters,
+  ReferVoters,
+  UploadVoters,
   Candidates,
   Phone
 });
