@@ -499,3 +499,30 @@ export const activateDeactivateCandidates = (candidates) =>
   api.update(url.ACTIVATE_DEACTIVATE_CANDIDATES, candidates);
 export const checkPhoneNumber = (phone) =>
   api.create(url.CHECK_PHONE_NUMBER, phone);
+
+//addUsers
+
+export const getUsers = () => api.get(url.GET_USERS);
+export const getUsersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_USERS_TABLE_COLUMN_NAMES, { module });
+export const addUsers = (users) => api.create(url.POST_USERS, users);
+export const updateUsers = (users) => api.update(url.UPDATE_USERS, users);
+export const deleteUsers = (users) => api.create(url.DELETE_USERS, users);
+export const activateDeactivateUsers = (users) => api.update(url.ACTIVATE_DEACTIVATE_USERS, users)
+
+//boothusers
+
+export const getBoothUsers = (boothusers) => api.create(url.GET_BOOTHUSERS, boothusers);
+export const getBoothUsersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_USERS_TABLE_COLUMN_NAMES, { module });
+export const addBoothUsers = (boothusers) => api.create(url.POST_BOOTHUSERS, boothusers);
+export const updateBoothUsers = (boothusers) => api.update(url.UPDATE_BOOTHUSERS, boothusers);
+export const deleteBoothUsers = (boothusers) => api.create(url.DELETE_BOOTHUSERS, boothusers);
+export const activateDeactivateBoothUsers = (boothusers) => api.update(url.ACTIVATE_DEACTIVATE_BOOTHUSERS, boothusers)
+
+
+//add Roles
+export const getRoles = () => api.get(url.GET_ROLES);
+export const getRolesTableColumnNames = ({ moduleName: module }) => api.create(url.GET_ROLES_TABLE_COLUMN_NAMES, { module });
+export const addRoles = (roles) => api.create(url.POST_ROLES, roles);
+export const updateRoles = (roles) => api.update(url.UPDATE_ROLES, roles);
+export const deleteRoles = (roles) => api.create(url.DELETE_ROLES, roles);
+export const activateDeactivateRoles = (roles) => api.update(url.ACTIVATE_DEACTIVATE_ROLES, roles)

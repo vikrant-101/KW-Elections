@@ -277,3 +277,28 @@ export const GET_CANDIDATES = '/GetCandidates';
 export const GET_CANDIDATES_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_CANDIDATES = '/ActivateCandidates'
 export const CHECK_PHONE_NUMBER = '/CheckPhoneNumberExists'
+
+//USERS
+export const POST_USERS = '/AddUsers';
+export const UPDATE_USERS = '/UpdateUsers';
+export const DELETE_USERS= '/DeleteUsers';
+export const GET_USERS = '/GetUsers';
+export const GET_USERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_USERS = '/ActivateUsers'
+
+//Roles
+
+export const POST_ROLES = '/AddRoles';
+export const UPDATE_ROLES = '/UpdateRoles';
+export const DELETE_ROLES= '/DeleteRoles';
+export const GET_ROLES = '/GetRoles';
+export const GET_ROLES_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_ROLES = '/ActivateRoles'
+
+// booth users
+export const POST_BOOTHUSERS = '/GeneratePassword';
+export const UPDATE_BOOTHUSERS = '/UpdateUserMobileOrFullName';
+export const DELETE_BOOTHUSERS= '/DeleteUsers';
+export const GET_BOOTHUSERS = '/GetBoothUsers';
+export const GET_BOOTHUSERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_BOOTHUSERS = '/ActivateUsers'

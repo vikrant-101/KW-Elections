@@ -68,6 +68,9 @@ import ReferVotersSaga from "./referVoters/saga";
 import UploadVotersSaga from "./uploadVoters/saga";
 import CandidatesSaga from "./candidates/saga";
 import PhoneSaga from "./phone/saga";
+import UsersSaga from "./users/saga";
+import RolesSaga from "./roles/saga"
+import BoothUsersSaga from "./boothusers/saga";
 export default function* rootSaga() {
   yield all([
     //public
@@ -105,5 +108,8 @@ export default function* rootSaga() {
     fork(UploadVotersSaga),
     fork(CandidatesSaga),
     fork(PhoneSaga),
+    fork(UsersSaga),
+    fork(RolesSaga),
+    fork(BoothUsersSaga)
   ]);
 }
