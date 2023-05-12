@@ -76,6 +76,9 @@ import ReferVoters from './referVoters/reducer';
 import UploadVoters from './uploadVoters/reducer';
 import Candidates from './candidates/reducer';
 import Phone from './phone/reducer';
+import Users from  './users/reducer';
+import Roles from './roles/reducer'
+import BoothUsers from "./boothusers/reducer";
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -112,7 +115,10 @@ const rootReducer = combineReducers({
   ReferVoters,
   UploadVoters,
   Candidates,
-  Phone
+  Phone,
+  Users,
+  Roles,
+  BoothUsers
 });
 
 export default rootReducer;
