@@ -17,8 +17,8 @@ const Section = () => {
                 <Col xs={12}>
                     <div className="d-flex align-items-lg-center flex-lg-row flex-column">
                         <div className="flex-grow-1">
-                            <h4 className="fs-16 mb-1">{t('Good Morning, Admin!')}</h4>
-                            <p className="text-muted mb-0">{t('Here is whats happening with your store today.')}</p>
+                            <h4 className="fs-16 mb-1">{t('Good Morning')}</h4>
+                            <p className="text-muted mb-0">{t('Here is whats happening with your elections today.')}</p>
                         </div>
                         <div className="mt-3 mt-lg-0">
                             <form action="#">

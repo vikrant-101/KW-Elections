@@ -41,7 +41,7 @@ const DashboardEcommerce = () => {
                 </Row>
               </div>
             </Col>
-            <RecentActivity />
+            {/* <RecentActivity /> */}
           </Row>
         </Container>
       </div>
