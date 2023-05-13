@@ -48,9 +48,9 @@ const labels = [
   },
 ];
 
-const ReferVoters = () => {
+const MyReferedVoters = () => {
   const { t, i18n } = useTranslation();
-  document.title = t("KW-Elections | Refer Voters");
+  document.title = t("KW-Elections | My Refered Voters");
   const authUser = JSON.parse(sessionStorage.getItem("authUser"));
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
@@ -132,7 +132,9 @@ const ReferVoters = () => {
 
   const onSaveReferClick = (referedVoterDetails) => {
     const referedBy = JSON.parse(sessionStorage.getItem("auth"))?.id;
-    const data = {...referedVoterDetails, userID: toAddVoter, ReferID: referedBy }
+    console.log('referedBy: ', referedBy);
+    const data = {...referedVoterDetails, ReferedVoterId: toAddVoter, ReferedBy: referedBy }
+    // TODO: dispatch action to add refered voters
     dispatch(addReferVoters(data))
     setShowReferModal(false)
   }
@@ -240,4 +242,4 @@ const ReferVoters = () => {
   )
 }
 
-export default ReferVoters;
+export default MyReferedVoters;

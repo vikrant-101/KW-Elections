@@ -253,6 +253,22 @@ export const GET_CIRCLES = '/GetCircles';
 export const GET_CIRCLES_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_CIRCLES = '/ActivateCircles'
 
+// REFER_VOTERS  
+export const POST_REFER_VOTERS = '/SaveReferVoterTest';
+export const UPDATE_REFER_VOTERS = '/UpdateReferVoters';
+export const DELETE_REFER_VOTERS= '/DeleteReferVoters';
+export const GET_REFER_VOTERS = '/GetVoterTest';
+export const GET_REFER_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_REFER_VOTERS = '/ActivateReferVoters'
+
+// UPLOAD VOTERS
+export const POST_UPLOAD_VOTERS = '/AddUploadVoters';
+export const UPDATE_UPLOAD_VOTERS = '/UpdateUploadVoters';
+export const DELETE_UPLOAD_VOTERS= '/DeleteUploadVoters';
+export const GET_UPLOAD_VOTERS = '/GetUploadVoters';
+export const GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_UPLOAD_VOTERS = '/ActivateUploadVoters'
+
 // Candidate
 export const POST_CANDIDATES = '/AddCandidates';
 export const UPDATE_CANDIDATES = '/UpdateCandidates';
@@ -280,12 +296,34 @@ export const GET_CLASSES = '/GetClasses';
 export const GET_CLASSES_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_CLASSES = '/ActivateClasses';
 
-// Alphabets
-export const GET_ARABIC_ALPHABETS = "/GetArabicAlphabets"
-
+// ReferVoters
 export const POST_REFERVOTERS = '/AddReferVoters';
 export const UPDATE_REFERVOTERS = '/UpdateReferVoters';
 export const DELETE_REFERVOTERS= '/DeleteReferVoters';
 export const GET_REFERVOTERS = '/GetReferVoters';
 export const GET_REFERVOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_REFERVOTERS = '/ActivateReferVoters'
+
+//USERS
+export const POST_USERS = '/AddUsers';
+export const UPDATE_USERS = '/UpdateUsers';
+export const DELETE_USERS= '/DeleteUsers';
+export const GET_USERS = '/GetUsers';
+export const GET_USERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_USERS = '/ActivateUsers'
+
+//Roles
+export const POST_ROLES = '/AddRoles';
+export const UPDATE_ROLES = '/UpdateRoles';
+export const DELETE_ROLES= '/DeleteRoles';
+export const GET_ROLES = '/GetRoles';
+export const GET_ROLES_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_ROLES = '/ActivateRoles'
+
+// booth users
+export const POST_BOOTHUSERS = '/GeneratePassword';
+export const UPDATE_BOOTHUSERS = '/UpdateUserMobileOrFullName';
+export const DELETE_BOOTHUSERS= '/DeleteUsers';
+export const GET_BOOTHUSERS = '/GetBoothUsers';
+export const GET_BOOTHUSERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_BOOTHUSERS = '/ActivateUsers'

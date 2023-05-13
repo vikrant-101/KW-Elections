@@ -108,5 +108,3 @@ import {
     type: ON_ACTIVATE_DEACTIVATE_REFERVOTERS_FAIL,
     payload: error
   });
-  
-    
