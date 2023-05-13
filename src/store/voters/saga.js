@@ -14,7 +14,6 @@ import {
 	GET_VOTERS,
 	GET_CLASS_VOTERS,
 	GET_VOTERS_TABLE_COLUMN_NAMES,
-	GET_ARABIC_ALPHABETS,
 	ADD_VOTERS,
 	UPDATE_VOTERS,
 	DELETE_VOTERS,
@@ -37,8 +36,6 @@ import {
 	getClassVotersSuccess,
 	getVotersTableColumnNamesFail,
 	getVotersTableColumnNamesSuccess,
-	getArabicAlphabetsSuccess,
-	getArabicAlphabetsFail,
 	updateVotersFail,
 	updateVotersSuccess
 } from "./actions";
@@ -52,7 +49,6 @@ import {
 	getVoters,
 	getClassVoters,
 	getVotersTableColumnNames,
-	getArabicAlphabets,
 	updateVoters
 } from "../../helpers/fakebackend_helper";
 
@@ -88,18 +84,6 @@ function* fetchVotersTableColumnNames(moduleName) {
 	}
 }
 
-// Fetch Voters Arabic Alphabets 
-function* fetchVotersArabicAlphabets() {
-	try {
-		console.log("calling arabic")
-		const response = yield call(getArabicAlphabets);
-		console.log('response fetchVotersArabicAlphabets: ', response);
-		yield put(getArabicAlphabetsSuccess(response.Data));
-	} catch (error) {
-		console.log('error fetchVotersArabicAlphabets: ', error);
-		yield put(getArabicAlphabetsFail(error));
-	}
-}
 
 
 // Add Voters  
@@ -157,7 +141,6 @@ function* onActivateVoters({ payload: voters }) {
 export function* watchVoters() {
 	yield takeEvery(GET_VOTERS, fetchVoters);
 	yield takeEvery(GET_CLASS_VOTERS, fetchClassVoters);
-	yield takeEvery(GET_ARABIC_ALPHABETS, fetchVotersArabicAlphabets);
 	yield takeEvery(GET_VOTERS_TABLE_COLUMN_NAMES, fetchVotersTableColumnNames);
 	yield takeEvery(ADD_VOTERS, onAddVoters);
 	yield takeEvery(UPDATE_VOTERS, onUpdateVoters);
