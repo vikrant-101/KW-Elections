@@ -108,7 +108,7 @@ const BoothUsers = () => {
 					<Row className='mb-3'>
 						<Col>
 							<AddpdfButton handleClassesClicks={(e) => printTable(columns(columnNames, i18n, t))} />&nbsp;
-							{data.length === 0 && <AddGenrateButton handleClassesClicks={getBoothUsersClicks} />}
+							{data?.length === 0 && <AddGenrateButton handleClassesClicks={getBoothUsersClicks} />}
 						</Col>
 						<Col>
 							<SearchTextBox initialData={BoothUsers} setData={setData} />
