@@ -77,7 +77,6 @@ import UploadVoters from './uploadVoters/reducer';
 import Candidates from './candidates/reducer';
 import Phone from './phone/reducer';
 import Voters from './voters/reducer';
-import ReferVoters from './referVoters/reducer';
 import Classes from './classes/reducer';
 import Users from  './users/reducer';
 import Roles from './roles/reducer'
@@ -121,7 +120,6 @@ const rootReducer = combineReducers({
   Phone,
   Voters,
   Classes,
-  ReferVoters,
   Users,
   Roles,
   BoothUsers

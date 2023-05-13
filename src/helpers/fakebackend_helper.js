@@ -512,27 +512,6 @@ export const updateClasses = (classes) => api.update(url.UPDATE_CLASSES, classes
 export const deleteClasses = (classes) => api.create(url.DELETE_CLASSES, classes);
 export const activateDeactivateClasses = (classes) => api.update(url.ACTIVATE_DEACTIVATE_CLASSES, classes)
 
-//Elections
-export const getReferVoters = () => api.get(url.GET_REFERVOTERS);
-export const getReferVotersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_REFERVOTERS_TABLE_COLUMN_NAMES, { module });
-export const addReferVoters = (refervoters) => api.create(url.POST_REFERVOTERS, refervoters);
-export const updateReferVoters = (refervoters) => api.update(url.UPDATE_REFERVOTERS, refervoters);
-export const deleteReferVoters = (refervoters) => api.create(url.DELETE_REFERVOTERS, refervoters);
-export const activateDeactivateReferVoters = (refervoters) => api.update(url.ACTIVATE_DEACTIVATE_REFERVOTERS, refervoters);
-=======
-export const getCandidatesTableColumnNames = ({ moduleName: module }) =>
-  api.create(url.GET_CANDIDATES_TABLE_COLUMN_NAMES, { module });
-export const addCandidates = (candidates) =>
-  api.create(url.POST_CANDIDATES, candidates);
-export const updateCandidates = (candidates) =>
-  api.update(url.UPDATE_CANDIDATES, candidates);
-export const deleteCandidates = (candidates) =>
-  api.create(url.DELETE_CANDIDATES, candidates);
-export const activateDeactivateCandidates = (candidates) =>
-  api.update(url.ACTIVATE_DEACTIVATE_CANDIDATES, candidates);
-export const checkPhoneNumber = (phone) =>
-  api.create(url.CHECK_PHONE_NUMBER, phone);
-
 //addUsers
 
 export const getUsers = () => api.get(url.GET_USERS);
