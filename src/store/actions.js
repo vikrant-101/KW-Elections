@@ -59,3 +59,9 @@ export * from "./circles/actions";
 export * from "./candidates/actions";
 //Phone
 export * from "./phone/actions";
+//Voters
+export * from "./voters/actions";
+//Classes
+export * from "./classes/actions";
+//ReferVoters
+export * from "./referVoters/actions";

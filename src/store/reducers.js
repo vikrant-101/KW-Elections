@@ -73,6 +73,9 @@ import Elections from './elections/reducer';
 import Circles from './circles/reducer';
 import Candidates from './candidates/reducer';
 import Phone from './phone/reducer';
+import Voters from './voters/reducer';
+import ReferVoters from './referVoters/reducer';
+import Classes from './classes/reducer';
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -106,7 +109,10 @@ const rootReducer = combineReducers({
   Elections,
   Circles,
   Candidates,
-  Phone
+  Phone,
+  Voters,
+  Classes,
+  ReferVoters
 });
 
 export default rootReducer;
