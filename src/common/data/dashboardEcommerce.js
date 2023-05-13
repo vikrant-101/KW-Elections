@@ -21,7 +21,7 @@ const ecomWidgets = [
     {
         id: 1,
         cardColor: "primary",
-        label: "Total Earnings",
+        label: "Total Voters",
         badge: "ri-arrow-right-up-line",
         badgeClass: "success",
         percentage: "+16.24",
@@ -36,7 +36,7 @@ const ecomWidgets = [
     {
         id: 2,
         cardColor: "secondary",
-        label: "Orders",
+        label: "Total Voted",
         badge: "ri-arrow-right-down-line",
         badgeClass: "danger",
         percentage: "-3.57",
@@ -52,7 +52,7 @@ const ecomWidgets = [
     {
         id: 3,
         cardColor: "success",
-        label: "Customers",
+        label: "Total To Be Voted",
         badge: "ri-arrow-right-up-line",
         badgeClass: "success",
         percentage: "+29.08",
@@ -67,7 +67,36 @@ const ecomWidgets = [
     {
         id: 4,
         cardColor: "info",
-        label: "My Balance",
+        label: "Total Referred Voters",
+        badgeClass: "muted",
+        percentage: "+0.00",
+        counter: "165.89",
+        link: "Withdraw money",
+        bgcolor: "primary",
+        icon: "bx bx-wallet",
+        decimals: 2,
+        prefix: "$",
+        suffix: "k"
+    },
+
+    {
+        id: 5,
+        cardColor: "info",
+        label: "Total Referred Voted",
+        badgeClass: "muted",
+        percentage: "+0.00",
+        counter: "165.89",
+        link: "Withdraw money",
+        bgcolor: "primary",
+        icon: "bx bx-wallet",
+        decimals: 2,
+        prefix: "$",
+        suffix: "k"
+    },
+    {
+        id: 6,
+        cardColor: "info",
+        label: "Total Referred To Be Voted",
         badgeClass: "muted",
         percentage: "+0.00",
         counter: "165.89",
