@@ -125,8 +125,6 @@ const Login = (props) => {
                     console.log(error);
                     setLoading(false);
                 });
-        } else {
-            console.log('Phone Number Not Exists');
         }
     }, [Phone]);
 
@@ -137,15 +135,15 @@ const Login = (props) => {
             .confirm(otp)
             .then(async (res) => {
                 const responseObj = {
-                    emailVerified:res.user.emailVerified,
+                    emailVerified: res.user.emailVerified,
                     isAnonymous: res.user.isAnonymous,
                     phoneNumber: res.user.phoneNumber,
                     RoleID: Phone[0].RoleID,
                     id: Phone[0]._id,
-                    idToken:res._tokenResponse.idToken,
+                    idToken: res._tokenResponse.idToken,
                 }
                 if (res.user) {
-                   sessionStorage.setItem('auth', JSON.stringify(responseObj))
+                    sessionStorage.setItem('auth', JSON.stringify(responseObj))
                     console.log(res);
                     props.router.navigate('/dashboard');
                     setUser(res.user);
@@ -161,68 +159,7 @@ const Login = (props) => {
             });
     }
 
-    // const validation = useFormik({
-    //     // enableReinitialize : use this flag when initial values needs to be changed
-    //     enableReinitialize: true,
 
-    //     initialValues: {
-    //         email: userLogin.email || "vikrant.r@cisinlabs.com" || '',
-    //         password: userLogin.password || "123456789" || '',
-    //     },
-    //     validationSchema: Yup.object({
-    //         email: Yup.string().required("Please Enter Your Email"),
-    //         password: Yup.string().required("Please Enter Your Password"),
-    //     }),
-    //     onSubmit: (values) => {
-    //         if(values.email === 'vikrant.r@cisinlabs.com' && values.password === '123456789'){
-    //             props.router.navigate('/dashboard')
-    //         } else {
-    //             props.router.navigate('/login')
-    //         }
-    //         dispatch(loginUser(values, props.router.navigate));
-    //     }
-    // });
-
-    // const signIn = (res, type) => {
-    //     if (type === "google" && res) {
-    //         const postData = {
-    //             name: res.profileObj.name,
-    //             email: res.profileObj.email,
-    //             token: res.tokenObj.access_token,
-    //             idToken: res.tokenId,
-    //         };
-    //         dispatch(socialLogin(postData, props.router.navigate, type));
-    //     } else if (type === "facebook" && res) {
-    //         const postData = {
-    //             name: res.name,
-    //             email: res.email,
-    //             token: res.accessToken,
-    //             idToken: res.tokenId,
-    //         };
-    //         dispatch(socialLogin(postData, props.router.navigate, type));
-    //     }
-    // };
-
-    //handleGoogleLoginResponse
-    // const googleResponse = response => {
-    //     signIn(response, "google");
-    // };
-
-    //handleTwitterLoginResponse
-    // const twitterResponse = e => {}
-
-    //handleFacebookLoginResponse
-    // const facebookResponse = response => {
-    //     signIn(response, "facebook");
-    // };
-
-    // useEffect(() => {
-    //     if (error) {
-    //         setTimeout(() => {
-    //             dispatch(resetLoginFlag());
-    //         }, 3000);
-    //     }
-    // }, [dispatch, error]);
     useEffect(() => {
         const currentLanguage = localStorage.getItem("I18N_LANGUAGE");
         setSelectedLang(!currentLanguage ? 'en' : currentLanguage);
@@ -236,7 +173,6 @@ const Login = (props) => {
         setSelectedLang(lang);
 
     };
-
 
 
     const toggleLanguageDropdown = () => {
