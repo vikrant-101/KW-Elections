@@ -12,7 +12,6 @@ import SearchTextBox from "../../../Components/Common/SearchTextBox";
 import Toaster from "../../../Components/Common/Toaster";
 import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { columns } from "./DataTableColumns";
-import { circle } from "leaflet";
 import {
   activateDeactivateUsers,
   addUsers,
@@ -58,7 +57,6 @@ const labels = [
 const AddUsers = () => {
   const { t, i18n } = useTranslation();
   document.title = t("KW-Elections | Create Add Users");
-  const authUser = JSON.parse(sessionStorage.getItem("authUser"));
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
@@ -83,7 +81,6 @@ const AddUsers = () => {
     isAddOrEdit === "isEdit" && (usersObj["IsActive"] = users["IsActive"]);
     usersObj["FullNameEnglish"] = users.FullNameEnglish;
     usersObj["FullNameArabic"] = users.FullNameArabic;
-    // usersObj["RoleID"] = users.RoleID;
     usersObj["MobileNumber"] = users.MobileNumber;
     usersObj["IsDelete"] = false;
     usersObj["IsActive"] = true;
@@ -136,11 +133,11 @@ const AddUsers = () => {
   }));
 
   useEffect(() => {
-	dispatch(getUsers());
-	dispatch(getUsersTableColumnNames());
-  dispatch(getCandidates())
-  dispatch(getRoles())
-    }, [dispatch]);
+    dispatch(getUsers());
+    dispatch(getUsersTableColumnNames());
+    dispatch(getCandidates())
+    dispatch(getRoles())
+  }, [dispatch]);
 
   useEffect(() => {
     setData(Users);
@@ -165,20 +162,12 @@ const AddUsers = () => {
           </Row>
           <Row>
             <Col>
-              {isLoading ? (
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <Spinner
-                    style={{
-                      height: "3rem",
-                      width: "3rem",
-                    }}
-                    className="me-2"
-                  >
-                    {" "}
-                    Loading...{" "}
-                  </Spinner>
-                </div>
-              ) : (
+            {isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>
+								<Spinner style={{
+									height: '3rem',
+									width: '3rem',
+								}} className='me-2'> Loading... </Spinner>
+							</div>  : (
                 <BasicTable
                   data={data}
                   columns={columns(
