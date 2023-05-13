@@ -14,9 +14,9 @@ import { getReferVoters, getReferVotersTableColumnNames } from "../../../store/r
 
 import {CSVLink} from 'react-csv'
 import { Link } from "react-router-dom";
-import yasaLight from '../../../assets/images/KW-Elections-Light.png'
+import yasaLight from '../../../assets/images/horizonatal-view.png'
 
-const AllVotersList = () => {
+const AllReferedVotersList = () => {
 
 	const { t, i18n } = useTranslation();
 
@@ -63,7 +63,7 @@ const printTable = (e, columns) => {
   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
   newWindow.document.write('<style>tr:hover { background-color: #ddd; }</style>');
   newWindow.document.write('<style>.logo-container { display: flex; justify-content: center; margin-bottom: 20px; background-color:#000 }</style>');
-  newWindow.document.write(`<style>title { text-align: right; }</style><title>Manage Demo Class</title>`);
+  newWindow.document.write(`<style>title { text-align: left; }</style><title>Manage Demo Class</title>`);
   newWindow.document.write('</head><body>');
   newWindow.document.write(`<div class="logo-container" ><img src=${yasaLight} onload="window.print()" /></div>`);
   newWindow.document.write('<table>');
@@ -210,4 +210,4 @@ const exportToCsv = (data, columns) => {
   )
 }
 
-export default AllVotersList;
+export default AllReferedVotersList;

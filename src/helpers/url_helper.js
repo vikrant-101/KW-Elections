@@ -257,7 +257,7 @@ export const ACTIVATE_DEACTIVATE_CIRCLES = '/ActivateCircles'
 export const POST_REFER_VOTERS = '/SaveReferVoterTest';
 export const UPDATE_REFER_VOTERS = '/UpdateReferVoters';
 export const DELETE_REFER_VOTERS= '/DeleteReferVoters';
-export const GET_REFER_VOTERS = '/GetVoterTest';
+export const GET_REFER_VOTERS = '/GetReferVoters';
 export const GET_REFER_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_REFER_VOTERS = '/ActivateReferVoters'
 
@@ -279,14 +279,14 @@ export const ACTIVATE_DEACTIVATE_CANDIDATES = '/ActivateCandidates'
 export const CHECK_PHONE_NUMBER = '/CheckPhoneNumberExists'
 
 // Voters
-export const POST_VOTERS = '/AddVoters';
-export const UPDATE_VOTERS = '/UpdateVoters';
-export const DELETE_VOTERS= '/DeleteVoters';
-export const GET_VOTERS = '/GetBoothVoters';
-export const GET_CLASS_VOTERS = '/GetClassVoters';
-export const GET_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
-export const ACTIVATE_DEACTIVATE_VOTERS = '/ActivateDeactivateVoters';
-export const ACTIVATE_VOTERS = '/ActivateVoters';
+export const POST_BOOTHVOTERS = '/AddBoothVoters';
+export const UPDATE_BOOTHVOTERS = '/UpdateBoothVoters';
+export const DELETE_BOOTHVOTERS= '/DeleteBoothVoters';
+export const GET_BOOTHVOTERS = '/GetBoothVoters';
+export const GET_CLASS_BOOTHVOTERS = '/GetClassBoothVoters';
+export const GET_BOOTHVOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_BOOTHVOTERS = '/ActivateDeactivateBoothVoters';
+export const ACTIVATE_BOOTHVOTERS = '/ActivateBoothVoters';
 
 // Classes
 export const POST_CLASSES = '/AddClasses';
@@ -327,3 +327,11 @@ export const DELETE_BOOTHUSERS= '/DeleteUsers';
 export const GET_BOOTHUSERS = '/GetBoothUsers';
 export const GET_BOOTHUSERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_BOOTHUSERS = '/ActivateUsers'
+
+// Voters Management
+export const POST_VOTERSMANAGEMENT = '/AddVotersManagement';
+export const UPDATE_VOTERSMANAGEMENT = '/UpdateVotersManagement';
+export const DELETE_VOTERSMANAGEMENT= '/DeleteVotersManagement';
+export const GET_VOTERSMANAGEMENT = '/GetVotersManagement';
+export const GET_VOTERSMANAGEMENT_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT = '/ActivateVotersManagement'

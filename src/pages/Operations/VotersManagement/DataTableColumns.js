@@ -25,7 +25,7 @@ export const columns = (columnNames, i18n,t, onActiveOrDeactiveChange) => {
 							role="switch" 
 							id="flexSwitchCheckDefault"
 							onChange={(e) => onActiveOrDeactiveChange(cell,e)}
-							checked={cell?.Voters_Status} />
+							checked={cell?.VotersStatus} />
 							<label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
 						</div>
 
