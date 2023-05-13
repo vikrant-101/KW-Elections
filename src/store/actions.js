@@ -66,7 +66,7 @@ export * from "./candidates/actions";
 //Phone
 export * from "./phone/actions";
 //Voters
-export * from "./voters/actions";
+export * from "./boothVoters/actions";
 //Classes
 export * from "./classes/actions";
 //ReferVoters
@@ -77,4 +77,6 @@ export * from './users/actions';
 export * from './roles/actions';
 // Boothusers
 export * from './boothusers/actions'
+// Voters Management
+export * from './votersManagement/actions'
 

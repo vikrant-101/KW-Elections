@@ -32,8 +32,6 @@ import {
 	deleteVotersSuccess,
 	getVotersFail,
 	getVotersSuccess,
-	getClassVotersFail,
-	getClassVotersSuccess,
 	getVotersTableColumnNamesFail,
 	getVotersTableColumnNamesSuccess,
 	updateVotersFail,
@@ -47,7 +45,6 @@ import {
 	addVoters,
 	deleteVoters,
 	getVoters,
-	getClassVoters,
 	getVotersTableColumnNames,
 	updateVoters
 } from "../../helpers/fakebackend_helper";
@@ -60,16 +57,6 @@ function* fetchVoters() {
 		yield put(getVotersSuccess(response.Data));
 	} catch (error) {
 		yield put(getVotersFail(error));
-	}
-}
-
-// Fetch Voters 
-function* fetchClassVoters(ClassNo) {
-	try {
-		const response = yield call(getClassVoters, ClassNo);
-		yield put(getClassVotersSuccess(response.Data));
-	} catch (error) {
-		yield put(getClassVotersFail(error));
 	}
 }
 
@@ -140,7 +127,6 @@ function* onActivateVoters({ payload: voters }) {
 
 export function* watchVoters() {
 	yield takeEvery(GET_VOTERS, fetchVoters);
-	yield takeEvery(GET_CLASS_VOTERS, fetchClassVoters);
 	yield takeEvery(GET_VOTERS_TABLE_COLUMN_NAMES, fetchVotersTableColumnNames);
 	yield takeEvery(ADD_VOTERS, onAddVoters);
 	yield takeEvery(UPDATE_VOTERS, onUpdateVoters);

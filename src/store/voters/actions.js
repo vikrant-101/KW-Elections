@@ -5,16 +5,9 @@ import {
     DELETE_VOTERS,
     DELETE_VOTERS_FAIL,
     DELETE_VOTERS_SUCCESS,
-    GET_ARABIC_ALPHABETS,
-    GET_ARABIC_ALPHABETS_FAIL,
-    GET_ARABIC_ALPHABETS_SUCCESS,
     GET_VOTERS,
     GET_VOTERS_FAIL,
     GET_VOTERS_SUCCESS,
-    GET_CLASS_VOTERS,
-    GET_CLASS_VOTERS_FAIL,
-    GET_CLASS_VOTERS_SUCCESS,
-    GET_VOTERS_TABLE_COLUMN_NAMES,
     GET_VOTERS_TABLE_COLUMN_NAMES_FAIL,
     GET_VOTERS_TABLE_COLUMN_NAMES_SUCCESS,
     ON_ACTIVATE_DEACTIVATE_VOTERS,
@@ -44,30 +37,6 @@ import {
     type: GET_VOTERS_FAIL,
     payload: error,
   });
-
-  export const getClassVoters = ({classNo}) => ({
-    type: GET_CLASS_VOTERS,
-    classNo: classNo,
-  });
-  
-  export const getClassVotersSuccess = voters => {
-    console.log('class voters success: ', voters);
-    return {
-    type: GET_CLASS_VOTERS_SUCCESS,
-    payload: voters,
-  }};
-  
-  export const getClassVotersFail = error => ({
-    type: GET_CLASS_VOTERS_FAIL,
-    payload: error,
-  });
-  
-  export const getVotersTableColumnNames = ({moduleName}) => {
-    console.log('moduleName: ', moduleName);
-    return {
-    type: GET_VOTERS_TABLE_COLUMN_NAMES,
-    moduleName: moduleName
-  }};
   
   export const getVotersTableColumnNamesSuccess = columnNames => ({
     type: GET_VOTERS_TABLE_COLUMN_NAMES_SUCCESS,
@@ -76,22 +45,6 @@ import {
   
   export const getVotersTableColumnNamesFail = error => ({
     type: GET_VOTERS_TABLE_COLUMN_NAMES_FAIL,
-    payload: error,
-  });
-
-  export const getArabicAlphabets = () => ({
-    type: GET_ARABIC_ALPHABETS,
-  });
-  
-  export const getArabicAlphabetsSuccess = alpha => {
-    console.log('alpha action 123: ', alpha);
-    return {
-    type: GET_ARABIC_ALPHABETS_SUCCESS,
-    payload: alpha,
-  }};
-  
-  export const getArabicAlphabetsFail = error => ({
-    type: GET_ARABIC_ALPHABETS_FAIL,
     payload: error,
   });
   

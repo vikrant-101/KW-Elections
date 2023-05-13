@@ -38,7 +38,6 @@ export const columns = (columnNames, i18n,t, onActiveChange) => {
 					sortable: false,
 					wrap: true,
 					selector: (cell) => {
-						console.log('cell --------: ', cell);
 						let id = localStorage.getItem("_id")
 						console.log('id 123: ', id);
 						let status = {};

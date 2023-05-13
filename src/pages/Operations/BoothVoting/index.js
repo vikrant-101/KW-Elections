@@ -7,75 +7,62 @@ import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { columns } from "./DataTableColumns";
 import SearchTextBox from "../../../Components/Common/SearchTextBox";
 import DropDownTextBox from "../../../Components/Common/DropDownTextBox";
-import { getVoters, getVotersTableColumnNames, getArabicAlphabets, activateDeactivateVoters, activateVoters, getClassVoters } from "../../../store/voters/actions";
+import { getBoothVoters, getBoothVotersTableColumnNames,  activateBoothVoters, getClassBoothVoters } from "../../../store/boothVoters/actions";
 import { toast } from 'react-toastify';
 
 
   let alphaData = [];
 
-
-
-  // const voterAlpabet = [
-  //   {label: "A", value: "a"},
-  //   {label: "B", value: "b"},
-  //   {label: "C", value: "c"},
-  //   {label: "D", value: "d"}]
-
 const BoothVoting = () => {
   const { t, i18n } = useTranslation();
 
 	const dispatch = useDispatch();
-  // const [options, setOptions] =  useState(voterAlpabet)
-  
 
-  const { Voters, isLoading, columnNames } = useSelector((state) => {
-    console.log('state: ', state);
+  const { BoothVoters, isLoading, columnNames } = useSelector((state) => {
 
     return {
-    Voters: state.Voters.voters,
-		columnNames: state.Voters.columnNames,
-		isLoading: state.Voters.isLoading,
+    BoothVoters: state.BoothVoters.boothvoters,
+		columnNames: state.BoothVoters.columnNames,
+		isLoading: state.BoothVoters.isLoading,
 	}});
 
-	const [data, setData] = useState(Voters);
-  // alphaData = Voters
+	const [data, setData] = useState(BoothVoters);
   if (alphaData.length ===0) {
-    alphaData = Voters
+    alphaData = BoothVoters
   }
 
-  let a = true;
+  let user = sessionStorage.getItem('auth');
+  console.log('user -----: ', JSON.parse(user));
+  user = JSON.parse(user);
 
   useEffect(() => {
-    let user = sessionStorage.getItem('auth');
-    console.log('user -----: ', JSON.parse(user));
-    if (a === true) {
-      dispatch(getVoters())
+    if (user.RoleID <= 2) {
       console.log("inside if")
+      dispatch(getBoothVoters())
     } else {
       console.log("inside else")
       let value = "21";
-      dispatch(getClassVoters({ "classNo": Number(value)}))
+      dispatch(getClassBoothVoters({ "classNo": Number(value)}))
     }
-    dispatch(getVotersTableColumnNames({"moduleName": "BOOTHVOTERS"}))
+    dispatch(getBoothVotersTableColumnNames())
 	}, [dispatch]);
 
   useEffect(() => {
-		setData(Voters)
-	}, [Voters]);
+		setData(BoothVoters)
+	}, [BoothVoters]);
 
 	
 
 
   const handleArabicCharacter = (value) => {
-    console.log('value: ', value);
     if (value === "") {
-      alphaData = Voters;
-      setData(Voters)
+      alphaData = BoothVoters;
+      setData(BoothVoters)
     } else {
-      setData(Voters.filter((item) => {
+      setData(BoothVoters.filter((item) => {
         return Object.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
       }))
-      alphaData = Voters.filter((item) => {
+      alphaData = BoothVoters.filter((item) => {
         return Object.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
       })
     }
@@ -92,20 +79,15 @@ const BoothVoting = () => {
     votedMarkedBY['RoleID'] = 6
     votedMarkedBY['Status'] = true
     votedMarkedBY['Date'] = votedDateTime;
-		// votersObj['_id'] = voters._id;
-		// votersObj['Voters_Status'] = voters.Voters_Status;
-		// votersObj['TableName'] = 'Voters';
-		// dispatch(activateDeactivateVoters(votersObj))
 
-
-    if (voters.Voters_Status !== true) {
+    if (voters.VotersStatus !== true) {
       console.log("calling activate voters")
       
       votersObj['_id'] = voters._id;
       votersObj['VotersStatus'] = voters.Voters_Status;
       votersObj['VotedDateTime'] = votedDateTime;
       votersObj['VotedMarkedBy'] = votedMarkedBY
-      dispatch(activateVoters(votersObj))
+      dispatch(activateBoothVoters(votersObj))
     } else {
       alert('Voter Status Cannot Changed')
     }
@@ -115,7 +97,7 @@ const BoothVoting = () => {
     document.getElementById('alpha').value = ''
     document.getElementById('voterId').value = ''
     document.getElementById('voterName').value = ''
-    setData(Voters);
+    setData(BoothVoters);
   }
 
   let areaName = "gwalior";
@@ -143,18 +125,18 @@ const BoothVoting = () => {
           <Row className='mb-3'>
             <Col>
               <Label>{t('Arabic Character')}</Label>
-							{/* <SearchTextBox initialData={Voters} setData={setData} id="alpha" /> */}
+							{/* <SearchTextBox initialData={BoothVoters} setData={setData} id="alpha" /> */}
               <Input type="text" className={i18n.language === 'ar' ? 'form-control float-start mw-400' : 'form-control float-end mw-400'} placeholder={t('Search') + '...'}
                 id="alpha"
                 onChange={(e) => handleArabicCharacter(e.target.value)} />
 						</Col>
 						<Col>
               <Label>{t('Voter ID')}</Label>
-							<SearchTextBox initialData={alphaData} filter="Voters_No" setData={setData} id="voterId" />
+							<SearchTextBox initialData={alphaData} filter="VotersNo" setData={setData} id="voterId" />
 						</Col>
             <Col>
               <Label>{t('Voter Name')}</Label>
-							<SearchTextBox initialData={Voters} filter="First_Name" setData={setData} id="voterName" />
+							<SearchTextBox initialData={BoothVoters} filter="FirstName" setData={setData} id="voterName" />
 						</Col>
 					</Row>
           <Row className='mb-3'>

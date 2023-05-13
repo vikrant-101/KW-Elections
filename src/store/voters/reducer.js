@@ -6,9 +6,6 @@ import {
 	GET_VOTERS,
 	GET_VOTERS_FAIL,
 	GET_VOTERS_SUCCESS,
-	GET_CLASS_VOTERS,
-	GET_CLASS_VOTERS_FAIL,
-	GET_CLASS_VOTERS_SUCCESS,
 	GET_VOTERS_TABLE_COLUMN_NAMES,
 	GET_VOTERS_TABLE_COLUMN_NAMES_FAIL,
 	GET_VOTERS_TABLE_COLUMN_NAMES_SUCCESS,
@@ -17,10 +14,7 @@ import {
 	ON_ACTIVATE_VOTERS_FAIL,
 	ON_ACTIVATE_VOTERS_SUCCESS,
 	UPDATE_VOTERS_FAIL,
-	UPDATE_VOTERS_SUCCESS,
-	GET_ARABIC_ALPHABETS,
-	GET_ARABIC_ALPHABETS_SUCCESS,
-	GET_ARABIC_ALPHABETS_FAIL
+	UPDATE_VOTERS_SUCCESS
 } from "./actionTypes";
 import { toast } from 'react-toastify';
 
@@ -54,47 +48,7 @@ const voters = (state = INIT_STATE, action) => {
 				...state,
 				error: action.payload,
 			};
-		case GET_CLASS_VOTERS:
-			console.log("class voters: ", action)
-			return {
-				...state,
-				isLoading: true
-			};
-
-		case GET_CLASS_VOTERS_SUCCESS:
-			console.log("class voters success: ", action)
-			return {
-				...state,
-				voters: action.payload,
-				isLoading: false
-			};
-
-		case GET_CLASS_VOTERS_FAIL:
-			return {
-				...state,
-				error: action.payload,
-			};
 	
-		case GET_ARABIC_ALPHABETS:
-			return {
-				...state,
-				isLoading: true
-			};
-
-		case GET_ARABIC_ALPHABETS_SUCCESS:
-			console.log("alpha reducers: ", action.payload)
-			return {
-				...state,
-				alpha: action.payload,
-				isLoading: false
-			};
-
-		case GET_ARABIC_ALPHABETS_FAIL:
-			return {
-				...state,
-				error: action.payload,
-			};
-
 		case GET_VOTERS_TABLE_COLUMN_NAMES:
 			console.log("table column voters: ", action)
 			return {
