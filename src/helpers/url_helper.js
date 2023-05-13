@@ -278,6 +278,32 @@ export const GET_CANDIDATES_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_CANDIDATES = '/ActivateCandidates'
 export const CHECK_PHONE_NUMBER = '/CheckPhoneNumberExists'
 
+// Voters
+export const POST_VOTERS = '/AddVoters';
+export const UPDATE_VOTERS = '/UpdateVoters';
+export const DELETE_VOTERS= '/DeleteVoters';
+export const GET_VOTERS = '/GetBoothVoters';
+export const GET_CLASS_VOTERS = '/GetClassVoters';
+export const GET_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_VOTERS = '/ActivateDeactivateVoters';
+export const ACTIVATE_VOTERS = '/ActivateVoters';
+
+// Classes
+export const POST_CLASSES = '/AddClasses';
+export const UPDATE_CLASSES = '/UpdateClasses';
+export const DELETE_CLASSES= '/DeleteClasses';
+export const GET_CLASSES = '/GetClasses';
+export const GET_CLASSES_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_CLASSES = '/ActivateClasses';
+
+// ReferVoters
+export const POST_REFERVOTERS = '/AddReferVoters';
+export const UPDATE_REFERVOTERS = '/UpdateReferVoters';
+export const DELETE_REFERVOTERS= '/DeleteReferVoters';
+export const GET_REFERVOTERS = '/GetReferVoters';
+export const GET_REFERVOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_REFERVOTERS = '/ActivateReferVoters'
+
 //USERS
 export const POST_USERS = '/AddUsers';
 export const UPDATE_USERS = '/UpdateUsers';
@@ -287,7 +313,6 @@ export const GET_USERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_USERS = '/ActivateUsers'
 
 //Roles
-
 export const POST_ROLES = '/AddRoles';
 export const UPDATE_ROLES = '/UpdateRoles';
 export const DELETE_ROLES= '/DeleteRoles';

@@ -3,72 +3,68 @@ import {
 	fork,
 	put,
 	all,
-	call,
-	throttle
+	call
 } from "redux-saga/effects";
 
 // Login Redux States
 import {
-	GET_REFER_VOTERS,
-	GET_REFER_VOTERS_TABLE_COLUMN_NAMES,
-	ADD_REFER_VOTERS,
-	UPDATE_REFER_VOTERS,
-	DELETE_REFER_VOTERS,
-	ON_ACTIVATE_DEACTIVATE_REFER_VOTERS,
+	GET_REFERVOTERS,
+	GET_REFERVOTERS_TABLE_COLUMN_NAMES,
+	ADD_REFERVOTERS,
+	UPDATE_REFERVOTERS,
+	DELETE_REFERVOTERS,
+	GET_SCREENS,
+	GET_DEVICES,
+	ON_ACTIVATE_DEACTIVATE_REFERVOTERS,
+	GET_TRANSLATION,
 } from "./actionTypes";
 
 import {
 	activateDeactivateReferVotersFail,
 	activateDeactivateReferVotersSuccess,
-	addCirclesFail,
-	addCirclesSuccess,
 	addReferVotersFail,
 	addReferVotersSuccess,
-	deleteCirclesFail,
-	deleteCirclesSuccess,
-	deleteReferVoters,
 	deleteReferVotersFail,
 	deleteReferVotersSuccess,
-	getCirclesFail,
-	getCirclesSuccess,
-	getCirclesTableColumnNamesFail,
-	getCirclesTableColumnNamesSuccess,
+	getDevicesFail,
+	getDevicesSuccess,
 	getReferVotersFail,
 	getReferVotersSuccess,
 	getReferVotersTableColumnNamesFail,
 	getReferVotersTableColumnNamesSuccess,
-	updateCirclesFail,
-	updateCirclesSuccess,
-	updateReferVoters,
+	getScreensFail,
+	getScreensSuccess,
+	getTranslationFail,
+	getTranslationSuccess,
 	updateReferVotersFail,
 	updateReferVotersSuccess
 } from "./actions";
 
 import {
 	activateDeactivate,
-	getReferVoters,
-	getReferVotersTableColumnNames,
 	activateDeactivateReferVoters,
 	addReferVoters,
-	deleteCircles,
-	getCircles,
-	getCirclesTableColumnNames,
-	updateCircles
+	deleteReferVoters,
+	getDevices,
+	getReferVoters,
+	getReferVotersTableColumnNames,
+	getScreens,
+	getTranslation,
+	updateReferVoters
 } from "../../helpers/fakebackend_helper";
 
 
-// Fetch Circles 
+// Fetch ReferVoters 
 function* fetchReferVoters() {
 	try {
 		const response = yield call(getReferVoters);
-		console.log('response: ', response);
 		yield put(getReferVotersSuccess(response.Data));
 	} catch (error) {
 		yield put(getReferVotersFail(error));
 	}
 }
 
-// Fetch Circles Table Columns Names 
+// Fetch ReferVoters Table Columns Names 
 function* fetchReferVotersTableColumnNames(moduleName) {
 	try {
 		const response = yield call(getReferVotersTableColumnNames, moduleName);
@@ -79,21 +75,20 @@ function* fetchReferVotersTableColumnNames(moduleName) {
 }
 
 
-// Add Circles  
-function* onAddReferVoters({ payload: referVoters }) {
-	console.log('referVotersDetails: ', referVoters);
+// Add ReferVoters  
+function* onAddReferVoters({ payload: refervoters }) {
 	try {
-		const response = yield call(addReferVoters, referVoters);
-		yield put(addReferVotersSuccess(response));
+		const response = yield call(addReferVoters, refervoters);
+			yield put(addReferVotersSuccess(response));	
 	} catch (error) {
 		yield put(addReferVotersFail(error));
 	}
 }
 
-// Update Circles  
-function* onUpdateReferVoters({ payload: referVoters }) {
+// Update ReferVoters  
+function* onUpdateReferVoters({ payload:refervoters }) {
 	try {
-		const response = yield call(updateReferVoters, referVoters);
+		const response = yield call(updateReferVoters,refervoters);
 		yield put(updateReferVotersSuccess(response));
 	} catch (error) {
 		console.log(error)
@@ -102,20 +97,19 @@ function* onUpdateReferVoters({ payload: referVoters }) {
 }
 
 // Delete ReferVoters
-function* onDeleteReferVoters({ payload: referVoters }) {
+function* onDeleteReferVoters({ payload: refervoters }) {
 	try {
-		const response = yield call(deleteReferVoters, referVoters);
+		const response = yield call(deleteReferVoters, refervoters);
 		yield put(deleteReferVotersSuccess(response))
 	} catch (error) {
 		yield put(deleteReferVotersFail(error))
 	}
 }
 
-function* onActivateDeactivate({ payload: referVoters }) {
-	try {
-		yield put(activateDeactivateReferVotersSuccess(referVoters))
-		yield call(activateDeactivateReferVoters, referVoters);
-
+function* onActivateDeactivate({payload: refervoters}) {
+	try{
+		yield put(activateDeactivateReferVotersSuccess(refervoters))
+		yield call(activateDeactivateReferVoters, refervoters);
 	} catch (error) {
 		yield put(activateDeactivateReferVotersFail(error))
 	}
@@ -123,12 +117,12 @@ function* onActivateDeactivate({ payload: referVoters }) {
 
 
 export function* watchReferVoters() {
-	yield takeEvery(GET_REFER_VOTERS, fetchReferVoters);
-	yield takeEvery(GET_REFER_VOTERS_TABLE_COLUMN_NAMES, fetchReferVotersTableColumnNames);
-	yield takeEvery(ADD_REFER_VOTERS, onAddReferVoters);
-	yield takeEvery(UPDATE_REFER_VOTERS, onUpdateReferVoters);
-	yield takeEvery(DELETE_REFER_VOTERS, onDeleteReferVoters);
-	yield throttle(2000, ON_ACTIVATE_DEACTIVATE_REFER_VOTERS, onActivateDeactivate);
+	yield takeEvery(GET_REFERVOTERS, fetchReferVoters);
+	yield takeEvery(GET_REFERVOTERS_TABLE_COLUMN_NAMES, fetchReferVotersTableColumnNames);
+	yield takeEvery(ADD_REFERVOTERS, onAddReferVoters);
+	yield takeEvery(UPDATE_REFERVOTERS, onUpdateReferVoters);
+	yield takeEvery(DELETE_REFERVOTERS, onDeleteReferVoters);
+	yield takeEvery(ON_ACTIVATE_DEACTIVATE_REFERVOTERS, onActivateDeactivate);
 
 }
 
