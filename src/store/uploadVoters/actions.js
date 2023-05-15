@@ -2,12 +2,15 @@ import {
   ADD_UPLOAD_VOTERS,
   ADD_UPLOAD_VOTERS_FAIL,
   ADD_UPLOAD_VOTERS_SUCCESS,
+  ADD_ELECTION_CIRCLE,
+  ADD_ELECTION_CIRCLE_SUCCESS,
+  ADD_ELECTION_CIRCLE_FAIL,
   DELETE_UPLOAD_VOTERS,
   DELETE_UPLOAD_VOTERS_FAIL,
   DELETE_UPLOAD_VOTERS_SUCCESS,
-  GET_UPLOAD_VOTERS,
-  GET_UPLOAD_VOTERS_FAIL,
-  GET_UPLOAD_VOTERS_SUCCESS,
+  GET_ELECTION_CIRCLE,
+  GET_ELECTION_CIRCLE_FAIL,
+  GET_ELECTION_CIRCLE_SUCCESS,
   GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES,
   GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES_FAIL,
   GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES_SUCCESS,
@@ -16,98 +19,109 @@ import {
   ON_ACTIVATE_DEACTIVATE_UPLOAD_VOTERS_SUCCESS,
   UPDATE_UPLOAD_VOTERS,
   UPDATE_UPLOAD_VOTERS_FAIL,
-  UPDATE_UPLOAD_VOTERS_SUCCESS
-} from "./actionTypes"
+  UPDATE_UPLOAD_VOTERS_SUCCESS,
+} from "./actionTypes";
 
-
-export const getUploadVoters = () => ({
-  type: GET_UPLOAD_VOTERS,
+export const getElectionCircle = () => ({
+  type: GET_ELECTION_CIRCLE,
 });
 
-export const getUploadVotersSuccess = uploadVoters => ({
-  type: GET_UPLOAD_VOTERS_SUCCESS,
+export const getElectionCircleSuccess = (uploadVoters) => ({
+  type: GET_ELECTION_CIRCLE_SUCCESS,
   payload: uploadVoters,
 });
 
-export const getUploadVotersFail = error => ({
-  type: GET_UPLOAD_VOTERS_FAIL,
+export const getElectionCircleFail = (error) => ({
+  type: GET_ELECTION_CIRCLE_FAIL,
   payload: error,
 });
 
 export const getUploadVotersTableColumnNames = () => ({
   type: GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES,
-  moduleName: "UPLOADVOTERS"
+  moduleName: "UPLOADVOTERS",
 });
 
-export const getUploadVotersTableColumnNamesSuccess = columnNames => ({
+export const getUploadVotersTableColumnNamesSuccess = (columnNames) => ({
   type: GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES_SUCCESS,
   payload: columnNames,
 });
 
-export const getUploadVotersTableColumnNamesFail = error => ({
+export const getUploadVotersTableColumnNamesFail = (error) => ({
   type: GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES_FAIL,
   payload: error,
 });
 
-export const addUploadVoters = uploadVoters => ({
+export const addElectionCircle = (uploadVoters) => ({
+  type: ADD_ELECTION_CIRCLE,
+  payload: uploadVoters,
+});
+
+export const addElectionCircleSuccess = (uploadVoters) => ({
+  type: ADD_ELECTION_CIRCLE_SUCCESS,
+  payload: uploadVoters,
+});
+
+export const addElectionCircleFail = (error) => ({
+  type: ADD_ELECTION_CIRCLE_FAIL,
+  payload: error,
+});
+
+export const addUploadVoters = (uploadVoters) => ({
   type: ADD_UPLOAD_VOTERS,
   payload: uploadVoters,
 });
 
-export const addUploadVotersSuccess = uploadVoters => ({
+export const addUploadVotersSuccess = (uploadVoters) => ({
   type: ADD_UPLOAD_VOTERS_SUCCESS,
   payload: uploadVoters,
 });
 
-export const addUploadVotersFail = error => ({
+export const addUploadVotersFail = (error) => ({
   type: ADD_UPLOAD_VOTERS_FAIL,
   payload: error,
 });
 
 export const updateUploadVoters = (uploadVoters) => ({
   type: UPDATE_UPLOAD_VOTERS,
-  payload: uploadVoters
+  payload: uploadVoters,
 });
 
-export const updateUploadVotersSuccess = uploadVoters => ({
+export const updateUploadVotersSuccess = (uploadVoters) => ({
   type: UPDATE_UPLOAD_VOTERS_SUCCESS,
   payload: uploadVoters,
 });
 
-export const updateUploadVotersFail = error => ({
+export const updateUploadVotersFail = (error) => ({
   type: UPDATE_UPLOAD_VOTERS_FAIL,
   payload: error,
 });
 
-export const deleteUploadVoters = uploadVoters => ({
+export const deleteUploadVoters = (uploadVoters) => ({
   type: DELETE_UPLOAD_VOTERS,
   payload: uploadVoters,
 });
 
-export const deleteUploadVotersSuccess = uploadVoters => ({
+export const deleteUploadVotersSuccess = (uploadVoters) => ({
   type: DELETE_UPLOAD_VOTERS_SUCCESS,
   payload: uploadVoters,
 });
 
-export const deleteUploadVotersFail = error => ({
+export const deleteUploadVotersFail = (error) => ({
   type: DELETE_UPLOAD_VOTERS_FAIL,
   payload: error,
 });
 
-export const activateDeactivateUploadVoters = uploadVoters => ({
+export const activateDeactivateUploadVoters = (uploadVoters) => ({
   type: ON_ACTIVATE_DEACTIVATE_UPLOAD_VOTERS,
-  payload: uploadVoters
+  payload: uploadVoters,
 });
 
-export const activateDeactivateUploadVotersSuccess = uploadVoters => ({
+export const activateDeactivateUploadVotersSuccess = (uploadVoters) => ({
   type: ON_ACTIVATE_DEACTIVATE_UPLOAD_VOTERS_SUCCESS,
-  payload: uploadVoters
+  payload: uploadVoters,
 });
 
-export const activateDeactivateUploadVotersFail = error => ({
+export const activateDeactivateUploadVotersFail = (error) => ({
   type: ON_ACTIVATE_DEACTIVATE_UPLOAD_VOTERS_FAIL,
-  payload: error
+  payload: error,
 });
-
-
-
