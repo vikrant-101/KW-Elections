@@ -1,16 +1,13 @@
 import React, { useEffect } from "react";
 import { Navigate, Route } from "react-router-dom";
-import {setAuthorization} from "../helpers/api_helper";
+import { setAuthorization } from "../helpers/api_helper";
 import { useDispatch } from "react-redux";
-
 import { useProfile } from "../Components/Hooks/UserHooks";
-
 import { logoutUser } from "../store/actions";
 
 const AuthProtected = (props) => {
   const dispatch = useDispatch();
   const { userProfile, loading, idToken } = useProfile();
-  console.log(userProfile, loading, idToken)
   useEffect(() => {
     if (userProfile && !loading && idToken) {
       setAuthorization(idToken);

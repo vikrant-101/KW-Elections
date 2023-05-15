@@ -150,6 +150,7 @@ const Navdata = () => {
       label: "Administration",
       icon: "bx bxs-dashboard",
       link: "/#",
+      ModuleID: auth.RoleID === 6 ? 6 : 0,
       stateVariables: isDashboard,
       click: function (e) {
         e.preventDefault();
@@ -205,7 +206,7 @@ const Navdata = () => {
           label: "Booth Users",
           link: "/administration/booth-users",
           parentId: "administration",
-          ModuleID: 0
+          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
         },
       ],
     },
@@ -214,6 +215,7 @@ const Navdata = () => {
       label: "Operations",
       icon: "bx bx-layer",
       link: "/#",
+      ModuleID: auth.RoleID === 6 ? 6 : 0,
       click: function (e) {
         e.preventDefault();
         setIsApps(!isApps);
@@ -227,7 +229,7 @@ const Navdata = () => {
           label: "Voters Management",
           link: "/operations/voters-management",
           parentId: "operations",
-          ModuleID: 0
+          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
         },
         {
           id: "refer-voters",
@@ -248,7 +250,7 @@ const Navdata = () => {
           label: "Booth Voting",
           link: "/operations/booth-voting",
           parentId: "operations",
-          ModuleID: 0
+          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
         },
       ],
     },
@@ -261,6 +263,7 @@ const Navdata = () => {
       label: "Data Reports",
       icon: "ri-database-line",
       link: "/#",
+      ModuleID: auth.RoleID === 6 ? 6 : 0,
       click: function (e) {
         e.preventDefault();
         setIsAuth(!isAuth);
@@ -274,7 +277,7 @@ const Navdata = () => {
           label: "All Voters List",
           link: "/data-reports/all-voters-list",
           parentId: "data-reports",
-          ModuleID: 0
+          ModuleID:  auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
         },
         {
           id: "all-refered-voters-list",
@@ -288,14 +291,14 @@ const Navdata = () => {
           label: "Roles Wise Selected Voters List",
           link: "/data-reports/roles-wise-selected-voters-list",
           parentId: "data-reports",
-          ModuleID: 0
+          ModuleID: auth.RoleID === 5 ? 5 : 0
         },
         {
           id: "booth-wise-report",
           label: "Booth Wise Report",
           link: "/data-reports/booth-wise-report",
           parentId: "data-reports",
-          ModuleID: 0
+          ModuleID:  auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
         },
       ],
     },
@@ -304,6 +307,7 @@ const Navdata = () => {
       label: "Analytical Reports",
       icon: "bx bx-file",
       link: "/#",
+      ModuleID:  auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 :  auth.RoleID === 6 ? 6 : 0,
       click: function (e) {
         e.preventDefault();
         setIsPages(!isPages);

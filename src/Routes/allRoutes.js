@@ -296,8 +296,8 @@ const authProtectedRoutes = [
 
 
   { path: "/dashboard-analytics", component: <DashboardAnalytics /> },
-  { path: "/dashboard", component: <DashboardCrm /> },
-  // { path: "/dashboard", component: <DashboardEcommerce /> },
+  // { path: "/dashboard", component: <DashboardCrm /> },
+  { path: "/dashboard", component: <DashboardEcommerce /> },
   { path: "/index", component: <DashboardEcommerce /> },
   { path: "/dashboard-crypto", component: <DashboardCrypto /> },
   { path: "/dashboard-projects", component: <DashboardProject /> },

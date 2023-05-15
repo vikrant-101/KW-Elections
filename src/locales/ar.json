@@ -244,5 +244,13 @@
     "Here is whats happening with your store today.":"إليك ما يحدث مع متجرك اليوم.",
     "Add New": "اضف جديد",
     "Edit":"يحرر",
-    "Delete":"يمسح"
+    "Delete":"يمسح",
+    "Class": "فصل",
+    "Clear": "واضح",
+    "Voter ID": "هوية الناخب",
+    "Voter Name": "اسم الناخب",
+    "Arabic Character": "الحروف العربية",
+    "Select": "يختار",
+    "Search": "يبحث",
+    "All Refered Voters": "جميع المصوتين المحالين"
 }

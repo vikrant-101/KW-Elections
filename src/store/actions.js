@@ -65,3 +65,18 @@ export * from "./uploadVoters/actions";
 export * from "./candidates/actions";
 //Phone
 export * from "./phone/actions";
+//Voters
+export * from "./boothVoters/actions";
+//Classes
+export * from "./classes/actions";
+//ReferVoters
+export * from "./referVoters/actions";
+// Users
+export * from './users/actions';
+// Roles
+export * from './roles/actions';
+// Boothusers
+export * from './boothusers/actions'
+// Voters Management
+export * from './votersManagement/actions'
+

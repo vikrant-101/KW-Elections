@@ -5,10 +5,9 @@
     --borderColor: #78b13f;
   }
   
-  body {
+  /* body {
     padding: 20px;
-    text-align: center;
-  }
+  } */
   
   .check {
     display: inline-block;

@@ -61,7 +61,6 @@ const UploadVoters = () => {
   };
 
   const handleFileInput = async (e) => {
-    // console.log("events: ", e.target.files[0]);
     const file = e.target.files[0];
     const convertedFile = await getBase64(file);
     const base64File = convertedFile?.split(",")[1];
@@ -70,7 +69,6 @@ const UploadVoters = () => {
   };
 
   const updaloadVotersHandlers = (electionCircle) => {
-    console.log("uploading Voters");
     setUploadingCSVfor(electionCircle._id)
     inputRef.current.click();
   };
@@ -103,7 +101,6 @@ const UploadVoters = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     setShowAddModal(false);
-    console.log("formData: ", formData);
     dispatch(addElectionCircle(formData));
   };
 
