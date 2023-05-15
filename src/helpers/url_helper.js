@@ -261,11 +261,20 @@ export const GET_REFER_VOTERS = '/GetVoterTest';
 export const GET_REFER_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_REFER_VOTERS = '/ActivateReferVoters'
 
+// My REFER_VOTERS  
+export const POST_MY_REFERED_VOTERS = '/SaveMyReferVoterTest';
+export const UPDATE_MY_REFERED_VOTERS = '/UpdateReferVoterTest';
+export const DELETE_MY_REFERED_VOTERS= '/DeleteReferVoterTest';
+export const GET_MY_REFERED_VOTERS = '/GetReferVotersTest';
+export const GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS = '/ActivateMyReferedVoters'
+
 // UPLOAD VOTERS
-export const POST_UPLOAD_VOTERS = '/AddUploadVoters';
+export const POST_UPLOAD_VOTERS = '/CSVtoJSON';
+export const POST_ELECTION_CIRCLE = '/SaveElectionandCircle';
 export const UPDATE_UPLOAD_VOTERS = '/UpdateUploadVoters';
 export const DELETE_UPLOAD_VOTERS= '/DeleteUploadVoters';
-export const GET_UPLOAD_VOTERS = '/GetUploadVoters';
+export const GET_ELECTION_CIRCLE = '/FetchElectionCircle';
 export const GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_UPLOAD_VOTERS = '/ActivateUploadVoters'
 

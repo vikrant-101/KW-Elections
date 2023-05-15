@@ -1,111 +1,111 @@
 import {
-  ADD_CIRCLES,
-  ADD_CIRCLES_FAIL,
-  ADD_CIRCLES_SUCCESS,
-  DELETE_CIRCLES,
-  DELETE_CIRCLES_FAIL,
-  DELETE_CIRCLES_SUCCESS,
-  GET_CIRCLES,
-  GET_CIRCLES_FAIL,
-  GET_CIRCLES_SUCCESS,
-  GET_CIRCLES_TABLE_COLUMN_NAMES,
-  GET_CIRCLES_TABLE_COLUMN_NAMES_FAIL,
-  GET_CIRCLES_TABLE_COLUMN_NAMES_SUCCESS,
-  ON_ACTIVATE_DEACTIVATE_CIRCLES,
-  ON_ACTIVATE_DEACTIVATE_CIRCLES_FAIL,
-  ON_ACTIVATE_DEACTIVATE_CIRCLES_SUCCESS,
-  UPDATE_CIRCLES,
-  UPDATE_CIRCLES_FAIL,
-  UPDATE_CIRCLES_SUCCESS
+  ADD_MY_REFERED_VOTERS,
+  ADD_MY_REFERED_VOTERS_FAIL,
+  ADD_MY_REFERED_VOTERS_SUCCESS,
+  DELETE_MY_REFERED_VOTERS,
+  DELETE_MY_REFERED_VOTERS_FAIL,
+  DELETE_MY_REFERED_VOTERS_SUCCESS,
+  GET_MY_REFERED_VOTERS,
+  GET_MY_REFERED_VOTERS_FAIL,
+  GET_MY_REFERED_VOTERS_SUCCESS,
+  GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES,
+  GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES_FAIL,
+  GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES_SUCCESS,
+  ON_ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS,
+  ON_ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS_FAIL,
+  ON_ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS_SUCCESS,
+  UPDATE_MY_REFERED_VOTERS,
+  UPDATE_MY_REFERED_VOTERS_FAIL,
+  UPDATE_MY_REFERED_VOTERS_SUCCESS
 } from "./actionTypes"
 
 
-export const getCircles = () => ({
-  type: GET_CIRCLES,
+export const getMyReferedVoters = () => ({
+  type: GET_MY_REFERED_VOTERS,
 });
 
-export const getCirclesSuccess = circles => ({
-  type: GET_CIRCLES_SUCCESS,
-  payload: circles,
+export const getMyReferedVotersSuccess = myReferedVoters => ({
+  type: GET_MY_REFERED_VOTERS_SUCCESS,
+  payload: myReferedVoters,
 });
 
-export const getCirclesFail = error => ({
-  type: GET_CIRCLES_FAIL,
+export const getMyReferedVotersFail = error => ({
+  type: GET_MY_REFERED_VOTERS_FAIL,
   payload: error,
 });
 
-export const getCirclesTableColumnNames = () => ({
-  type: GET_CIRCLES_TABLE_COLUMN_NAMES,
-  moduleName: "CIRCLES"
+export const getMyReferedVotersTableColumnNames = () => ({
+  type: GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES,
+  moduleName: "REFERVOTERS"
 });
 
-export const getCirclesTableColumnNamesSuccess = columnNames => ({
-  type: GET_CIRCLES_TABLE_COLUMN_NAMES_SUCCESS,
+export const getMyReferedVotersTableColumnNamesSuccess = columnNames => ({
+  type: GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES_SUCCESS,
   payload: columnNames,
 });
 
-export const getCirclesTableColumnNamesFail = error => ({
-  type: GET_CIRCLES_TABLE_COLUMN_NAMES_FAIL,
+export const getMyReferedVotersTableColumnNamesFail = error => ({
+  type: GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES_FAIL,
   payload: error,
 });
 
-export const addCircles = circles => ({
-  type: ADD_CIRCLES,
-  payload: circles,
+export const addMyReferedVoters = myReferedVoters => ({
+  type: ADD_MY_REFERED_VOTERS,
+  payload: myReferedVoters,
 });
 
-export const addCirclesSuccess = circles => ({
-  type: ADD_CIRCLES_SUCCESS,
-  payload: circles,
+export const addMyReferedVotersSuccess = myReferedVoters => ({
+  type: ADD_MY_REFERED_VOTERS_SUCCESS,
+  payload: myReferedVoters,
 });
 
-export const addCirclesFail = error => ({
-  type: ADD_CIRCLES_FAIL,
+export const addMyReferedVotersFail = error => ({
+  type: ADD_MY_REFERED_VOTERS_FAIL,
   payload: error,
 });
 
-export const updateCircles = (circles) => ({
-  type: UPDATE_CIRCLES,
-  payload: circles
+export const updateMyReferedVoters = (myReferedVoters) => ({
+  type: UPDATE_MY_REFERED_VOTERS,
+  payload: myReferedVoters
 });
 
-export const updateCirclesSuccess = circles => ({
-  type: UPDATE_CIRCLES_SUCCESS,
-  payload: circles,
+export const updateMyReferedVotersSuccess = myReferedVoters => ({
+  type: UPDATE_MY_REFERED_VOTERS_SUCCESS,
+  payload: myReferedVoters,
 });
 
-export const updateCirclesFail = error => ({
-  type: UPDATE_CIRCLES_FAIL,
+export const updateMyReferedVotersFail = error => ({
+  type: UPDATE_MY_REFERED_VOTERS_FAIL,
   payload: error,
 });
 
-export const deleteCircles = circles => ({
-  type: DELETE_CIRCLES,
-  payload: circles,
+export const deleteMyReferedVoters = myReferedVoters => ({
+  type: DELETE_MY_REFERED_VOTERS,
+  payload: myReferedVoters,
 });
 
-export const deleteCirclesSuccess = circles => ({
-  type: DELETE_CIRCLES_SUCCESS,
-  payload: circles,
+export const deleteMyReferedVotersSuccess = myReferedVoters => ({
+  type: DELETE_MY_REFERED_VOTERS_SUCCESS,
+  payload: myReferedVoters,
 });
 
-export const deleteCirclesFail = error => ({
-  type: DELETE_CIRCLES_FAIL,
+export const deleteMyReferedVotersFail = error => ({
+  type: DELETE_MY_REFERED_VOTERS_FAIL,
   payload: error,
 });
 
-export const activateDeactivateCircles = circles => ({
-  type: ON_ACTIVATE_DEACTIVATE_CIRCLES,
-  payload: circles
+export const activateDeactivateMyReferedVoters = myReferedVoters => ({
+  type: ON_ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS,
+  payload: myReferedVoters
 });
 
-export const activateDeactivateCirclesSuccess = circles => ({
-  type: ON_ACTIVATE_DEACTIVATE_CIRCLES_SUCCESS,
-  payload: circles
+export const activateDeactivateMyReferedVotersSuccess = myReferedVoters => ({
+  type: ON_ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS_SUCCESS,
+  payload: myReferedVoters
 });
 
-export const activateDeactivateCirclesFail = error => ({
-  type: ON_ACTIVATE_DEACTIVATE_CIRCLES_FAIL,
+export const activateDeactivateMyReferedVotersFail = error => ({
+  type: ON_ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS_FAIL,
   payload: error
 });
 

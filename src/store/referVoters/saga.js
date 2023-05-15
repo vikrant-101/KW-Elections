@@ -61,7 +61,6 @@ import {
 function* fetchReferVoters() {
 	try {
 		const response = yield call(getReferVoters);
-		console.log('response: ', response);
 		yield put(getReferVotersSuccess(response.Data));
 	} catch (error) {
 		yield put(getReferVotersFail(error));

@@ -9,9 +9,10 @@ import {
 
 // Login Redux States
 import {
-	GET_UPLOAD_VOTERS,
+	GET_ELECTION_CIRCLE,
 	GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES,
 	ADD_UPLOAD_VOTERS,
+	ADD_ELECTION_CIRCLE,
 	UPDATE_UPLOAD_VOTERS,
 	DELETE_UPLOAD_VOTERS,
 	ON_ACTIVATE_DEACTIVATE_UPLOAD_VOTERS,
@@ -24,32 +25,35 @@ import {
 	addUploadVotersSuccess,
 	deleteUploadVotersFail,
 	deleteUploadVotersSuccess,
-	getUploadVotersFail,
-	getUploadVotersSuccess,
+	getElectionCircleSuccess,
+	getElectionCircleFail,
 	getUploadVotersTableColumnNamesFail,
 	getUploadVotersTableColumnNamesSuccess,
 	updateUploadVotersFail,
-	updateUploadVotersSuccess
+	updateUploadVotersSuccess,
+	addElectionCircleSuccess,
+	addElectionCircleFail,
 } from "./actions";
 
 import {
 	activateDeactivate,
+	addElectionCircle,
 	activateDeactivateUploadVoters,
 	addUploadVoters,
 	deleteUploadVoters,
-	getUploadVoters,
+	getElectionCircle,
 	getUploadVotersTableColumnNames,
 	updateUploadVoters
 } from "../../helpers/fakebackend_helper";
 
 
 // Fetch Upload Voters 
-function* fetchUploadVoters() {
+function* fetchElectionCircle() {
 	try {
-		const response = yield call(getUploadVoters);
-		yield put(getUploadVotersSuccess(response.Data));
+		const response = yield call(getElectionCircle);
+		yield put(getElectionCircleSuccess(response.Data));
 	} catch (error) {
-		yield put(getUploadVotersFail(error));
+		yield put(getElectionCircleFail(error));
 	}
 }
 
@@ -71,6 +75,16 @@ function* onAddUploadVoters({ payload: uploadVoters }) {
 		yield put(addUploadVotersSuccess(response));
 	} catch (error) {
 		yield put(addUploadVotersFail(error));
+	}
+}
+
+// Add Add Election Circle
+function* onAddElectionCircle({ payload: electionCircle }) {
+	try {
+		const response = yield call(addElectionCircle, electionCircle);
+		yield put(addElectionCircleSuccess(response));
+	} catch (error) {
+		yield put(addElectionCircleFail(error));
 	}
 }
 
@@ -107,9 +121,10 @@ function* onActivateDeactivate({ payload: uploadVoters }) {
 
 
 export function* watchUploadVoters() {
-	yield takeEvery(GET_UPLOAD_VOTERS, fetchUploadVoters);
+	yield takeEvery(GET_ELECTION_CIRCLE, fetchElectionCircle);
 	yield takeEvery(GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES, fetchUploadVotersTableColumnNames);
 	yield takeEvery(ADD_UPLOAD_VOTERS, onAddUploadVoters);
+	yield takeEvery(ADD_ELECTION_CIRCLE, onAddElectionCircle);
 	yield takeEvery(UPDATE_UPLOAD_VOTERS, onUpdateUploadVoters);
 	yield takeEvery(DELETE_UPLOAD_VOTERS, onDeleteUploadVoters);
 	yield throttle(2000, ON_ACTIVATE_DEACTIVATE_UPLOAD_VOTERS, onActivateDeactivate);

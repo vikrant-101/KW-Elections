@@ -472,12 +472,27 @@ export const deleteReferVoters = (referVoters) =>
 export const activateDeactivateReferVoters = (referVoters) =>
   api.update(url.ACTIVATE_DEACTIVATE_REFER_VOTERS, referVoters);
 
+//My Refer Voters
+export const getMyReferedVoters = () => api.get(url.GET_MY_REFERED_VOTERS);
+export const getMyReferedVotersTableColumnNames = ({ moduleName: module }) =>
+  api.create(url.GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES, { module });
+export const addMyReferedVoters = (myReferVoters) =>
+  api.create(url.POST_MY_REFERED_VOTERS, myReferVoters);
+export const updateMyReferedVoters = (myReferVoters) =>
+  api.update(url.UPDATE_MY_REFERED_VOTERS, myReferVoters);
+export const deleteMyReferedVoters = (myReferVoters) =>
+  api.create(url.DELETE_MY_REFERED_VOTERS, myReferVoters);
+export const activateDeactivateMyReferedVoters = (myReferVoters) =>
+  api.update(url.ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS, myReferVoters);
+
 //Upload Voters
-export const getUploadVoters = () => api.get(url.GET_UPLOAD_VOTERS);
+export const getElectionCircle = () => api.get(url.GET_ELECTION_CIRCLE);
 export const getUploadVotersTableColumnNames = ({ moduleName: module }) =>
   api.create(url.GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES, { module });
 export const addUploadVoters = (uploadVoters) =>
   api.create(url.POST_UPLOAD_VOTERS, uploadVoters);
+export const addElectionCircle = (electionCircle) =>
+  api.create(url.POST_ELECTION_CIRCLE, electionCircle);
 export const updateUploadVoters = (uploadVoters) =>
   api.update(url.UPDATE_UPLOAD_VOTERS, uploadVoters);
 export const deleteUploadVoters = (uploadVoters) =>
