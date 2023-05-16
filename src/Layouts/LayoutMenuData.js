@@ -240,7 +240,7 @@ const Navdata = () => {
         },
         {
           id: "my-refered-voters",
-          label: "My Voters",
+          label: "My Refered Voters",
           link: "/operations/my-refered-voters",
           parentId: "operations",
           ModuleID: 0

@@ -4,14 +4,22 @@ import { useTranslation } from "react-i18next";
 import { Col, Input, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { useSelector } from "react-redux";
 
-const ReferVoterModal = ({
-  showReferModal,
-  setShowReferModal,
+const EditReferVoterModal = ({
+  detailsByCurrentUser,
+  showEditReferModal,
+  setShowEditReferModal,
   onSaveReferClick,
 }) => {
   const { t } = useTranslation();
 
   const [referedVoterDetails, setReferedVoterDetails] = useState({});
+
+  useEffect(() => {
+    setReferedVoterDetails({
+      MobileNo: detailsByCurrentUser?.["MobileNo"],
+      Comment: detailsByCurrentUser?.["Comment"],
+    });
+  }, [detailsByCurrentUser]);
 
   const handleVoterDetailChange = (e) => {
     setReferedVoterDetails((prev) => ({
@@ -20,8 +28,8 @@ const ReferVoterModal = ({
     }));
   };
   return (
-    <Modal isOpen={showReferModal} centered={true}>
-      <ModalHeader>Refer Voter</ModalHeader>
+    <Modal isOpen={showEditReferModal} centered={true}>
+      <ModalHeader>Edit Refer Voter</ModalHeader>
       <ModalBody className="py-3 px-5">
         <Row className="my-3">
           <Col sm={4}>
@@ -38,6 +46,7 @@ const ReferVoterModal = ({
                 name="MobileNo"
                 className="form-control"
                 onChange={handleVoterDetailChange}
+                value={referedVoterDetails?.MobileNo}
                 id="phone-number"
               />
             </div>
@@ -58,6 +67,7 @@ const ReferVoterModal = ({
                 name="Comment"
                 className="form-control"
                 onChange={handleVoterDetailChange}
+                value={referedVoterDetails?.Comment}
                 id="comment"
               />
             </div>
@@ -69,7 +79,7 @@ const ReferVoterModal = ({
             type="button"
             className="btn w-sm btn-light"
             data-bs-dismiss="modal"
-            onClick={() => setShowReferModal(false)}
+            onClick={() => setShowEditReferModal(false)}
           >
             {t("Close")}
           </button>
@@ -79,7 +89,7 @@ const ReferVoterModal = ({
             id="refer-voter"
             onClick={() => onSaveReferClick(referedVoterDetails)}
           >
-            {t("Add")}
+            {t("Save")}
           </button>
         </div>
       </ModalBody>
@@ -87,10 +97,10 @@ const ReferVoterModal = ({
   );
 };
 
-ReferVoterModal.propTypes = {
+EditReferVoterModal.propTypes = {
   onCloseClick: PropTypes.func,
   onSaveReferClick: PropTypes.func,
   showReferModal: PropTypes.any,
 };
 
-export default ReferVoterModal;
+export default EditReferVoterModal;
