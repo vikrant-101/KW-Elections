@@ -22,7 +22,7 @@ const Section = () => {
                         </div>
                         <div className="mt-3 mt-lg-0">
                             <form action="#">
-                                <Row className="g-3 mb-0 align-items-center">
+                                {/* <Row className="g-3 mb-0 align-items-center">
                                     <div className="col-sm-auto">
                                         <div className="input-group">
                                             <Flatpickr
@@ -42,7 +42,7 @@ const Section = () => {
                                     <div className="col-auto">
                                         <button type="button" className="btn btn-soft-info btn-icon waves-effect waves-light layout-rightside-btn" onClick={() => sidebar()} ><i className="ri-pulse-line"></i></button>
                                     </div>
-                                </Row>
+                                </Row> */}
                             </form>
                         </div>
                     </div>
