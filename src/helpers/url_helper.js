@@ -255,17 +255,26 @@ export const ACTIVATE_DEACTIVATE_CIRCLES = '/ActivateCircles'
 
 // REFER_VOTERS  
 export const POST_REFER_VOTERS = '/SaveReferVoterTest';
-export const UPDATE_REFER_VOTERS = '/UpdateReferVoters';
+export const UPDATE_REFER_VOTERS = '/UpdateReferVoterTest';
 export const DELETE_REFER_VOTERS= '/DeleteReferVoters';
-export const GET_REFER_VOTERS = '/GetReferVoters';
+export const GET_REFER_VOTERS = '/GetVoterTest';
 export const GET_REFER_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_REFER_VOTERS = '/ActivateReferVoters'
 
+// My REFER_VOTERS  
+export const POST_MY_REFERED_VOTERS = '/SaveMyReferVoterTest';
+export const UPDATE_MY_REFERED_VOTERS = '/UpdateReferVoterTest';
+export const DELETE_MY_REFERED_VOTERS= '/DeleteReferVoterTest';
+export const GET_MY_REFERED_VOTERS = '/GetReferVotersTest';
+export const GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS = '/ActivateMyReferedVoters'
+
 // UPLOAD VOTERS
-export const POST_UPLOAD_VOTERS = '/AddUploadVoters';
+export const POST_UPLOAD_VOTERS = '/CSVtoJSON';
+export const POST_ELECTION_CIRCLE = '/SaveElectionandCircle';
 export const UPDATE_UPLOAD_VOTERS = '/UpdateUploadVoters';
 export const DELETE_UPLOAD_VOTERS= '/DeleteUploadVoters';
-export const GET_UPLOAD_VOTERS = '/GetUploadVoters';
+export const GET_ELECTION_CIRCLE = '/FetchElectionCircle';
 export const GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_UPLOAD_VOTERS = '/ActivateUploadVoters'
 
@@ -279,6 +288,15 @@ export const ACTIVATE_DEACTIVATE_CANDIDATES = '/ActivateCandidates'
 export const CHECK_PHONE_NUMBER = '/CheckPhoneNumberExists'
 
 // Voters
+export const POST_VOTERS = '/AddVoters';
+export const UPDATE_VOTERS = '/UpdateVoters';
+export const DELETE_VOTERS= '/DeleteVoters';
+export const GET_VOTERS = '/GetVoters';
+export const GET_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
+export const ACTIVATE_DEACTIVATE_VOTERS = '/ActivateDeactivateVoters';
+export const ACTIVATE_VOTERS = '/ActivateVoters';
+
+// Booth Voters
 export const POST_BOOTHVOTERS = '/AddBoothVoters';
 export const UPDATE_BOOTHVOTERS = '/UpdateBoothVoters';
 export const DELETE_BOOTHVOTERS= '/DeleteBoothVoters';
@@ -310,7 +328,8 @@ export const UPDATE_USERS = '/UpdateUsers';
 export const DELETE_USERS= '/DeleteUsers';
 export const GET_USERS = '/GetUsers';
 export const GET_USERS_TABLE_COLUMN_NAMES = '/GetHeaders';
-export const ACTIVATE_DEACTIVATE_USERS = '/ActivateUsers'
+export const ACTIVATE_DEACTIVATE_USERS = '/ActivateUsers';
+export const GET_PRINTDETAIL = '/GetPrintDetail';
 
 //Roles
 export const POST_ROLES = '/AddRoles';
@@ -326,7 +345,8 @@ export const UPDATE_BOOTHUSERS = '/UpdateUserMobileOrFullName';
 export const DELETE_BOOTHUSERS= '/DeleteUsers';
 export const GET_BOOTHUSERS = '/GetBoothUsers';
 export const GET_BOOTHUSERS_TABLE_COLUMN_NAMES = '/GetHeaders';
-export const ACTIVATE_DEACTIVATE_BOOTHUSERS = '/ActivateUsers'
+export const ACTIVATE_DEACTIVATE_BOOTHUSERS = '/ActivateUsers';
+export const GET_BOOTHUSER_DETAIL = '/GetBoothUserDetail';
 
 // Voters Management
 export const POST_VOTERSMANAGEMENT = '/AddVotersManagement';
@@ -334,4 +354,17 @@ export const UPDATE_VOTERSMANAGEMENT = '/UpdateVotersManagement';
 export const DELETE_VOTERSMANAGEMENT= '/DeleteVotersManagement';
 export const GET_VOTERSMANAGEMENT = '/GetVotersManagement';
 export const GET_VOTERSMANAGEMENT_TABLE_COLUMN_NAMES = '/GetHeaders';
-export const ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT = '/ActivateVotersManagement'
+export const ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT = '/ActivateVotersManagement';
+
+// Analytical Reports
+export const GET_AREAWISE_REPORT = '/GetAreaWiseReports';
+export const GET_AREAWISE_TABLE_COLUMN_NAMES = '/GetHeaders';
+
+export const GET_SCHOOLWISE_REPORT = '/GetSchoolWiseReports';
+export const GET_SCHOOLWISE_TABLE_COLUMN_NAMES = '/GetHeaders';
+
+export const GET_BOOTHWISE_REPORT = '/GetBoothWiseReports';
+export const GET_BOOTHWISE_TABLE_COLUMN_NAMES = '/GetHeaders';
+
+export const GET_FAMILYNAMEWISE_REPORT = '/GetFamilyNameWiseReports';
+export const GET_FAMILYNAMEWISE_TABLE_COLUMN_NAMES = '/GetHeaders';

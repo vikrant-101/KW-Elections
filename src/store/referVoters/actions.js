@@ -36,7 +36,7 @@ import {
   
   export const getReferVotersTableColumnNames = () => ({
     type: GET_REFERVOTERS_TABLE_COLUMN_NAMES,
-    moduleName: "ALLREFEREDVOTERSLIST"
+    moduleName: "REFERVOTERS"
   });
   
   export const getReferVotersTableColumnNamesSuccess = columnNames => ({

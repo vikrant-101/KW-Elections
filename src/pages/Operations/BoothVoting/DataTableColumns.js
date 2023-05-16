@@ -39,7 +39,6 @@ export const columns = (columnNames, i18n,t, onActiveChange) => {
 					wrap: true,
 					selector: (cell) => {
 						let id = localStorage.getItem("_id")
-						console.log('id 123: ', id);
 						let status = {};
 						let checkOrNot = cell?.VotedMarkedBy?.filter(item => {
 							if(item.BoothCoordinatorID === "645babd779ae9002d3058af8") {

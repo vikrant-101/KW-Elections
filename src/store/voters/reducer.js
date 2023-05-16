@@ -3,6 +3,9 @@ import {
 	ADD_VOTERS_SUCCESS,
 	DELETE_VOTERS_FAIL,
 	DELETE_VOTERS_SUCCESS,
+	GET_PRINTDETAIL,
+	GET_PRINTDETAIL_FAIL,
+	GET_PRINTDETAIL_SUCCESS,
 	GET_VOTERS,
 	GET_VOTERS_FAIL,
 	GET_VOTERS_SUCCESS,
@@ -22,7 +25,7 @@ import { toast } from 'react-toastify';
 const INIT_STATE = {
 	voters: [],
 	columnNames: [],
-	alpha:[],
+	printDetail: [],
 	isLoading: false,
 	error: {},
 };
@@ -48,9 +51,26 @@ const voters = (state = INIT_STATE, action) => {
 				...state,
 				error: action.payload,
 			};
+
+		case GET_PRINTDETAIL:
+			return {
+				...state,
+				isLoading: true
+			};
+	
+		case GET_PRINTDETAIL_SUCCESS:
+			return {
+				...state,
+				printDetail: action.payload
+			};
+
+		case GET_PRINTDETAIL_FAIL:
+			return {
+				...state,
+				error: action.payload,
+			};
 	
 		case GET_VOTERS_TABLE_COLUMN_NAMES:
-			console.log("table column voters: ", action)
 			return {
 				...state,
 				isLoading: true

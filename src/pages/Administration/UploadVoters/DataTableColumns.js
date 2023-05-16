@@ -1,42 +1,18 @@
-import {
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  UncontrolledDropdown,
-} from "reactstrap";
+import { Spinner } from "reactstrap";
 import { filteredColumns } from "../../../helpers/Filter/FilterColumns";
 
 export const columns = (
   columnNames,
   i18n,
   t,
-  onEditClickHandler,
-  onDeleteClickHandler,
-  onActiveOrDeactiveChange,
-  updaloadVotersHandlers,
+  inputRef,
+  beingUploaded,
+  handleFileInput,
+  updaloadVotersHandlers
 ) => {
   return filteredColumns(columnNames, i18n)?.map((column) => {
     let col;
     switch (column?.FieldName) {
-      // case 'Active':
-      // 	return col = {
-      // 		name: <span className='font-weight-bold fs-13'>{i18n.language === 'ar' ? column?.ValueAr : column?.ValueEn}</span>,
-      // 		sortable: false,
-      // 		wrap: true,
-      // 		selector: (cell) => {
-      // 			return <div className="form-check form-switch">
-      // 				<input className="form-check-input"
-      // 				type="checkbox"
-      // 				role="switch"
-      // 				id="flexSwitchCheckDefault"
-      // 				onChange={(e) => onActiveOrDeactiveChange(cell,e)}
-      // 				checked={cell?.IsActive} />
-      // 				<label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
-      // 			</div>
-
-      // 		},
-      // 	}
-
       case "Action":
         return (col = {
           name: (
@@ -47,25 +23,45 @@ export const columns = (
           sortable: false,
           wrap: true,
           cell: (cell) => {
+            const alreadyRefered = cell?.ReferBy?.length > 0;
             return (
-              // <UncontrolledDropdown className="dropdown d-inline-block">
-              // 	<DropdownToggle className="btn btn-soft-secondary btn-sm" tag="button">
-              // 		<i className="ri-more-fill align-middle"></i>
-              // 	</DropdownToggle>
-              // 	<DropdownMenu className="dropdown-menu-end">
-              // 		{/* <DropdownItem href="#!"><i className="ri-eye-fill align-bottom me-2 text-muted"></i>{t('View')}</DropdownItem> */}
-              // 		<DropdownItem className='edit-item-btn' onClick={(e) => { onEditClickHandler(cell, 'isEdit') }}><i className="ri-pencil-fill align-bottom me-2 text-muted"></i>{t('Edit')}</DropdownItem>
-              // 		<DropdownItem className='remove-item-btn' onClick={(e) => { onDeleteClickHandler(cell) }}> <i className="ri-delete-bin-fill align-bottom me-2 text-muted"></i> {t('Delete')} </DropdownItem>
-              // 	</DropdownMenu>
-              // </UncontrolledDropdown>
-
-              <button
-                className="btn btn-primary rounded-pill"
-                data-test="election"
-                onClick={updaloadVotersHandlers}
-              >
-                {i18n.language === "ar" ? "تحميل الناخبين" : "upload voters"}
-              </button>
+              <>
+                {beingUploaded === cell._id ? (
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Spinner
+                      style={{
+                        height: "1rem",
+                        width: "1rem",
+                      }}
+                      className="me-2"
+                    >
+                      {" "}
+                      Loading...{" "}
+                    </Spinner>{" "}
+                    {t("Uploading...")}
+                  </div>
+                ) : (
+                  <>
+                    <input
+                      style={{ display: "none" }}
+                      multiple
+                      ref={inputRef}
+                      type="file"
+                      onChange={handleFileInput}
+                    />
+                    <button
+                      className="btn btn-primary rounded-pill"
+                      data-test="election"
+                      onClick={() => updaloadVotersHandlers(cell)}
+                    >
+                      {/* {i18n.language === "ar" ? "تحميل الناخبين" : "Upload voters"} */}
+                      {cell.CSVUploaded
+                        ? t("Update Voters")
+                        : t("Upload Voters")}
+                    </button>
+                  </>
+                )}
+              </>
             );
           },
         });

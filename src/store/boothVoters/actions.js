@@ -5,9 +5,9 @@ import {
     DELETE_BOOTHVOTERS,
     DELETE_BOOTHVOTERS_FAIL,
     DELETE_BOOTHVOTERS_SUCCESS,
-    GET_ARABIC_ALPHABETS,
-    GET_ARABIC_ALPHABETS_FAIL,
-    GET_ARABIC_ALPHABETS_SUCCESS,
+    GET_BOOTHUSER_DETAIL,
+    GET_BOOTHUSER_DETAIL_FAIL,
+    GET_BOOTHUSER_DETAIL_SUCCESS,
     GET_BOOTHVOTERS,
     GET_BOOTHVOTERS_FAIL,
     GET_BOOTHVOTERS_SUCCESS,
@@ -42,6 +42,23 @@ import {
   
   export const getBoothVotersFail = error => ({
     type: GET_BOOTHVOTERS_FAIL,
+    payload: error,
+  });
+
+  export const getBoothUserDetail = ({userID}) => {
+    console.log('userID : ', userID);
+    return {
+      type: GET_BOOTHUSER_DETAIL,
+      userID: userID
+  }};
+  
+  export const getBoothUserDetailSuccess = boothuser => ({
+    type: GET_BOOTHUSER_DETAIL_SUCCESS,
+    payload: boothuser,
+  });
+  
+  export const getBoothUserDetailFail = error => ({
+    type: GET_BOOTHUSER_DETAIL_FAIL,
     payload: error,
   });
 

@@ -472,12 +472,27 @@ export const deleteReferVoters = (referVoters) =>
 export const activateDeactivateReferVoters = (referVoters) =>
   api.update(url.ACTIVATE_DEACTIVATE_REFER_VOTERS, referVoters);
 
+//My Refer Voters
+export const getMyReferedVoters = () => api.get(url.GET_MY_REFERED_VOTERS);
+export const getMyReferedVotersTableColumnNames = ({ moduleName: module }) =>
+  api.create(url.GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES, { module });
+export const addMyReferedVoters = (myReferVoters) =>
+  api.create(url.POST_MY_REFERED_VOTERS, myReferVoters);
+export const updateMyReferedVoters = (myReferVoters) =>
+  api.update(url.UPDATE_MY_REFERED_VOTERS, myReferVoters);
+export const deleteMyReferedVoters = (myReferVoters) =>
+  api.create(url.DELETE_MY_REFERED_VOTERS, myReferVoters);
+export const activateDeactivateMyReferedVoters = (myReferVoters) =>
+  api.update(url.ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS, myReferVoters);
+
 //Upload Voters
-export const getUploadVoters = () => api.get(url.GET_UPLOAD_VOTERS);
+export const getElectionCircle = () => api.get(url.GET_ELECTION_CIRCLE);
 export const getUploadVotersTableColumnNames = ({ moduleName: module }) =>
   api.create(url.GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES, { module });
 export const addUploadVoters = (uploadVoters) =>
   api.create(url.POST_UPLOAD_VOTERS, uploadVoters);
+export const addElectionCircle = (electionCircle) =>
+  api.create(url.POST_ELECTION_CIRCLE, electionCircle);
 export const updateUploadVoters = (uploadVoters) =>
   api.update(url.UPDATE_UPLOAD_VOTERS, uploadVoters);
 export const deleteUploadVoters = (uploadVoters) =>
@@ -495,6 +510,16 @@ export const activateDeactivateCandidates = (candidates) => api.update(url.ACTIV
 export const checkPhoneNumber = (phone) => api.create(url.CHECK_PHONE_NUMBER, phone)
 
 // Voters
+export const getVoters = () => api.get(url.GET_VOTERS);
+export const getVotersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_VOTERS_TABLE_COLUMN_NAMES, { module });
+export const addVoters = (voters) => api.create(url.POST_VOTERS, voters);
+export const updateVoters = (voters) => api.update(url.UPDATE_VOTERS, voters);
+export const deleteVoters = (voters) => api.create(url.DELETE_VOTERS, voters);
+export const activateDeactivateVoters = (voters) => api.update(url.ACTIVATE_DEACTIVATE_VOTERS, voters)
+export const activateVoters = (voters) => api.update(url.ACTIVATE_VOTERS, voters)
+export const getPrintDetail = (userID) => api.update(url.GET_PRINTDETAIL, userID );
+
+// Booth Voters
 export const getBoothVoters = () => api.get(url.GET_BOOTHVOTERS);
 export const getBoothVotersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_BOOTHVOTERS_TABLE_COLUMN_NAMES, { module });
 export const addBoothVoters = (boothvoters) => api.create(url.POST_BOOTHVOTERS, boothvoters);
@@ -502,7 +527,11 @@ export const updateBoothVoters = (boothvoters) => api.update(url.UPDATE_BOOTHVOT
 export const deleteBoothVoters = (boothvoters) => api.create(url.DELETE_BOOTHVOTERS, boothvoters);
 export const activateDeactivateBoothVoters = (boothvoters) => api.update(url.ACTIVATE_DEACTIVATE_BOOTHVOTERS, boothvoters)
 export const activateBoothVoters = (boothvoters) => api.update(url.ACTIVATE_BOOTHVOTERS, boothvoters)
-export const getClassBoothVoters = ({classNo: classNo}) => api.create(url.GET_CLASS_BOOTHVOTERS, { classNo });
+export const getClassBoothVoters = ({classNo: classNo}) => api.update(url.GET_CLASS_BOOTHVOTERS, { classNo });
+export const getBoothUserDetail = ({userID}) => {
+  console.log('userID: helper', userID);
+  return api.update(url.GET_BOOTHUSER_DETAIL, {userID: userID});
+};
 
 // Classes
 export const getClasses = () => api.get(url.GET_CLASSES);
@@ -546,3 +575,13 @@ export const addVotersManagement = (votersmanagement) => api.create(url.POST_VOT
 export const updateVotersManagement = (votersmanagement) => api.update(url.UPDATE_VOTERSMANAGEMENT, votersmanagement);
 export const deleteVotersManagement = (votersmanagement) => api.create(url.DELETE_VOTERSMANAGEMENT, votersmanagement);
 export const activateDeactivateVotersManagement = (votersmanagement) => api.update(url.ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT, votersmanagement);
+
+// Analytical Report
+export const getAreaWiseReport = () => api.get(url.GET_AREAWISE_REPORT);
+export const getAreaWiseTableColumnNames = ({ moduleName: module }) => api.create(url.GET_AREAWISE_TABLE_COLUMN_NAMES, { module });
+export const getSchoolWiseReport = () => api.get(url.GET_SCHOOLWISE_REPORT);
+export const getSchoolWiseTableColumnNames = ({ moduleName: module }) => api.create(url.GET_AREAWISE_TABLE_COLUMN_NAMES, { module });
+export const getBoothWiseReport = () => api.get(url.GET_BOOTHWISE_REPORT);
+export const getBoothWiseTableColumnNames = ({ moduleName: module }) => api.create(url.GET_AREAWISE_TABLE_COLUMN_NAMES, { module });
+export const getFamilyNameWiseReport = () => api.get(url.GET_FAMILYNAMEWISE_REPORT);
+export const getFamilyNameWiseTableColumnNames = ({ moduleName: module }) => api.create(url.GET_AREAWISE_TABLE_COLUMN_NAMES, { module });

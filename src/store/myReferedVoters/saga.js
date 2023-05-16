@@ -9,115 +9,115 @@ import {
 
 // Login Redux States
 import {
-	GET_CIRCLES,
-	GET_CIRCLES_TABLE_COLUMN_NAMES,
-	ADD_CIRCLES,
-	UPDATE_CIRCLES,
-	DELETE_CIRCLES,
-	ON_ACTIVATE_DEACTIVATE_CIRCLES,
+	GET_MY_REFERED_VOTERS,
+	GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES,
+	ADD_MY_REFERED_VOTERS,
+	UPDATE_MY_REFERED_VOTERS,
+	DELETE_MY_REFERED_VOTERS,
+	ON_ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS,
 } from "./actionTypes";
 
 import {
-	activateDeactivateCirclesFail,
-	activateDeactivateCirclesSuccess,
-	addCirclesFail,
-	addCirclesSuccess,
-	deleteCirclesFail,
-	deleteCirclesSuccess,
-	getCirclesFail,
-	getCirclesSuccess,
-	getCirclesTableColumnNamesFail,
-	getCirclesTableColumnNamesSuccess,
-	updateCirclesFail,
-	updateCirclesSuccess
+	activateDeactivateMyReferedVotersFail,
+	activateDeactivateMyReferedVotersSuccess,
+	addMyReferedVotersFail,
+	addMyReferedVotersSuccess,
+	deleteMyReferedVotersFail,
+	deleteMyReferedVotersSuccess,
+	getMyReferedVotersFail,
+	getMyReferedVotersSuccess,
+	getMyReferedVotersTableColumnNamesFail,
+	getMyReferedVotersTableColumnNamesSuccess,
+	updateMyReferedVotersFail,
+	updateMyReferedVotersSuccess
 } from "./actions";
 
 import {
 	activateDeactivate,
-	activateDeactivateCircles,
-	addCircles,
-	deleteCircles,
-	getCircles,
-	getCirclesTableColumnNames,
-	updateCircles
+	activateDeactivateMyReferedVoters,
+	addMyReferedVoters,
+	deleteMyReferedVoters,
+	getMyReferedVoters,
+	getMyReferedVotersTableColumnNames,
+	updateMyReferedVoters
 } from "../../helpers/fakebackend_helper";
 
 
-// Fetch Circles 
-function* fetchCircles() {
+// Fetch MyReferedVoters 
+function* fetchMyReferedVoters() {
 	try {
-		const response = yield call(getCircles);
-		yield put(getCirclesSuccess(response.Data));
+		const response = yield call(getMyReferedVoters);
+		yield put(getMyReferedVotersSuccess(response.Data));
 	} catch (error) {
-		yield put(getCirclesFail(error));
+		yield put(getMyReferedVotersFail(error));
 	}
 }
 
-// Fetch Circles Table Columns Names 
-function* fetchCirclesTableColumnNames(moduleName) {
+// Fetch MyReferedVoters Table Columns Names 
+function* fetchMyReferedVotersTableColumnNames(moduleName) {
 	try {
-		const response = yield call(getCirclesTableColumnNames, moduleName);
-		yield put(getCirclesTableColumnNamesSuccess(response.Data));
+		const response = yield call(getMyReferedVotersTableColumnNames, moduleName);
+		yield put(getMyReferedVotersTableColumnNamesSuccess(response.Data));
 	} catch (error) {
-		yield put(getCirclesTableColumnNamesFail(error));
+		yield put(getMyReferedVotersTableColumnNamesFail(error));
 	}
 }
 
 
-// Add Circles  
-function* onAddCircles({ payload: circles }) {
+// Add MyReferedVoters  
+function* onAddMyReferedVoters({ payload: myReferedVoters }) {
 	try {
-		const response = yield call(addCircles, circles);
-		yield put(addCirclesSuccess(response));
+		const response = yield call(addMyReferedVoters, myReferedVoters);
+		yield put(addMyReferedVotersSuccess(response));
 	} catch (error) {
-		yield put(addCirclesFail(error));
+		yield put(addMyReferedVotersFail(error));
 	}
 }
 
-// Update Circles  
-function* onUpdateCircles({ payload: circles }) {
+// Update MyReferedVoters  
+function* onUpdateMyReferedVoters({ payload: myReferedVoters }) {
 	try {
-		const response = yield call(updateCircles, circles);
-		yield put(updateCirclesSuccess(response));
+		const response = yield call(updateMyReferedVoters, myReferedVoters);
+		yield put(updateMyReferedVotersSuccess(response));
 	} catch (error) {
 		console.log(error)
-		yield put(updateCirclesFail(error));
+		yield put(updateMyReferedVotersFail(error));
 	}
 }
 
-// Delete Circles
-function* onDeleteCircles({ payload: circles }) {
+// Delete MyReferedVoters
+function* onDeleteMyReferedVoters({ payload: myReferedVoters }) {
 	try {
-		const response = yield call(deleteCircles, circles);
-		yield put(deleteCirclesSuccess(response))
+		const response = yield call(deleteMyReferedVoters, myReferedVoters);
+		yield put(deleteMyReferedVotersSuccess(response))
 	} catch (error) {
-		yield put(deleteCirclesFail(error))
+		yield put(deleteMyReferedVotersFail(error))
 	}
 }
 
-function* onActivateDeactivate({ payload: circles }) {
+function* onActivateDeactivate({ payload: myReferedVoters }) {
 	try {
-		yield put(activateDeactivateCirclesSuccess(circles))
-		yield call(activateDeactivateCircles, circles);
+		yield put(activateDeactivateMyReferedVotersSuccess(myReferedVoters))
+		yield call(activateDeactivateMyReferedVoters, myReferedVoters);
 
 	} catch (error) {
-		yield put(activateDeactivateCirclesFail(error))
+		yield put(activateDeactivateMyReferedVotersFail(error))
 	}
 }
 
 
-export function* watchCircles() {
-	yield takeEvery(GET_CIRCLES, fetchCircles);
-	yield takeEvery(GET_CIRCLES_TABLE_COLUMN_NAMES, fetchCirclesTableColumnNames);
-	yield takeEvery(ADD_CIRCLES, onAddCircles);
-	yield takeEvery(UPDATE_CIRCLES, onUpdateCircles);
-	yield takeEvery(DELETE_CIRCLES, onDeleteCircles);
-	yield throttle(2000, ON_ACTIVATE_DEACTIVATE_CIRCLES, onActivateDeactivate);
+export function* watchMyReferedVoters() {
+	yield takeEvery(GET_MY_REFERED_VOTERS, fetchMyReferedVoters);
+	yield takeEvery(GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES, fetchMyReferedVotersTableColumnNames);
+	yield takeEvery(ADD_MY_REFERED_VOTERS, onAddMyReferedVoters);
+	yield takeEvery(UPDATE_MY_REFERED_VOTERS, onUpdateMyReferedVoters);
+	yield takeEvery(DELETE_MY_REFERED_VOTERS, onDeleteMyReferedVoters);
+	yield throttle(2000, ON_ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS, onActivateDeactivate);
 
 }
 
-function* CirclesSaga() {
-	yield all([fork(watchCircles)]);
+function* MyReferedVotersSaga() {
+	yield all([fork(watchMyReferedVoters)]);
 }
 
-export default CirclesSaga;
+export default MyReferedVotersSaga;

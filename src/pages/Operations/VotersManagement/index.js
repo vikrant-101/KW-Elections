@@ -57,7 +57,6 @@ const VotersManagement = () => {
 
 
   const { VotersManagement, isLoading, columnNames } = useSelector((state) => {
-    console.log('state.VotersManagement: ', state.VotersManagement);
     return {
     VotersManagement: state.VotersManagement.votersmanagement,
 		columnNames: state.VotersManagement.columnNames,
@@ -74,7 +73,6 @@ const VotersManagement = () => {
 	}, [VotersManagement]);
 
   const handleClass = (value) => {
-    console.log('value: ', value);
     dispatch(getVotersManagement())
     dispatch(getVotersManagementTableColumnNames())
 
@@ -93,7 +91,6 @@ const VotersManagement = () => {
 
 
   const handleArabicCharacter = (value) => {
-    console.log('value: ', value);
     if (value === "") {
       alphaData = VotersManagement;
       setData(VotersManagement)
