@@ -7,24 +7,27 @@ import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { columns } from "./DataTableColumns";
 import SearchTextBox from "../../../Components/Common/SearchTextBox";
 import DropDownTextBox from "../../../Components/Common/DropDownTextBox";
-import { getBoothVoters, getBoothVotersTableColumnNames,  activateBoothVoters, getClassBoothVoters } from "../../../store/boothVoters/actions";
+import { getBoothVoters, getBoothVotersTableColumnNames,  activateBoothVoters, getClassBoothVoters, getBoothUserDetail } from "../../../store/boothVoters/actions";
 import { toast } from 'react-toastify';
 
-
   let alphaData = [];
+  let boothUserDetail;
 
 const BoothVoting = () => {
   const { t, i18n } = useTranslation();
+  const [boothUser, setBoothUser] = useState(false)
 
 	const dispatch = useDispatch();
 
-  const { BoothVoters, isLoading, columnNames } = useSelector((state) => {
+  const { BoothVoters, isLoading, columnNames, Boothuserdetail } = useSelector((state) => {
 
     return {
     BoothVoters: state.BoothVoters.boothvoters,
 		columnNames: state.BoothVoters.columnNames,
 		isLoading: state.BoothVoters.isLoading,
+    Boothuserdetail: state.BoothVoters.boothuserdetail[0]
 	}});
+  // console.log('Boothuserdetail: ', Boothuserdetail);
 
 	const [data, setData] = useState(BoothVoters);
   if (alphaData.length ===0) {
@@ -32,20 +35,33 @@ const BoothVoting = () => {
   }
 
   let user = sessionStorage.getItem('auth');
-  console.log('user -----: ', JSON.parse(user));
+  // console.log('user -----: ', JSON.parse(user));
   user = JSON.parse(user);
 
+  let role = false;
+
   useEffect(() => {
-    if (user.RoleID <= 2) {
-      console.log("inside if")
+    if (user.RoleID >= 2) {
+      // console.log("inside if")
       dispatch(getBoothVoters())
     } else {
       console.log("inside else")
       let value = "21";
-      dispatch(getClassBoothVoters({ "classNo": Number(value)}))
+      // boothUserDetail = getBoothUserDetail({_id: user._id});
+      // console.log('boothUserDetail: ', boothUserDetail);
+      // dispatch(getClassBoothVoters({ "classNo": Number(value)}))
+      role = true;
+      setBoothUser(true);
+      dispatch(getBoothUserDetail({ userID: user.id}));
     }
     dispatch(getBoothVotersTableColumnNames())
 	}, [dispatch]);
+
+  useEffect(() => {
+    let classNo = Number(Boothuserdetail?.ClassNo)
+    console.log('classNo ---: ', classNo);
+    dispatch(getClassBoothVoters({ "classNo": classNo }))
+  }, [Boothuserdetail])
 
   useEffect(() => {
 		setData(BoothVoters)
@@ -69,7 +85,7 @@ const BoothVoting = () => {
   }
 
   function onActiveChange (voters, e) {
-    console.log('voters: ', voters);
+    // console.log('voters: ', voters);
     const votersObj = {}
     const votedMarkedBY = {}
     let votedDateTime = new Date().toLocaleString();
@@ -81,7 +97,7 @@ const BoothVoting = () => {
     votedMarkedBY['Date'] = votedDateTime;
 
     if (voters.VotersStatus !== true) {
-      console.log("calling activate voters")
+      // console.log("calling activate voters")
       
       votersObj['_id'] = voters._id;
       votersObj['VotersStatus'] = voters.Voters_Status;
@@ -100,10 +116,11 @@ const BoothVoting = () => {
     setData(BoothVoters);
   }
 
-  let areaName = "gwalior";
-  let schoolName = "padav";
-  let className = "krishan";
-  let role = true;
+  // let areaName = "gwalior";
+  // let schoolName = "padav";
+  // let className = "krishan";
+  // let role = true;
+  // role = false;
 
   return (
     <React.Fragment>
@@ -115,10 +132,10 @@ const BoothVoting = () => {
               <BreadCrumb title={t('Booth Voting')} />
             </Col>
           </Row>
-          {role ? <div>
+          {(isLoading === false && boothUser) ? <div>
             <Row className='mb-3'>
               <Col>
-                <BreadCrumb title={`Area: ${areaName} / School: ${schoolName} / Class Name: ${className}`} />
+                <BreadCrumb title={`Area: ${Boothuserdetail?.AreaName} / School: ${Boothuserdetail?.SchoolName} / Class Name: ${Boothuserdetail?.ClassName}`} />
               </Col>
             </Row>
           </div> : ""}

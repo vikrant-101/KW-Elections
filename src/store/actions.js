@@ -66,6 +66,8 @@ export * from "./candidates/actions";
 //Phone
 export * from "./phone/actions";
 //Voters
+export * from "./voters/actions";
+//BoothVoters
 export * from "./boothVoters/actions";
 //Classes
 export * from "./classes/actions";
@@ -79,4 +81,6 @@ export * from './roles/actions';
 export * from './boothusers/actions'
 // Voters Management
 export * from './votersManagement/actions'
+// Analytical Reports
+export * from './analyticalReport/actions'
 

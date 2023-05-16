@@ -12,6 +12,7 @@ import {
 // Login Redux States
 import {
 	GET_VOTERS,
+	GET_PRINTDETAIL,
 	GET_CLASS_VOTERS,
 	GET_VOTERS_TABLE_COLUMN_NAMES,
 	ADD_VOTERS,
@@ -32,6 +33,8 @@ import {
 	deleteVotersSuccess,
 	getVotersFail,
 	getVotersSuccess,
+	getPrintDetailSuccess,
+	getPrintDetailFail,
 	getVotersTableColumnNamesFail,
 	getVotersTableColumnNamesSuccess,
 	updateVotersFail,
@@ -45,6 +48,7 @@ import {
 	addVoters,
 	deleteVoters,
 	getVoters,
+	getPrintDetail,
 	getVotersTableColumnNames,
 	updateVoters
 } from "../../helpers/fakebackend_helper";
@@ -60,11 +64,22 @@ function* fetchVoters() {
 	}
 }
 
+// Fetch Print Detail
+function* fetchPrintDetail(userID) {
+	console.log('userID ****: ', userID);
+	try {
+		const response = yield call(getPrintDetail, userID);
+		console.log('response print: ', response);
+		yield put(getPrintDetailSuccess(response.Data));
+	} catch (error) {
+		yield put(getPrintDetailFail(error));
+	}
+}
+
 // Fetch Voters Table Columns Names 
 function* fetchVotersTableColumnNames(moduleName) {
 	try {
 		const response = yield call(getVotersTableColumnNames, moduleName);
-		console.log('response column table: ', response);
 		yield put(getVotersTableColumnNamesSuccess(response.Data));
 	} catch (error) {
 		yield put(getVotersTableColumnNamesFail(error));
@@ -127,6 +142,7 @@ function* onActivateVoters({ payload: voters }) {
 
 export function* watchVoters() {
 	yield takeEvery(GET_VOTERS, fetchVoters);
+	yield takeEvery(GET_PRINTDETAIL, fetchPrintDetail);
 	yield takeEvery(GET_VOTERS_TABLE_COLUMN_NAMES, fetchVotersTableColumnNames);
 	yield takeEvery(ADD_VOTERS, onAddVoters);
 	yield takeEvery(UPDATE_VOTERS, onUpdateVoters);
