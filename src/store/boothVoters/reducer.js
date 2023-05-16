@@ -17,7 +17,10 @@ import {
 	ON_ACTIVATE_BOOTHVOTERS_FAIL,
 	ON_ACTIVATE_BOOTHVOTERS_SUCCESS,
 	UPDATE_BOOTHVOTERS_FAIL,
-	UPDATE_BOOTHVOTERS_SUCCESS
+	UPDATE_BOOTHVOTERS_SUCCESS,
+	GET_BOOTHUSER_DETAIL,
+	GET_BOOTHUSER_DETAIL_FAIL,
+	GET_BOOTHUSER_DETAIL_SUCCESS
 } from "./actionTypes";
 import { toast } from 'react-toastify';
 
@@ -25,7 +28,7 @@ import { toast } from 'react-toastify';
 const INIT_STATE = {
 	boothvoters: [],
 	columnNames: [],
-	alpha:[],
+	boothuserdetail: {},
 	isLoading: false,
 	error: {},
 };
@@ -51,15 +54,33 @@ const boothvoters = (state = INIT_STATE, action) => {
 				...state,
 				error: action.payload,
 			};
+
+		case GET_BOOTHUSER_DETAIL:
+			return {
+				...state,
+				isLoading: true
+			};
+
+		case GET_BOOTHUSER_DETAIL_SUCCESS:
+			return {
+				...state,
+				boothuserdetail: action.payload,
+				isLoading: false
+			};
+	
+		case GET_BOOTHUSER_DETAIL_FAIL:
+			return {
+				...state,
+				error: action.payload,
+			};
+
 		case GET_CLASS_BOOTHVOTERS:
-			console.log("class boothvoters: ", action)
 			return {
 				...state,
 				isLoading: true
 			};
 
 		case GET_CLASS_BOOTHVOTERS_SUCCESS:
-			console.log("class boothvoters success: ", action)
 			return {
 				...state,
 				boothvoters: action.payload,
@@ -73,7 +94,6 @@ const boothvoters = (state = INIT_STATE, action) => {
 			};
 
 		case GET_BOOTHVOTERS_TABLE_COLUMN_NAMES:
-			console.log("table column boothvoters: ", action)
 			return {
 				...state,
 				isLoading: true

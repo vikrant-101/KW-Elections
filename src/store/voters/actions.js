@@ -8,6 +8,10 @@ import {
     GET_VOTERS,
     GET_VOTERS_FAIL,
     GET_VOTERS_SUCCESS,
+    GET_PRINTDETAIL,
+    GET_PRINTDETAIL_FAIL,
+    GET_PRINTDETAIL_SUCCESS,
+    GET_VOTERS_TABLE_COLUMN_NAMES,
     GET_VOTERS_TABLE_COLUMN_NAMES_FAIL,
     GET_VOTERS_TABLE_COLUMN_NAMES_SUCCESS,
     ON_ACTIVATE_DEACTIVATE_VOTERS,
@@ -36,6 +40,26 @@ import {
   export const getVotersFail = error => ({
     type: GET_VOTERS_FAIL,
     payload: error,
+  });
+
+  export const getPrintDetail = ({userID}) => ({
+    type: GET_PRINTDETAIL,
+    userID: userID
+  });
+  
+  export const getPrintDetailSuccess = printDetail => ({
+    type: GET_PRINTDETAIL_SUCCESS,
+    payload: printDetail,
+  });
+  
+  export const getPrintDetailFail = error => ({
+    type: GET_PRINTDETAIL_FAIL,
+    payload: error,
+  });
+
+  export const getVotersTableColumnNames = () => ({
+    type: GET_VOTERS_TABLE_COLUMN_NAMES,
+    moduleName: "ALLVOTERSLIST"
   });
   
   export const getVotersTableColumnNamesSuccess = columnNames => ({

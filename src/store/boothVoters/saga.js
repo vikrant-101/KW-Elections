@@ -12,6 +12,7 @@ import {
 // Login Redux States
 import {
 	GET_BOOTHVOTERS,
+	GET_BOOTHUSER_DETAIL,
 	GET_CLASS_BOOTHVOTERS,
 	GET_BOOTHVOTERS_TABLE_COLUMN_NAMES,
 	ADD_BOOTHVOTERS,
@@ -32,6 +33,8 @@ import {
 	deleteBoothVotersSuccess,
 	getBoothVotersFail,
 	getBoothVotersSuccess,
+	getBoothUserDetailFail,
+	getBoothUserDetailSuccess,
 	getClassBoothVotersFail,
 	getClassBoothVotersSuccess,
 	getBoothVotersTableColumnNamesFail,
@@ -47,6 +50,7 @@ import {
 	addBoothVoters,
 	deleteBoothVoters,
 	getBoothVoters,
+	getBoothUserDetail,
 	getClassBoothVoters,
 	getBoothVotersTableColumnNames,
 	updateBoothVoters
@@ -64,6 +68,16 @@ function* fetchBoothVoters() {
 }
 
 // Fetch BoothVoters 
+function* fetchBoothUserDetail(userID) {
+	try {
+		const response = yield call(getBoothUserDetail, userID);
+		yield put(getBoothUserDetailSuccess(response.Data));
+	} catch (error) {
+		yield put(getBoothUserDetailFail(error));
+	}
+}
+
+// Fetch Booth User Detail
 function* fetchClassBoothVoters(ClassNo) {
 	try {
 		const response = yield call(getClassBoothVoters, ClassNo);
@@ -77,7 +91,6 @@ function* fetchClassBoothVoters(ClassNo) {
 function* fetchBoothVotersTableColumnNames(moduleName) {
 	try {
 		const response = yield call(getBoothVotersTableColumnNames, moduleName);
-		console.log('response column table: ', response);
 		yield put(getBoothVotersTableColumnNamesSuccess(response.Data));
 	} catch (error) {
 		yield put(getBoothVotersTableColumnNamesFail(error));
@@ -140,6 +153,7 @@ function* onActivateBoothVoters({ payload: boothvoters }) {
 
 export function* watchBoothVoters() {
 	yield takeEvery(GET_BOOTHVOTERS, fetchBoothVoters);
+	yield takeEvery(GET_BOOTHUSER_DETAIL, fetchBoothUserDetail);
 	yield takeEvery(GET_CLASS_BOOTHVOTERS, fetchClassBoothVoters);
 	yield takeEvery(GET_BOOTHVOTERS_TABLE_COLUMN_NAMES, fetchBoothVotersTableColumnNames);
 	yield takeEvery(ADD_BOOTHVOTERS, onAddBoothVoters);

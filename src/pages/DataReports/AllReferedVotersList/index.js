@@ -11,6 +11,7 @@ import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { useDispatch, useSelector } from "react-redux";
 // import { getVotersTableColumnNames, getVoters} from "../../../store/voters/actions";
 import { getReferVoters, getReferVotersTableColumnNames } from "../../../store/referVoters/actions";
+import { getPrintDetail} from "../../../store/voters/actions";
 
 import {CSVLink} from 'react-csv'
 import { Link } from "react-router-dom";
@@ -24,12 +25,13 @@ const AllReferedVotersList = () => {
  const dispatch = useDispatch();
 
 
- const { ReferVoters, isLoading, columnNames } = useSelector((state) => {
+ const { ReferVoters, isLoading, columnNames, printDetail } = useSelector((state) => {
    console.log('state: ', state);
    return {
     ReferVoters: state.ReferVoters.refervoters,
    columnNames: state.ReferVoters.columnNames,
    isLoading: state.ReferVoters.isLoading,
+   printDetail: state.Voters.printDetail[0]
  }});
 
  const [data, setData] = useState(ReferVoters)
@@ -42,6 +44,9 @@ const AllReferedVotersList = () => {
 //   setData(Voters)
 // }, [Voters]);
 
+let user = sessionStorage.getItem('auth')
+user = JSON.parse(user)
+
  useEffect(() => {
  
     // dispatch(getVoters())  
@@ -49,31 +54,83 @@ const AllReferedVotersList = () => {
     // dispatch(getVotersTableColumnNames({"moduleName": "ALLREFEREDVOTERSLIST"}))
     dispatch(getReferVoters())
     dispatch(getReferVotersTableColumnNames())
+    dispatch(getPrintDetail({userID: user.id}))
 }, [dispatch]);
 
 
+// const printTable = (e, columns) => {
+//   console.log("columns", columns)
+//   e.preventDefault();
+//   const newWindow = window.open();
+//   newWindow.document.write('<html><head>');
+//   newWindow.document.write('<style>table { border-collapse: collapse; width: 100%; }');
+//   newWindow.document.write('th, td { border: 1px solid black; padding: 8px; text-align: center; }</style>');
+//   newWindow.document.write('<style>th { background-color: #f2f2f2; }</style>');
+//   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
+//   newWindow.document.write('<style>tr:hover { background-color: #ddd; }</style>');
+//   newWindow.document.write('<style>.logo-container { display: flex; justify-content: center; margin-bottom: 20px; background-color:#000 }</style>');
+//   newWindow.document.write(`<style>title { text-align: left; }</style><title>Manage Demo Class</title>`);
+//   newWindow.document.write('</head><body>');
+//   newWindow.document.write(`<div class="logo-container" ><img src=${yasaLight} onload="window.print()" /></div>`);
+//   newWindow.document.write('<table>');
+//   newWindow.document.write(`<thead><tr>${columns?.map((col) => `<th>${col?.name?.props?.children}</th>`).join('')}</tr></thead>`);
+//   newWindow.document.write('<tbody>');
+//   ReferVoters?.forEach((row) => {
+//     newWindow.document.write(`<tr>${columns?.map((col) => {
+//       console.log("col s ", col )
+//       const value = col?.selector && typeof col.selector === 'function' ? col.selector(row) : '';
+//       console.log("value s ", value )
+//       if (col?.name?.props?.children === 'Active') {
+//         let isActive = false;
+//         if (value?.props?.checked) {
+//           isActive = true;
+//         } else if (Array.isArray(value?.props?.children)) {
+//           isActive = value.props.children.some(child => child.props.checked);
+//         }
+//         return `<td>${isActive ? 'true' : 'false'}</td>`;
+//       } else if (typeof value === 'object' && value !== null) {
+//         if (value.text) {
+//           return `<td>${value.text}</td>`;
+//         } else if (value.props && value.props.children) {
+//           return `<td>${value.props.children}</td>`;
+//         } else {
+//           return `<td>${JSON.stringify(value)}</td>`;
+//         }
+//       } else {
+//         return `<td>${value}</td>`;
+//       }
+//     }).join('')}</tr>`);
+//   });
+//   newWindow.document.write('</tbody></table></body></html>');
+//   newWindow.document.write('<style>tr:nth-child(odd) { background-color: #ffffff; }</style>');
+//   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
+// };
+
 const printTable = (e, columns) => {
-  console.log("columns", columns)
   e.preventDefault();
   const newWindow = window.open();
   newWindow.document.write('<html><head>');
   newWindow.document.write('<style>table { border-collapse: collapse; width: 100%; }');
-  newWindow.document.write('th, td { border: 1px solid black; padding: 8px; text-align: center; }</style>');
+  newWindow.document.write('th, td { border: 1px solid black; padding: 8px; text-align: center; font-size: 12px; }</style>');
   newWindow.document.write('<style>th { background-color: #f2f2f2; }</style>');
   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
   newWindow.document.write('<style>tr:hover { background-color: #ddd; }</style>');
-  newWindow.document.write('<style>.logo-container { display: flex; justify-content: center; margin-bottom: 20px; background-color:#000 }</style>');
-  newWindow.document.write(`<style>title { text-align: left; }</style><title>Manage Demo Class</title>`);
+  newWindow.document.write(`<style>title { text-align: center; }</style><title>All Voter List</title>`);
+  newWindow.document.write('<style>.logo-container { display: flex; justify-content: space-between; margin-bottom: 20px; }</style>');
+  newWindow.document.write(`<style>title { text-align: right; }</style><title>Manage Demo Class</title>`);
   newWindow.document.write('</head><body>');
-  newWindow.document.write(`<div class="logo-container" ><img src=${yasaLight} onload="window.print()" /></div>`);
+  newWindow.document.write(`<div class="logo-container" ><div><p>Candidate Name : ${printDetail?.CandidateName}</p><p>Election Name : ${printDetail?.ElectionName}</p></div><img src=${yasaLight} onload="window.print()" width="300px" height="50px" /></div>`);
+
+  // Set page orientation to landscape
+  // newWindow.document.write('<style>@page  { size: landscape; }</style>');
+
+  newWindow.document.write('</head><body>');
   newWindow.document.write('<table>');
-  newWindow.document.write(`<thead><tr>${columns.map((col) => `<th>${col?.name?.props?.children}</th>`).join('')}</tr></thead>`);
+  newWindow.document.write(`<thead><tr>${columns?.map((col) => `<th>${col?.name?.props?.children}</th>`).join('')}</tr></thead>`);
   newWindow.document.write('<tbody>');
   ReferVoters?.forEach((row) => {
-    newWindow.document.write(`<tr>${columns.map((col) => {
-      console.log("col s ", col )
+    newWindow.document.write(`<tr>${columns?.map((col) => {
       const value = col?.selector && typeof col.selector === 'function' ? col.selector(row) : '';
-      console.log("value s ", value )
       if (col?.name?.props?.children === 'Active') {
         let isActive = false;
         if (value?.props?.checked) {
@@ -95,13 +152,14 @@ const printTable = (e, columns) => {
       }
     }).join('')}</tr>`);
   });
-  newWindow.document.write('</tbody></table></body></html>');
+  newWindow.document.write('</tbody></table></body>');
+  newWindow.document.write(`<p style="margin-top: 20px">Print By: ${printDetail?.FullName}</html>`);
   newWindow.document.write('<style>tr:nth-child(odd) { background-color: #ffffff; }</style>');
   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
 };
 
 const exportToCsv = (data, columns) => {
-  const csvData = data.map((row) => {
+  const csvData = data?.map((row) => {
     const csvRow = {};
     columns.forEach((col) => {
       const value = col?.selector && typeof col.selector === 'function' ? col.selector(row) : '';
@@ -127,9 +185,9 @@ const exportToCsv = (data, columns) => {
     });
     return csvRow;
   });
-  const csvHeaders = columns.map((col) => col.name.props.children);
+  const csvHeaders = columns?.map((col) => col.name.props.children);
   return (
-    <CSVLink data={csvData} headers={csvHeaders} filename="Demo-001.csv">
+    <CSVLink data={csvData} headers={csvHeaders} filename="AllReferedVotersList.csv">
       <button type="button" className="btn btn-primary ml-4">
         <i className="ri-file-excel-2-line align-bottom me-1"></i>
         {t('Export to csv')}
