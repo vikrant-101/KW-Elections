@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Button, Col, Input, Row } from "reactstrap";
+import {
+  Button,
+  Col,
+  Input,
+  InputGroup,
+  Row,
+  InputGroupText,
+} from "reactstrap";
 // import SelectDropDown from "../Select-DropDown/SelectDropDown";
 
 // ************* MODAL FORM ****************
@@ -14,7 +21,7 @@ const AddUsersForm = ({
   onTranslateClickHandler,
   show,
 }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     ScreenID: null,
     ScreenNameEnglish: "",
@@ -53,14 +60,14 @@ const AddUsersForm = ({
               <Col key={items?.id} sm={6}>
                 <div className="mb-3">
                   <label htmlFor={items?.labelName} className="col-form-label">
-                    {items?.labelName}
+                    {t(items?.labelName)}
                   </label>
 
                   <div className="lang-change-wrap">
                     <Input
                       type="text"
                       className="form-control"
-                      placeholder={items.labelName}
+                      placeholder={t(items.labelName)}
                       defaultValue={formData[items?.value]}
                       name={items?.name}
                       disabled={
@@ -77,15 +84,43 @@ const AddUsersForm = ({
               </Col>
             );
 
+          case "mobile-number":
+            return (
+              <Col key={items?.id} sm={6}>
+                <div className="mb-3">
+                  <label htmlFor={items?.labelName} className="col-form-label">
+                    {t(items?.labelName)}
+                  </label>
 
-
+                  <div className="lang-change-wrap">
+                    {/* <InputGroup>
+                      <InputGroupText>+965</InputGroupText> */}
+                      <Input
+                        placeholder={t(items?.labelName)}
+                        defaultValue={formData[items?.value]}
+                        name={items?.name}
+                        disabled={
+                          items?.name === "LabelKey" && isAddOrEdit === "isEdit"
+                            ? true
+                            : false
+                        }
+                        type="number"
+                        onChange={(e) => onChangeHandler(e)}
+                        id={items?.labelName}
+                        required
+                      />
+                    {/* </InputGroup> */}
+                  </div>
+                </div>
+              </Col>
+            );
 
           case "role-drop-down":
             return (
               <Col key={items?.id} sm={6}>
                 <div className="mb-3">
                   <label htmlFor="country" className="col-form-label">
-                    {items?.labelName}
+                    {t(items?.labelName)}
                   </label>
                   <select
                     className="form-control"

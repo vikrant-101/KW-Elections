@@ -80,8 +80,8 @@ const referVoters = (state = INIT_STATE, action) => {
       state = {
         ...state,
         referVoters: state.referVoters.map((referVoters) =>
-          referVoters._id.toString() === action.payload.Data[0]._id.toString()
-            ? action.payload.Data[0]
+          referVoters._id.toString() === action.payload.Data._id.toString()
+            ? action.payload.Data
             : referVoters
         ),
       };

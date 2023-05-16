@@ -1,4 +1,5 @@
 import {
+  CSV_BEING_UPLOADED,
   ADD_UPLOAD_VOTERS_FAIL,
   ADD_UPLOAD_VOTERS_SUCCESS,
   ADD_ELECTION_CIRCLE_SUCCESS,
@@ -22,6 +23,7 @@ const INIT_STATE = {
   electionCircle: [],
   columnNames: [],
   isLoading: false,
+  beingUploaded: null,
   error: {},
 };
 
@@ -59,9 +61,16 @@ const uploadVoters = (state = INIT_STATE, action) => {
         error: action.payload,
       };
 
+    case CSV_BEING_UPLOADED:
+      return {
+        ...state,
+        beingUploaded: action.payload,
+      };
+
     case ADD_UPLOAD_VOTERS_SUCCESS:
       state = {
         ...state,
+        beingUploaded: null,
         // uploadVoters: [action.payload.Data[0], ...state.uploadVoters],
       };
       toast.success(`Successfully uploaded ${action.payload.Data} voters`);
@@ -77,7 +86,7 @@ const uploadVoters = (state = INIT_STATE, action) => {
     case ADD_ELECTION_CIRCLE_SUCCESS:
       state = {
         ...state,
-        electionCircle: [action.payload.Data, ...state.electionCircle],
+        electionCircle: action.payload.Data,
       };
       toast.success(action.payload.Message);
       break;

@@ -77,8 +77,8 @@ const myReferedVoters = (state = INIT_STATE, action) => {
 			state = {
 				...state,
 				myReferedVoters: state.myReferedVoters.map((myReferedVoters) =>
-					myReferedVoters._id.toString() === action.payload.Data[0]._id.toString()
-						? action.payload.Data[0]
+					myReferedVoters._id.toString() === action.payload.Data._id.toString()
+						? action.payload.Data
 						: myReferedVoters
 				),
 			};
@@ -97,7 +97,7 @@ const myReferedVoters = (state = INIT_STATE, action) => {
 			state = {
 				...state,
 				myReferedVoters: state.myReferedVoters.filter(
-					(myReferedVoters) => myReferedVoters._id.toString() !== action.payload.Data[0]._id.toString()
+					(myReferedVoters) => myReferedVoters._id.toString() !== action.payload.Data._id.toString()
 				),
 			};
 			toast.success(action.payload.Message);
