@@ -10,6 +10,7 @@ import {
   getReferVotersTableColumnNames,
   addReferVoters,
   updateMyReferedVoters,
+  updateReferVoters,
 } from "../../../store/actions";
 import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { columns } from "./DataTableColumns";
@@ -46,6 +47,7 @@ const ReferVoters = () => {
       const modalDetails = referVotersList?.find(
         (el) => el._id === referVoter._id
       )?.ReferBy;
+      console.log("modalDetails: ", modalDetails);
       const modaldetail = modalDetails?.find(
         (el) => el?.ReferID === currentUser
       );
@@ -60,11 +62,12 @@ const ReferVoters = () => {
       UserID: toAddVoter,
       ReferID: currentUser,
     };
+    // ReferName:
     if (isAddOrEdit === "add") {
       dispatch(addReferVoters(data));
       setShowReferModal(false);
     } else {
-      dispatch(updateMyReferedVoters(data));
+      dispatch(updateReferVoters(data));
       setShowEditReferModal(false);
     }
   };

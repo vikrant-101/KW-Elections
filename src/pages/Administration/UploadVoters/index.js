@@ -14,6 +14,7 @@ import {
   addElectionCircle,
   getUploadVotersTableColumnNames,
   addUploadVoters,
+  csvBeingUploaded,
 } from "../../../store/actions";
 import { columns } from "./DataTableColumns";
 import AddElectionCircleForm from "../../../Components/Common/Forms/AddElectionCircleForm";
@@ -44,6 +45,20 @@ const UploadVoters = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [uploadingCSVfor, setUploadingCSVfor] = useState();
 
+  const uploadVotersList = useSelector(
+    ({ UploadVoters }) => UploadVoters?.uploadVoters
+  );
+  const columnNames = useSelector(
+    ({ UploadVoters }) => UploadVoters?.columnNames
+  );
+  const isLoading = useSelector(({ UploadVoters }) => UploadVoters?.isLoading);
+  const beingUploaded = useSelector(({ UploadVoters }) => UploadVoters?.beingUploaded);
+  const electionList = useSelector(({ Elections }) => Elections?.elections);
+  const circleList = useSelector(({ Circles }) => Circles?.circles);
+  const electionCircleList = useSelector(
+    ({ UploadVoters }) => UploadVoters?.electionCircle
+  );
+
   // custom file attachment
   const inputRef = useRef(null);
 
@@ -65,37 +80,37 @@ const UploadVoters = () => {
     const convertedFile = await getBase64(file);
     const base64File = convertedFile?.split(",")[1];
     const data = { base64Csv: base64File, TabelID: uploadingCSVfor };
+    dispatch(csvBeingUploaded(uploadingCSVfor));
     dispatch(addUploadVoters(data));
   };
 
   const updaloadVotersHandlers = (electionCircle) => {
-    setUploadingCSVfor(electionCircle._id)
+    setUploadingCSVfor(electionCircle._id);
     inputRef.current.click();
   };
-
-  const uploadVotersList = useSelector(
-    ({ UploadVoters }) => UploadVoters?.uploadVoters
-  );
-  const columnNames = useSelector(
-    ({ UploadVoters }) => UploadVoters?.columnNames
-  );
-  const isLoading = useSelector(({ UploadVoters }) => UploadVoters?.isLoading);
-  const electionList = useSelector(({ Elections }) => Elections?.elections);
-  const circleList = useSelector(({ Circles }) => Circles?.circles);
-  const electionCircleList = useSelector(
-    ({ UploadVoters }) => UploadVoters?.electionCircle
-  );
 
   const [formData, setFormData] = useState({
     Election: "",
     Circle: "",
   });
+  const [filteredCircleList, setFilteredCircleList] = useState([]);
 
   const onChangeHandler = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    if (e.target.name === "Election") {
+      const electionObject = JSON.parse(e.target.value);
+      setFormData((prev) => ({
+        ...prev,
+        Election: electionObject["ElectionNameEnglish"],
+      }));
+      setFilteredCircleList(
+        circleList?.filter((circle) => circle.ElectionID === electionObject._id)
+      );
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        Circle: e.target.value,
+      }));
+    }
   };
 
   const onSubmitHandler = (e) => {
@@ -122,7 +137,7 @@ const UploadVoters = () => {
         <Container fluid>
           <Row className="mb-3">
             <Col>
-              <BreadCrumb title={t("Upload Voters Component")} />
+              <BreadCrumb title={t("Upload Voters")} />
             </Col>
           </Row>
           <Row className="mb-3">
@@ -159,6 +174,7 @@ const UploadVoters = () => {
                     i18n,
                     t,
                     inputRef,
+                    beingUploaded,
                     handleFileInput,
                     updaloadVotersHandlers
                   )}
@@ -178,7 +194,7 @@ const UploadVoters = () => {
             formData={formData}
             onChangeHandler={onChangeHandler}
             electionList={electionList}
-            circleList={circleList}
+            circleList={filteredCircleList}
             labels={labels}
           />
         }

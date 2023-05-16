@@ -32,13 +32,6 @@ const labels = [
     value: "FullNameArabic",
   },
   {
-    id: 2,
-    labelName: "Full Name English",
-    fieldName: "text-box",
-    name: "FullNameEnglish",
-    value: "FullNameEnglish",
-  },
-  {
     id: 3,
     labelName: "Role",
     fieldName: "role-drop-down",
@@ -48,7 +41,7 @@ const labels = [
   {
     id: 4,
     labelName: "Mobile Number",
-    fieldName: "text-box",
+    fieldName: "mobile-number",
     name: "MobileNumber",
     value: "MobileNumber",
   },

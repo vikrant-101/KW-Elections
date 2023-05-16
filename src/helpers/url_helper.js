@@ -255,7 +255,7 @@ export const ACTIVATE_DEACTIVATE_CIRCLES = '/ActivateCircles'
 
 // REFER_VOTERS  
 export const POST_REFER_VOTERS = '/SaveReferVoterTest';
-export const UPDATE_REFER_VOTERS = '/UpdateReferVoters';
+export const UPDATE_REFER_VOTERS = '/UpdateReferVoterTest';
 export const DELETE_REFER_VOTERS= '/DeleteReferVoters';
 export const GET_REFER_VOTERS = '/GetVoterTest';
 export const GET_REFER_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';

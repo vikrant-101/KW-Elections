@@ -19,6 +19,14 @@ const ReferVoterModal = ({
       [e.target.name]: e.target.value,
     }));
   };
+  const onCloseHandle = () => {
+    setReferedVoterDetails({});
+    setShowReferModal(false)
+  }
+  const isInValidNumber =
+    (referedVoterDetails?.MobileNo?.length < 8 &&
+      referedVoterDetails?.MobileNo?.length > 0) ||
+    referedVoterDetails?.MobileNo?.length > 8;
   return (
     <Modal isOpen={showReferModal} centered={true}>
       <ModalHeader>Refer Voter</ModalHeader>
@@ -27,7 +35,7 @@ const ReferVoterModal = ({
           <Col sm={4}>
             <div className="mb-3">
               <label htmlFor="phone-number" className="col-form-label">
-                Phone number:
+                {t("Mobile Number")}
               </label>
             </div>
           </Col>
@@ -37,6 +45,7 @@ const ReferVoterModal = ({
                 type="number"
                 name="MobileNo"
                 className="form-control"
+                invalid={isInValidNumber}
                 onChange={handleVoterDetailChange}
                 id="phone-number"
               />
@@ -47,7 +56,7 @@ const ReferVoterModal = ({
           <Col sm={4}>
             <div className="mb-3">
               <label htmlFor="comment" className="col-form-label">
-                Comment:
+                {t("Comment")}
               </label>
             </div>
           </Col>
@@ -69,13 +78,14 @@ const ReferVoterModal = ({
             type="button"
             className="btn w-sm btn-light"
             data-bs-dismiss="modal"
-            onClick={() => setShowReferModal(false)}
+            onClick={onCloseHandle}
           >
             {t("Close")}
           </button>
           <button
             type="button"
             className="btn w-sm btn-danger "
+            disabled={isInValidNumber}
             id="refer-voter"
             onClick={() => onSaveReferClick(referedVoterDetails)}
           >

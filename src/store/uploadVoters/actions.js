@@ -1,4 +1,5 @@
 import {
+  CSV_BEING_UPLOADED,
   ADD_UPLOAD_VOTERS,
   ADD_UPLOAD_VOTERS_FAIL,
   ADD_UPLOAD_VOTERS_SUCCESS,
@@ -64,6 +65,11 @@ export const addElectionCircleSuccess = (uploadVoters) => ({
 export const addElectionCircleFail = (error) => ({
   type: ADD_ELECTION_CIRCLE_FAIL,
   payload: error,
+});
+
+export const csvBeingUploaded = (uploadVoter) => ({
+  type: CSV_BEING_UPLOADED,
+  payload: uploadVoter,
 });
 
 export const addUploadVoters = (uploadVoters) => ({
