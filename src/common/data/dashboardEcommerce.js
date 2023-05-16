@@ -28,7 +28,7 @@ const ecomWidgets = [
         counter: "559.25",
         link: "View net earnings",
         bgcolor: "success",
-        icon: "bx bx-dollar-circle",
+        icon: "bx bx-user-circle",
         decimals: 2,
         prefix: "$",
         suffix: "k"
@@ -43,7 +43,7 @@ const ecomWidgets = [
         counter: "36894",
         link: "View all orders",
         bgcolor: "info",
-        icon: "bx bx-shopping-bag",
+        icon: "bx bx-user-circle",
         decimals: 0,
         prefix: "",
         separator: ",",
@@ -73,7 +73,7 @@ const ecomWidgets = [
         counter: "165.89",
         link: "Withdraw money",
         bgcolor: "primary",
-        icon: "bx bx-wallet",
+        icon: "bx bx-user-circle",
         decimals: 2,
         prefix: "$",
         suffix: "k"
@@ -88,7 +88,7 @@ const ecomWidgets = [
         counter: "165.89",
         link: "Withdraw money",
         bgcolor: "primary",
-        icon: "bx bx-wallet",
+        icon: "bx bx-user-circle",
         decimals: 2,
         prefix: "$",
         suffix: "k"
@@ -102,7 +102,7 @@ const ecomWidgets = [
         counter: "165.89",
         link: "Withdraw money",
         bgcolor: "primary",
-        icon: "bx bx-wallet",
+        icon: "bx bx-user-circle",
         decimals: 2,
         prefix: "$",
         suffix: "k"

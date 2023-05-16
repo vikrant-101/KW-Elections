@@ -32,15 +32,15 @@ const labels = [
 		id: 3,
 		labelName: 'Candidate Name English',
 		fieldName: 'text-box',
-		name: 'CandidateNameEnglish',
-		value: 'CandidateNameEnglish'
+		name: 'FullNameEnglish',
+		value: 'FullNameEnglish'
 	},
 	{
 		id: 4,
 		labelName: 'Candidate Name Arabic',
 		fieldName: 'text-box',
-		name: 'CandidateNameArabic',
-		value: 'CandidateNameArabic'
+		name: 'FullNameArabic',
+		value: 'FullNameArabic'
 	},
 	{
 		id: 5,
@@ -67,7 +67,7 @@ const labels = [
 const CreateCandidates = () => {
   const { t, i18n } = useTranslation();
 	document.title = t('KW-Elections | Create Candidates');
-  const authUser = JSON.parse(sessionStorage.getItem("authUser"));
+  const auth = JSON.parse(sessionStorage.getItem("auth"));
 	const dispatch = useDispatch();
 	const [data, setData] = useState([]);
 	const [show, setShow] = useState(false);
@@ -91,16 +91,16 @@ const CreateCandidates = () => {
 		isAddOrEdit === 'isEdit' && (candidateObj['IsDelete'] = candidates['IsDelete']);
 		isAddOrEdit === 'isEdit' && (candidateObj['IsActive'] = candidates['IsActive']);
 		candidateObj['CircleID'] = candidates.CircleID
-    candidateObj['CandidateNameEnglish'] = candidates.CandidateNameEnglish;
-		candidateObj['CandidateNameArabic'] = candidates.CandidateNameArabic;
+    candidateObj['FullNameEnglish'] = candidates.FullNameEnglish;
+		candidateObj['FullNameArabic'] = candidates.FullNameArabic;
     candidateObj['ElectionID'] = candidates.ElectionID;
 		candidateObj['DomainName'] = candidates.DomainName;
 		candidateObj['MobileNumber'] = candidates.MobileNumber;
 		candidateObj['UsersLimit'] = candidates.UsersLimit;
 		candidateObj['IsDelete'] =  false;
 		candidateObj['IsActive'] = true;
-    candidateObj['CreatedBy'] = 'AIgUO3mOWDarAIk8mXWs4IVwBLK2';
-    candidateObj['ModifiedBy'] = 'AIgUO3mOWDarAIk8mXWs4IVwBLK2';
+    candidateObj['CreatedBy'] = auth.id;
+    candidateObj['ModifiedBy'] = auth.id;
 		candidateObj['CreatedDate'] =  currentDate.toISOString().slice(0, 10);
 		candidateObj['ModifiedDate'] =  currentDate.toISOString().slice(0, 10);
 		isAddOrEdit === 'isAdd' ?
