@@ -26,8 +26,9 @@ import {
   } from "./actionTypes"
   
   
-  export const getAreaWiseReport = () => ({
+  export const getAreaWiseReport = (userID) => ({
     type: GET_AREAWISE_REPORT,
+    userID: userID
   });
   
   export const getAreaWiseSuccess = area => ({
@@ -55,8 +56,9 @@ import {
     payload: error,
   });
   
-  export const getSchoolWiseReport = () => ({
+  export const getSchoolWiseReport = (userID) => ({
     type: GET_SCHOOLWISE_REPORT,
+    userID: userID
   });
   
   export const getSchoolWiseSuccess = school => ({
@@ -84,8 +86,9 @@ import {
     payload: error,
   });
 
-  export const getBoothWiseReport = () => ({
+  export const getBoothWiseReport = (userID) => ({
     type: GET_BOOTHWISE_REPORT,
+    userID: userID
   });
   
   export const getBoothWiseSuccess = Booth => ({
@@ -113,8 +116,9 @@ import {
     payload: error,
   });
 
-  export const getFamilyNameWiseReport = () => ({
+  export const getFamilyNameWiseReport = (userID) => ({
     type: GET_FAMILYNAMEWISE_REPORT,
+    userID: userID
   });
   
   export const getFamilyNameWiseSuccess = FamilyName => ({
