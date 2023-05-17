@@ -12,7 +12,7 @@ const AddElectionCircleForm = ({
   electionList,
   circleList,
 }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <Row>
@@ -23,7 +23,7 @@ const AddElectionCircleForm = ({
               <Col key={items?.id} sm={6}>
                 <div className="mb-3">
                   <label htmlFor="country" className="col-form-label">
-                    {items?.labelName}
+                    {t(items?.labelName)}
                   </label>
                   <select
                     className="form-control"
@@ -37,7 +37,7 @@ const AddElectionCircleForm = ({
                       return (
                         <option
                           key={item?._id}
-                          value={item?.ElectionNameEnglish}
+                          value={JSON.stringify(item)}
                           name={item?.ElectionNameEnglish}
                         >
                           {i18n?.language === "en"
@@ -56,7 +56,7 @@ const AddElectionCircleForm = ({
               <Col key={items?.id} sm={6}>
                 <div className="mb-3">
                   <label htmlFor="country" className="col-form-label">
-                    {items?.labelName}
+                    {t(items?.labelName)}
                   </label>
                   <select
                     className="form-control"

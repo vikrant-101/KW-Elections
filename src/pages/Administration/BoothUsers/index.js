@@ -15,7 +15,7 @@ import {
 	getBoothUsersTableColumnNames,
 	updateBoothUsers
 } from "../../../store/boothusers/actions";
-import yasaLight from '../../../assets/images/KW-Elections-Light.png'
+import yasaLight from '../../../assets/images/horizonatal-view.png'
 
 const BoothUsers = () => {
 	const { t, i18n } = useTranslation();
@@ -59,7 +59,7 @@ const BoothUsers = () => {
 		newWindow.document.write('<style>th { background-color: #f2f2f2; }</style>');
 		newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
 		newWindow.document.write('<style>tr:hover { background-color: #ddd; }</style>');
-		newWindow.document.write('<style>.logo-container { display: flex; justify-content: center; margin-bottom: 20px; background-color:#000 }</style>');
+		newWindow.document.write('<style>.logo-container { display: flex; justify-content: end; margin-bottom: 20px }</style>');
 		newWindow.document.write(`<style>title { text-align: right; }</style><title>Manage Demo Class</title>`);
 		newWindow.document.write('</head><body>');
 		newWindow.document.write(`<div class="logo-container" ><img src=${yasaLight} onload="window.print()" /></div>`);
@@ -81,7 +81,7 @@ const BoothUsers = () => {
 					if (value.text) {
 						return `<td>${value.text}</td>`;
 					} else if (value.props && value.props.children) {
-						return `<td>${value.props.children}</td>`;
+						return `<td>${value.props.children.props.defaultValue}</td>`;
 					} else {
 						return `<td>${JSON.stringify(value)}</td>`;
 					}

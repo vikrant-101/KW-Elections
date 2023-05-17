@@ -27,6 +27,11 @@ const EditReferVoterModal = ({
       [e.target.name]: e.target.value,
     }));
   };
+  const isInValidNumber =
+    (referedVoterDetails?.MobileNo?.length < 8 &&
+      referedVoterDetails?.MobileNo?.length > 0) ||
+    referedVoterDetails?.MobileNo?.length > 8;
+
   return (
     <Modal isOpen={showEditReferModal} centered={true}>
       <ModalHeader>Edit Refer Voter</ModalHeader>
@@ -35,7 +40,7 @@ const EditReferVoterModal = ({
           <Col sm={4}>
             <div className="mb-3">
               <label htmlFor="phone-number" className="col-form-label">
-                Phone number:
+              {t("Mobile Number")}
               </label>
             </div>
           </Col>
@@ -45,6 +50,7 @@ const EditReferVoterModal = ({
                 type="number"
                 name="MobileNo"
                 className="form-control"
+                invalid={isInValidNumber}
                 onChange={handleVoterDetailChange}
                 value={referedVoterDetails?.MobileNo}
                 id="phone-number"
@@ -56,7 +62,7 @@ const EditReferVoterModal = ({
           <Col sm={4}>
             <div className="mb-3">
               <label htmlFor="comment" className="col-form-label">
-                Comment:
+              {t("Comment")}
               </label>
             </div>
           </Col>
@@ -86,6 +92,7 @@ const EditReferVoterModal = ({
           <button
             type="button"
             className="btn w-sm btn-danger "
+            disabled={isInValidNumber}
             id="refer-voter"
             onClick={() => onSaveReferClick(referedVoterDetails)}
           >

@@ -65,8 +65,8 @@ const MyReferedVoters = () => {
     const referedBy = JSON.parse(sessionStorage.getItem("auth"))?.id;
     const data = {
       ...referedVoterDetails,
-      ReferedVoterId: toAddVoter,
-      ReferedBy: referedBy,
+      UserID: toAddVoter,
+      ReferID: referedBy,
     };
     // TODO: dispatch action to add refered voters
     dispatch(updateMyReferedVoters(data));
