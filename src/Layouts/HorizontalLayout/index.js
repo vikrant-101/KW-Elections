@@ -19,61 +19,31 @@ const HorizontalLayout = (props) => {
 
     navData.forEach(function (value, key) {
         if (value['isHeader']) {
-          menuSplitContainer++;
+            menuSplitContainer++;
         }
         if (key >= menuSplitContainer) {
-          const val = { ...value };
-          val.childItems = value.subItems || [];
-          val.isChildItem = !!value.subItems;
-          delete val.subItems;
-          splitMenuItems.push(val);
+            const val = { ...value };
+            val.childItems = value.subItems || [];
+            val.isChildItem = !!value.subItems;
+            delete val.subItems;
+            splitMenuItems.push(val);
         } else {
-          const filteredItems = (value.subItems || []).filter((item) => {
-            return item.ModuleID === 1 || item.ModuleID === 0;
-          });
-          if (filteredItems.length > 0) {
-            const updatedValue = { ...value };
-            updatedValue.subItems = filteredItems;
-            if (updatedValue.ModuleID !== 3 && updatedValue.ModuleID !== 4 && updatedValue.ModuleID !== 5 && updatedValue.ModuleID !== 6) { // exclude items with ModuleID = 3 or 4
-              menuItems.push(updatedValue);
+            const filteredItems = (value.subItems || []).filter((item) => {
+                return item.ModuleID === 1 || item.ModuleID === 0;
+            });
+            if (filteredItems.length > 0) {
+                const updatedValue = { ...value };
+                updatedValue.subItems = filteredItems;
+                if (updatedValue.ModuleID !== 3 && updatedValue.ModuleID !== 4 && updatedValue.ModuleID !== 5 && updatedValue.ModuleID !== 6) { // exclude items with ModuleID = 3 or 4
+                    menuItems.push(updatedValue);
+                }
+            } else if (!value.subItems || (value.subItems && !value.subItems.some(item => item.ModuleID))) {
+                if (value.ModuleID !== 3 && value.ModuleID !== 4 && value.ModuleID !== 5 && value.ModuleID !== 6) { // exclude items with ModuleID = 3 or 4
+                    menuItems.push(value);
+                }
             }
-          } else if (!value.subItems || (value.subItems && !value.subItems.some(item => item.ModuleID))) {
-            if (value.ModuleID !== 3 && value.ModuleID !== 4 && value.ModuleID !== 5 && value.ModuleID !== 6) { // exclude items with ModuleID = 3 or 4
-              menuItems.push(value);
-            }
-          }
         }
-      });
-      
-
-    // navData.forEach(function (value, key) {
-    //     if (value['isHeader']) {
-    //         menuSplitContainer++;
-    //     }
-    //     if (key >= menuSplitContainer) {
-    //         const val = { ...value };
-    //         val.childItems = value.subItems || [];
-    //         val.isChildItem = !!value.subItems;
-    //         delete val.subItems;
-    //         splitMenuItems.push(val);
-    //     } else {
-    //         const filteredItems = (value.subItems || []).filter((item) => {
-    //             return item.ModuleID === 1 || item.ModuleID === 0;
-    //         });
-    //         if (filteredItems.length > 0) {
-    //             const updatedValue = { ...value };
-    //             updatedValue.subItems = filteredItems;
-    //             if (updatedValue.ModuleID !== 3) { // exclude items with ModuleID = 3
-    //                 menuItems.push(updatedValue);
-    //             }
-    //         } else if (!value.subItems || (value.subItems && !value.subItems.some(item => item.ModuleID))) {
-    //             if (value.ModuleID !== 3) { // exclude items with ModuleID = 3
-    //                 menuItems.push(value);
-    //             }
-    //         }
-    //     }
-    // });
-
+    });
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });

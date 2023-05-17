@@ -71,8 +71,20 @@ import APIKey from "./apikey/reducer";
 import Localization from './localization/reducer';
 import Elections from './elections/reducer';
 import Circles from './circles/reducer';
+import MyReferedVoters from './myReferedVoters/reducer';
+import ReferVoters from './referVoters/reducer';
+import UploadVoters from './uploadVoters/reducer';
 import Candidates from './candidates/reducer';
 import Phone from './phone/reducer';
+import Voters from './voters/reducer';
+import BoothVoters from './boothVoters/reducer';
+import Classes from './classes/reducer';
+import Users from  './users/reducer';
+import Roles from './roles/reducer'
+import BoothUsers from "./boothusers/reducer";
+import VotersManagement from "./votersManagement/reducer";
+import AnalyticalReports from "./analyticalReport/reducer";
+import AllReferedVotersList from "./allReferVotersList/reducer";
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -105,8 +117,20 @@ const rootReducer = combineReducers({
   Localization,
   Elections,
   Circles,
+  MyReferedVoters,
+  ReferVoters,
+  UploadVoters,
   Candidates,
-  Phone
+  Phone,
+  Voters,
+  BoothVoters,
+  Classes,
+  Users,
+  Roles,
+  BoothUsers,
+  VotersManagement,
+  AnalyticalReports,
+  AllReferedVotersList
 });
 
 export default rootReducer;

@@ -245,7 +245,7 @@ import AddUsers from "../pages/Administration/AddUsers";
 import BoothUsers from "../pages/Administration/BoothUsers";
 import VotersManagement from "../pages/Operations/VotersManagement";
 import ReferVoters from "../pages/Operations/ReferVoters";
-import MyVoters from "../pages/Operations/MyVoters";
+import MyReferedVoters from "../pages/Operations/MyReferedVoters";
 import BoothVoting from "../pages/Operations/BoothVoting";
 import AllVotersList from "../pages/DataReports/AllVotersList";
 import AllReferedVotersList from "../pages/DataReports/AllReferedVotersList";
@@ -273,7 +273,7 @@ const authProtectedRoutes = [
   //Operations
   { path: "/operations/voters-management", component: <VotersManagement /> },
   { path: "/operations/refer-voters", component: <ReferVoters /> },
-  { path: "/operations/my-voters", component: <MyVoters /> },
+  { path: "/operations/my-refered-voters", component: <MyReferedVoters /> },
   { path: "/operations/booth-voting", component: <BoothVoting /> },
   
   // Data Reports
@@ -296,8 +296,8 @@ const authProtectedRoutes = [
 
 
   { path: "/dashboard-analytics", component: <DashboardAnalytics /> },
-  { path: "/dashboard", component: <DashboardCrm /> },
-  // { path: "/dashboard", component: <DashboardEcommerce /> },
+  // { path: "/dashboard", component: <DashboardCrm /> },
+  { path: "/dashboard", component: <DashboardEcommerce /> },
   { path: "/index", component: <DashboardEcommerce /> },
   { path: "/dashboard-crypto", component: <DashboardCrypto /> },
   { path: "/dashboard-projects", component: <DashboardProject /> },

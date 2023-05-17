@@ -55,7 +55,34 @@ export * from "./localization/actions";
 export * from "./elections/actions";
 //Circles
 export * from "./circles/actions";
+//My Voters
+export * from "./myReferedVoters/actions";
+//Refer Voters
+export * from "./referVoters/actions";
+//Upload Voters
+export * from "./uploadVoters/actions";
 //Candidates
 export * from "./candidates/actions";
 //Phone
 export * from "./phone/actions";
+//Voters
+export * from "./voters/actions";
+//BoothVoters
+export * from "./boothVoters/actions";
+//Classes
+export * from "./classes/actions";
+//ReferVoters
+export * from "./referVoters/actions";
+// Users
+export * from './users/actions';
+// Roles
+export * from './roles/actions';
+// Boothusers
+export * from './boothusers/actions'
+// Voters Management
+export * from './votersManagement/actions'
+// Analytical Reports
+export * from './analyticalReport/actions'
+// All Refer Voter List
+export * from './allReferVotersList/actions'
+
