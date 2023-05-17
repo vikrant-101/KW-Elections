@@ -252,5 +252,10 @@
     "Arabic Character": "الحروف العربية",
     "Select": "يختار",
     "Search": "يبحث",
-    "All Refered Voters": "جميع المصوتين المحالين"
+    "All Refered Voters": "جميع المصوتين المحالين",
+    "Print": "مطبعة",
+    "Export to csv": "تصدير إلى ملف csv",
+    "Candidate Name": "اسم المرشح",
+    "Election Name": "اسم الانتخاب",
+    "Print By": "طباعة بواسطة"
 }

@@ -31,7 +31,6 @@ import {
   });
   
   export const getVotersSuccess = voters => {
-    console.log('voters success: ', voters);
     return {
     type: GET_VOTERS_SUCCESS,
     payload: voters,

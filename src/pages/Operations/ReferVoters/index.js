@@ -69,8 +69,11 @@ const ReferVoters = () => {
     }
   };
 
+  let user = sessionStorage.getItem('auth')
+  user = JSON.parse(user)
+  
   useEffect(() => {
-    dispatch(getReferVoters());
+    dispatch(getReferVoters({userID: user.id}));
     dispatch(getReferVotersTableColumnNames());
   }, [dispatch]);
 

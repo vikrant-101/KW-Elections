@@ -10,7 +10,6 @@ import { columns } from "./DataTableColumns";
 import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { useDispatch, useSelector } from "react-redux";
 import { getVotersTableColumnNames, getVoters, getPrintDetail} from "../../../store/voters/actions";
-// import { getReferVoters, getReferVotersTableColumnNames } from "../../../store/referVoters/actions";
 
 
 import {CSVLink} from 'react-csv'
@@ -59,15 +58,31 @@ const printTable = (e, columns) => {
   newWindow.document.write('<style>th { background-color: #f2f2f2; }</style>');
   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
   newWindow.document.write('<style>tr:hover { background-color: #ddd; }</style>');
-  newWindow.document.write(`<style>title { text-align: center; }</style><title>All Voter List</title>`);
+  newWindow.document.write(`<style>title { text-align: center; }</style><title>Voter List</title>`);
   newWindow.document.write('<style>.logo-container { display: flex; justify-content: space-between; margin-bottom: 20px; }</style>');
-  newWindow.document.write(`<style>title { text-align: right; }</style><title>Manage Demo Class</title>`);
   newWindow.document.write('</head><body>');
-  newWindow.document.write(`<div class="logo-container" ><div><p>Candidate Name : ${printDetail?.CandidateName}</p><p>Election Name : ${printDetail?.ElectionName}</p></div><img src=${yasaLight} onload="window.print()" width="300px" height="50px" /></div>`);
+  newWindow.document.write(`<div class="logo-container" >
+  <div>
+    <p>${printDetail?.CandidateName}</p>
+    <p ${printDetail?.ElectionName}</p>
+  </div>
+  <div>
+  <h2 style="text-align: left;">Voter List</h2>
+  <img src=${yasaLight} onload="window.print()" width="200px" height="33px" />
+  </div>
+</div>`);
 
-  // Set page orientation to landscape
-  newWindow.document.write('<style>@page  { size: landscape; }</style>');
 
+// Set page orientation to landscape
+newWindow.document.write('<style>@page  { size: landscape; }</style>');
+newWindow.document.write(`<style type="text/css" media="print">
+  @page {
+    size: auto;  
+    margin: 0; 
+    margin-top: 10;
+    margin-bottom: 15
+  }
+</style>`)
   newWindow.document.write('</head><body>');
   newWindow.document.write('<table>');
   newWindow.document.write(`<thead><tr>${columns?.map((col) => `<th>${col?.name?.props?.children}</th>`).join('')}</tr></thead>`);
@@ -96,8 +111,18 @@ const printTable = (e, columns) => {
       }
     }).join('')}</tr>`);
   });
-  newWindow.document.write('</tbody></table></body>');
-  newWindow.document.write(`<p style="margin-top: 20px">Print By: ${printDetail?.FullName}</html>`);
+  newWindow.document.write('</tbody></table></body>')
+  // newWindow.document.write(`<p>${printDetail?.FullName}</html>`);
+  newWindow.document.write(`<footer
+  style="position: fixed;
+   left: 5;
+   bottom: 0;
+   width: 100%;
+   background-color: rgba(0, 0, 0, 0);
+   color: black;
+   text-align: left;"
+  >${printDetail?.FullName}</footer>`);
+  newWindow.document.write('</html>');
   newWindow.document.write('<style>tr:nth-child(odd) { background-color: #ffffff; }</style>');
   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
 };
@@ -169,45 +194,30 @@ const exportToCsv = (data, columns) => {
             </div>
 						</Col>
 						<Col className="col-6 col-md-3 col-lg-2">
-							{/* <label>{t('Start Date')}</label> */}
-							{/* <Input type="date" className="form-control" name="startDate" onChange={(e) => onDateChangeHandler(e)} /> */}
-							{/* <Input type="date" className="form-control" name="startDate"  /> */}
 						</Col>
 						<Col className="col-6 col-md-3 col-lg-2">
-							{/* <label>{t('End Date')}</label> */}
-							{/* <Input type="date" className="form-control" name="endDate" onChange={(e) => onDateChangeHandler(e)} /> */}
-							{/* <Input type="date" className="form-control" name="endDate"  /> */}
 						</Col>
 						<Col className="col-lg-1">
 							<label> &nbsp;</label> <br />
-							{/* <Button type="button" onClick={() => onDateFilterSubmit()}><i className="ri-filter-3-line"></i>{t(' Go')}</Button> */}
-							{/* <Button type="button" ><i className="ri-filter-3-line"></i>{t(' Go')}</Button> */}
 						</Col>
 						<Col className="col-12 col-md-3 col-lg-3">
 							<label> &nbsp;</label> <br />
-							{/* <SearchTextBox initialData={Payments} setData={setData} /> */}
 							<SearchTextBox initialData={Voters} setData={setData}  />
 						</Col>
 					</Row>
 					<Row>
 						<Col>
-							{/* {isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>
 								<Spinner style={{
 									height: '3rem',
 									width: '3rem',
 								}} className='me-2'> Loading... </Spinner>
-							</div> : */}
-								{/* <PrivateClassPayments data={data} t={t} columns={columns(columnNames, i18n, t, onActiveOrDeactiveChange, onViewSessionsHistory,data)} /> */}
-								{/* <PrivateClassPayments  data={mainData} t={t} columns={columns(columnNames, i18n, t, onActiveOrDeactiveChange, onViewSessionsHistory,data)} /> */}
-                {/* } */}
-                <BasicTable data={data} columns={columns(columnNames, i18n, t)}/>
+							</div> : <BasicTable data={data} columns={columns(columnNames, i18n, t)}/>}
 						</Col>
 					</Row>
 				</Container>
 			</div>
-			{/* <AddModal show={show} isAddOrEdit={isAddOrEdit} setShow={setShow} onSubmitHandler={onSubmitHandler} title={isAddOrEdit === 'ViewSessions' && t('Session History')} modalBody={<ViewPaymentSessions onChangeHandler={onChangeHandler} isSessionLoading={isSessionLoading} pricePerHour={pricePerHour} paymentRefID={paymentRefID} Session={Session} sessionColumnNames={sessionColumnNames} isAddOrEdit={isAddOrEdit} />} /> */}
 			<AddModal />
-			{/* <DeleteModal showDelete={showDelete} setShowDelete={setShowDelete} onDeleteClick={onDeleteClick} /> */}
 			<DeleteModal  />
 	</React.Fragment>
 

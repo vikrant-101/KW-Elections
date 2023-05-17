@@ -24,7 +24,6 @@ const AreaWiseReport = () => {
 
 
  const { AreaWise, isLoading, columnNames, printDetail } = useSelector((state) => {
-   console.log('state: ', state);
    return {
     AreaWise: state.AnalyticalReports.areaWise,
    columnNames: state.AnalyticalReports.areaWiseColumnNames,
@@ -43,7 +42,7 @@ let user = sessionStorage.getItem('auth')
 user = JSON.parse(user)
 
  useEffect(() => {
-    dispatch(getAreaWiseReport())
+    dispatch(getAreaWiseReport({userID: user.id}))
     dispatch(getAreaWiseTableColumnNames())
     dispatch(getPrintDetail({userID: user.id}))
 }, [dispatch]);
@@ -57,15 +56,31 @@ const printTable = (e, columns) => {
   newWindow.document.write('<style>th { background-color: #f2f2f2; }</style>');
   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
   newWindow.document.write('<style>tr:hover { background-color: #ddd; }</style>');
-  newWindow.document.write(`<style>title { text-align: center; }</style><title>All Area Name Wise List</title>`);
+  newWindow.document.write(`<style>title { text-align: right; }</style><title>Area Name Wise List</title>`);
   newWindow.document.write('<style>.logo-container { display: flex; justify-content: space-between; margin-bottom: 20px; }</style>');
-  newWindow.document.write(`<style>title { text-align: right; }</style><title>Manage Demo Class</title>`);
   newWindow.document.write('</head><body>');
-  newWindow.document.write(`<div class="logo-container" ><div><p>Candidate Name : ${printDetail?.CandidateName}</p><p>Election Name : ${printDetail?.ElectionName}</p></div><img src=${yasaLight} onload="window.print()" width="300px" height="50px" /></div>`);
+  newWindow.document.write(`<div class="logo-container" >
+  <div>
+    <p>${printDetail?.CandidateName}</p>
+    <p ${printDetail?.ElectionName}</p>
+  </div>
+  <div>
+  <h2 style="text-align: left;">Area Name Wise List</h2>
+  <img src=${yasaLight} onload="window.print()" width="200px" height="33px" />
+  </div>
+</div>`);
 
-  // Set page orientation to landscape
-  // newWindow.document.write('<style>@page  { size: landscape; }</style>');
 
+// Set page orientation to landscape
+// newWindow.document.write('<style>@page  { size: landscape; }</style>');
+newWindow.document.write(`<style type="text/css" media="print">
+  @page {
+    size: auto;  
+    margin: 0; 
+    margin-top: 10;
+    margin-bottom: 15;
+  }
+</style>`)
   newWindow.document.write('</head><body>');
   newWindow.document.write('<table>');
   newWindow.document.write(`<thead><tr>${columns?.map((col) => `<th>${col?.name?.props?.children}</th>`).join('')}</tr></thead>`);
@@ -94,8 +109,18 @@ const printTable = (e, columns) => {
       }
     }).join('')}</tr>`);
   });
-  newWindow.document.write('</tbody></table></body>');
-  newWindow.document.write(`<p style="margin-top: 20px">Print By: ${printDetail?.FullName}</html>`);
+  newWindow.document.write('</tbody></table></body>')
+  // newWindow.document.write(`<p>${printDetail?.FullName}</html>`);
+  newWindow.document.write(`<footer
+  style="position: fixed;
+   left: 5;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   color: black;
+   text-align: left;"
+  >${printDetail?.FullName}</footer>`);
+  newWindow.document.write('</html>');
   newWindow.document.write('<style>tr:nth-child(odd) { background-color: #ffffff; }</style>');
   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
 };
@@ -177,7 +202,12 @@ const exportToCsv = (data, columns) => {
 					</Row>
 					<Row>
 						<Col>
-                <BasicTable data={data} columns={columns(columnNames, i18n, t)}/>
+            {isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>
+								<Spinner style={{
+									height: '3rem',
+									width: '3rem',
+								}} className='me-2'> Loading... </Spinner>
+							</div> : <BasicTable data={data} columns={columns(columnNames, i18n, t)}/> }
 						</Col>
 					</Row>
 				</Container>

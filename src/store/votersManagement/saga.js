@@ -55,9 +55,9 @@ import {
 
 
 // Fetch VotersManagement 
-function* fetchVotersManagement() {
+function* fetchVotersManagement(classNo) {
 	try {
-		const response = yield call(getVotersManagement);
+		const response = yield call(getVotersManagement, classNo);
 		yield put(getVotersManagementSuccess(response.Data));
 	} catch (error) {
 		yield put(getVotersManagementFail(error));

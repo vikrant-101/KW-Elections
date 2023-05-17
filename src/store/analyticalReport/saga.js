@@ -50,9 +50,9 @@ import {
 
 
 // Fetch Area Wise Report 
-function* fetchAreaWiseReport() {
+function* fetchAreaWiseReport({userID}) {
 	try {
-		const response = yield call(getAreaWiseReport);
+		const response = yield call(getAreaWiseReport, userID);
 		yield put(getAreaWiseSuccess(response.Data));
 	} catch (error) {
 		yield put(getAreaWiseFail(error));
@@ -70,9 +70,9 @@ function* fetchAreaWiseTableColumnNames(moduleName) {
 }
 
 // Fetch School Wise Report
-function* fetchSchoolWiseReport() {
+function* fetchSchoolWiseReport({userID}) {
 	try {
-		const response = yield call(getSchoolWiseReport);
+		const response = yield call(getSchoolWiseReport, userID);
 		yield put(getSchoolWiseSuccess(response.Data));
 	} catch (error) {
 		yield put(getSchoolWiseFail(error));
@@ -91,9 +91,10 @@ function* fetchSchoolWiseTableColumnNames(moduleName) {
 
 
 // Fetch Booth Wise Report  
-function* fetchBoothWiseReport() {
+function* fetchBoothWiseReport({userID}) {
+	console.log('userID: Booth ', userID);
 	try {
-		const response = yield call(getBoothWiseReport);
+		const response = yield call(getBoothWiseReport, userID);
 		yield put(getBoothWiseSuccess(response.Data));
 	} catch (error) {
 		yield put(getBoothWiseFail(error));
@@ -111,9 +112,9 @@ function* fetchBoothWiseTableColumnNames(moduleName) {
 }
 
 // Fetch Family Name Wise Report
-function* fetchFamilyNameReport() {
+function* fetchFamilyNameReport({userID}) {
 	try {
-		const response = yield call(getFamilyNameWiseReport);
+		const response = yield call(getFamilyNameWiseReport, userID);
 		yield put(getFamilyNameWiseSuccess(response.Data));
 	} catch (error) {
 		yield put(getFamilyNameWiseFail(error));
