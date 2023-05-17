@@ -31,7 +31,7 @@ const Revenue = () => {
     <React.Fragment>
       <Card>
         <CardHeader className="border-0 align-items-center d-flex">
-          <h4 className="card-title mb-0 flex-grow-1">Voters Statistics</h4>
+          <h4 className="card-title mb-0 flex-grow-1">{t('Voters Statistics')}</h4>
           <div className="d-flex gap-1">
             <button type="button" className="btn btn-soft-dark btn-sm" onClick={() => { onChangeChartPeriod("all"); }}>
               {t('Male')}
@@ -86,7 +86,7 @@ const Revenue = () => {
                     suffix="%"
                   />
                 </h5>
-                <p className="text-muted mb-0">Ratio</p>
+                <p className="text-muted mb-0">{t('Ratio')}</p>
               </div>
             </Col>
           </Row>
