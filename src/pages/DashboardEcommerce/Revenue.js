@@ -4,9 +4,11 @@ import { RevenueCharts } from "./DashboardEcommerceCharts";
 import CountUp from "react-countup";
 import { useSelector, useDispatch } from "react-redux";
 import { getRevenueChartsData } from "../../store/dashboardEcommerce/action";
+import { useTranslation } from "react-i18next";
 
 const Revenue = () => {
   const dispatch = useDispatch();
+  const {i18n, t} = useTranslation();
 
   const [chartData, setchartData] = useState([]);
 
@@ -29,19 +31,13 @@ const Revenue = () => {
     <React.Fragment>
       <Card>
         <CardHeader className="border-0 align-items-center d-flex">
-          <h4 className="card-title mb-0 flex-grow-1">Revenue</h4>
+          <h4 className="card-title mb-0 flex-grow-1">Voters Statistics</h4>
           <div className="d-flex gap-1">
             <button type="button" className="btn btn-soft-dark btn-sm" onClick={() => { onChangeChartPeriod("all"); }}>
-              ALL
+              {t('Male')}
             </button>
             <button type="button" className="btn btn-soft-dark btn-sm" onClick={() => { onChangeChartPeriod("month"); }}>
-              1M
-            </button>
-            <button type="button" className="btn btn-soft-dark btn-sm" onClick={() => { onChangeChartPeriod("halfyear"); }}>
-              6M
-            </button>
-            <button type="button" className="btn btn-soft-primary btn-sm" onClick={() => { onChangeChartPeriod("year"); }}>
-              1Y
+              {t('Female')}
             </button>
           </div>
         </CardHeader>
@@ -90,7 +86,7 @@ const Revenue = () => {
                     suffix="%"
                   />
                 </h5>
-                <p className="text-muted mb-0">Conversation Ratio</p>
+                <p className="text-muted mb-0">Ratio</p>
               </div>
             </Col>
           </Row>
