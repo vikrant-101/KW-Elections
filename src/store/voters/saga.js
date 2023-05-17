@@ -66,7 +66,6 @@ function* fetchVoters() {
 
 // Fetch Print Detail
 function* fetchPrintDetail(userID) {
-	console.log('userID ****: ', userID);
 	try {
 		const response = yield call(getPrintDetail, userID);
 		console.log('response print: ', response);

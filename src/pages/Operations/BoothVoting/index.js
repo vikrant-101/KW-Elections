@@ -38,10 +38,9 @@ const BoothVoting = () => {
   // console.log('user -----: ', JSON.parse(user));
   user = JSON.parse(user);
 
-  let role = false;
 
   useEffect(() => {
-    if (user.RoleID >= 2) {
+    if (user.RoleID <= 2) {
       // console.log("inside if")
       dispatch(getBoothVoters())
     } else {
@@ -50,7 +49,6 @@ const BoothVoting = () => {
       // boothUserDetail = getBoothUserDetail({_id: user._id});
       // console.log('boothUserDetail: ', boothUserDetail);
       // dispatch(getClassBoothVoters({ "classNo": Number(value)}))
-      role = true;
       setBoothUser(true);
       dispatch(getBoothUserDetail({ userID: user.id}));
     }
@@ -60,7 +58,10 @@ const BoothVoting = () => {
   useEffect(() => {
     let classNo = Number(Boothuserdetail?.ClassNo)
     console.log('classNo ---: ', classNo);
-    dispatch(getClassBoothVoters({ "classNo": classNo }))
+    if (!isNaN(classNo)) {
+      console.log("number")
+      dispatch(getClassBoothVoters({ "classNo": classNo }))
+    }
   }, [Boothuserdetail])
 
   useEffect(() => {
@@ -119,8 +120,8 @@ const BoothVoting = () => {
   // let areaName = "gwalior";
   // let schoolName = "padav";
   // let className = "krishan";
-  // let role = true;
-  // role = false;
+
+  
 
   return (
     <React.Fragment>

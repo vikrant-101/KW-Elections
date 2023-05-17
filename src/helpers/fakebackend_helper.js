@@ -569,7 +569,7 @@ export const deleteRoles = (roles) => api.create(url.DELETE_ROLES, roles);
 export const activateDeactivateRoles = (roles) => api.update(url.ACTIVATE_DEACTIVATE_ROLES, roles);
 
 // Voters Management
-export const getVotersManagement = () => api.get(url.GET_VOTERSMANAGEMENT);
+export const getVotersManagement = ({classNo: classNo}) => api.create(url.GET_VOTERSMANAGEMENT, {classNo});
 export const getVotersManagementTableColumnNames = ({ moduleName: module }) => api.create(url.GET_VOTERSMANAGEMENT_TABLE_COLUMN_NAMES, { module });
 export const addVotersManagement = (votersmanagement) => api.create(url.POST_VOTERSMANAGEMENT, votersmanagement);
 export const updateVotersManagement = (votersmanagement) => api.update(url.UPDATE_VOTERSMANAGEMENT, votersmanagement);
@@ -577,11 +577,15 @@ export const deleteVotersManagement = (votersmanagement) => api.create(url.DELET
 export const activateDeactivateVotersManagement = (votersmanagement) => api.update(url.ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT, votersmanagement);
 
 // Analytical Report
-export const getAreaWiseReport = () => api.get(url.GET_AREAWISE_REPORT);
+export const getAreaWiseReport = (userID) => api.create(url.GET_AREAWISE_REPORT, userID);
 export const getAreaWiseTableColumnNames = ({ moduleName: module }) => api.create(url.GET_AREAWISE_TABLE_COLUMN_NAMES, { module });
-export const getSchoolWiseReport = () => api.get(url.GET_SCHOOLWISE_REPORT);
+export const getSchoolWiseReport = (userID) => api.create(url.GET_SCHOOLWISE_REPORT, userID);
 export const getSchoolWiseTableColumnNames = ({ moduleName: module }) => api.create(url.GET_AREAWISE_TABLE_COLUMN_NAMES, { module });
-export const getBoothWiseReport = () => api.get(url.GET_BOOTHWISE_REPORT);
+export const getBoothWiseReport = (userID) => api.create(url.GET_BOOTHWISE_REPORT, userID);
 export const getBoothWiseTableColumnNames = ({ moduleName: module }) => api.create(url.GET_AREAWISE_TABLE_COLUMN_NAMES, { module });
-export const getFamilyNameWiseReport = () => api.get(url.GET_FAMILYNAMEWISE_REPORT);
+export const getFamilyNameWiseReport = (userID) => api.create(url.GET_FAMILYNAMEWISE_REPORT, userID);
 export const getFamilyNameWiseTableColumnNames = ({ moduleName: module }) => api.create(url.GET_AREAWISE_TABLE_COLUMN_NAMES, { module });
+
+// All Refer Voter List
+export const getAllReferVotersList = (userID) => api.create(url.GET_ALLREFERVOTERSLIST, userID);
+export const getAllReferVotersListTableColumnNames = ({ moduleName: module }) => api.create(url.GET_ALLREFERVOTERSLIST_TABLE_COLUMN_NAMES, { module });

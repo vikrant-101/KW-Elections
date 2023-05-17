@@ -73,7 +73,7 @@ const VotersManagement = () => {
 	}, [VotersManagement]);
 
   const handleClass = (value) => {
-    dispatch(getVotersManagement())
+    dispatch(getVotersManagement({ "classNo": Number(value)}))
     dispatch(getVotersManagementTableColumnNames())
 
     if (value === "") {

@@ -75,7 +75,8 @@ import UsersSaga from "./users/saga";
 import RolesSaga from "./roles/saga"
 import BoothUsersSaga from "./boothusers/saga";
 import VotersMangementSaga from "./votersManagement/saga";
-import AnalyticalReportsSaga from "./analyticalReport/saga"
+import AnalyticalReportsSaga from "./analyticalReport/saga";
+import AllReferedVotersListSata from "./allReferVotersList/saga";
 export default function* rootSaga() {
   yield all([
     //public
@@ -120,6 +121,7 @@ export default function* rootSaga() {
     fork(RolesSaga),
     fork(BoothUsersSaga),
     fork(VotersMangementSaga),
-    fork(AnalyticalReportsSaga)
+    fork(AnalyticalReportsSaga),
+    fork(AllReferedVotersListSata)
   ]);
 }

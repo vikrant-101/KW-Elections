@@ -57,7 +57,7 @@ export const columns = (columnNames, i18n, t, onActiveOrDeactiveChange, onViewSe
           },
         }
 
-      case 'Referby':
+      case 'ReferBy':
         return col = {
             name: <span className='font-weight-bold fs-13'>{i18n.language === 'ar' ? column?.ValueAr : column?.ValueEn}</span>,
             selector: row => {

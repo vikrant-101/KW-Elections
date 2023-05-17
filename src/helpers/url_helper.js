@@ -368,3 +368,7 @@ export const GET_BOOTHWISE_TABLE_COLUMN_NAMES = '/GetHeaders';
 
 export const GET_FAMILYNAMEWISE_REPORT = '/GetFamilyNameWiseReports';
 export const GET_FAMILYNAMEWISE_TABLE_COLUMN_NAMES = '/GetHeaders';
+
+// All Refer Voters List
+export const GET_ALLREFERVOTERSLIST = '/GetAllReferVotersList';
+export const GET_ALLREFERVOTERSLIST_TABLE_COLUMN_NAMES = '/GetHeaders';

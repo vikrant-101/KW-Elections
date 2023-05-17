@@ -20,8 +20,9 @@ import {
   } from "./actionTypes"
   
   
-  export const getVotersManagement = () => ({
+  export const getVotersManagement = ({classNo}) => ({
     type: GET_VOTERSMANAGEMENT,
+    classNo: classNo,
   });
   
   export const getVotersManagementSuccess = votersmanagement => ({

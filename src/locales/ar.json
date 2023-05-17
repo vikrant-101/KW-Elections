@@ -255,6 +255,11 @@
     "Select": "يختار",
     "Search": "يبحث",
     "All Refered Voters": "جميع المصوتين المحالين",
+    "Print": "مطبعة",
+    "Export to csv": "تصدير إلى ملف csv",
+    "Candidate Name": "اسم المرشح",
+    "Election Name": "اسم الانتخاب",
+    "Print By": "طباعة بواسطة"
     "Full Name Arabic": "الاسم الكامل عربي",
     "Full Name English": "الاسم الكامل بالإنجليزية",
     "Role": "دور",
