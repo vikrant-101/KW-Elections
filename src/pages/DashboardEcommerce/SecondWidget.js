@@ -24,13 +24,12 @@ const SecondWidget = () => {
             badgeClass: "success",
             percentage: "+16.24",
             counter: "559.25",
-            link: "Total Voters",
+            link: "Total Sub Admins",
             bgcolor: "success",
             icon: "bx bx-user-circle",
             decimals: 2,
             prefix: "$",
             suffix: "k",
-            path: '/data-reports/all-voters-list'
         },
         {
             id: 2,
@@ -40,14 +39,13 @@ const SecondWidget = () => {
             badgeClass: "danger",
             percentage: "-3.57",
             counter: "36894",
-            link: "Total Voted",
+            link: "Total References",
             bgcolor: "info",
             icon: "bx bx-user-circle",
             decimals: 0,
             prefix: "",
             separator: ",",
             suffix: "",
-            path: '/data-reports/all-voters-list'
         },
         {
             id: 3,
@@ -57,13 +55,12 @@ const SecondWidget = () => {
             badgeClass: "success",
             percentage: "+29.08",
             counter: "183.35",
-            link: "Total To Be Voted",
+            link: "Total Sub References",
             bgcolor: "warning",
             icon: "bx bx-user-circle",
             decimals: 2,
             prefix: "",
             suffix: "M",
-            path: '/data-reports/all-voters-list'
         },
         {
             id: 4,
@@ -72,13 +69,12 @@ const SecondWidget = () => {
             badgeClass: "muted",
             percentage: "+0.00",
             counter: "165.89",
-            link: "Total Referred Voters",
+            link: "Total Areas",
             bgcolor: "primary",
             icon: "bx bx-user-circle",
             decimals: 2,
             prefix: "$",
             suffix: "k",
-            path: '/data-reports/all-refered-voters-list'
         },
 
         {
@@ -88,13 +84,12 @@ const SecondWidget = () => {
             badgeClass: "muted",
             percentage: "+0.00",
             counter: "165.89",
-            link: "Total Referred Voted",
+            link: "Total Schools",
             bgcolor: "primary",
             icon: "bx bx-user-circle",
             decimals: 2,
             prefix: "$",
             suffix: "k",
-            path: '/data-reports/all-refered-voters-list'
         },
         {
             id: 6,
@@ -103,13 +98,12 @@ const SecondWidget = () => {
             badgeClass: "muted",
             percentage: "+0.00",
             counter: "165.89",
-            link: "Total Referred To Be Voted",
+            link: "Total Classes",
             bgcolor: "primary",
             icon: "bx bx-user-circle",
             decimals: 2,
             prefix: "$",
             suffix: "k",
-            path: '/data-reports/all-refered-voters-list'
         },
     ])
 
@@ -282,7 +276,7 @@ const SecondWidget = () => {
                                             duration={4}
                                         />
                                     </span></h4>
-                                    <Link to={item.path} className="text-decoration-underline text-muted">{item.link}</Link>
+                                    <Link to="#" className="text-decoration-underline text-muted">{item.link}</Link>
                                 </div>
                                 <div className="avatar-sm flex-shrink-0">
                                     <span className={"avatar-title rounded fs-3 bg-soft-" + item.bgcolor}>
