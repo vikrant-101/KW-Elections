@@ -10,7 +10,6 @@ import Section from "./Section";
 import StoreVisits from "./StoreVisits";
 import TopSellers from "./TopSellers";
 import { useTranslation } from "react-i18next";
-import SecondWidget from "./SecondWidget";
 
 const DashboardEcommerce = () => {
   const {i18n, t} = useTranslation();
@@ -30,23 +29,19 @@ const DashboardEcommerce = () => {
                   <Col xl={8}>
                     <Revenue />
                   </Col>
+                  <SalesByLocations />
+                </Row>
+                <Row>
+                  <BestSellingProducts />
+                  <TopSellers />
+                </Row>
+                <Row>
                   <StoreVisits />
-                  {/* <SalesByLocations /> */}
-                </Row>
-                <Row>
-                  <SecondWidget />
-                </Row>
-                <Row>
-                  {/* <BestSellingProducts /> */}
-                  {/* <TopSellers /> */}
-                </Row>
-                <Row>
-                  {/* <StoreVisits /> */}
-                  {/* <RecentOrders /> */}
+                  <RecentOrders />
                 </Row>
               </div>
             </Col>
-            {/* <RecentActivity /> */}
+            <RecentActivity />
           </Row>
         </Container>
       </div>
