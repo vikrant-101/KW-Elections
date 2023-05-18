@@ -28,7 +28,7 @@ const AddUsersForm = ({
     ScreenNameArabic: "",
     LabelNameEnglish: "",
     LabelNameArabic: "",
-    LabelKey: "",
+    LabelKey: ""
   });
   const [lang, setLang] = useState();
   const [shouldUpdate, setShouldUpdate] = useState(false);
@@ -93,23 +93,18 @@ const AddUsersForm = ({
                   </label>
 
                   <div className="lang-change-wrap">
-                    {/* <InputGroup>
-                      <InputGroupText>+965</InputGroupText> */}
+                    <InputGroup>
+                      <InputGroupText>+965</InputGroupText>
                       <Input
                         placeholder={t(items?.labelName)}
-                        defaultValue={formData[items?.value]}
+                        defaultValue={(isAddOrEdit === 'isEdit' && formData[items?.value]) ? formData[items?.value].replace("+965", "") : ""}
                         name={items?.name}
-                        disabled={
-                          items?.name === "LabelKey" && isAddOrEdit === "isEdit"
-                            ? true
-                            : false
-                        }
                         type="number"
                         onChange={(e) => onChangeHandler(e)}
                         id={items?.labelName}
                         required
                       />
-                    {/* </InputGroup> */}
+                    </InputGroup>
                   </div>
                 </div>
               </Col>

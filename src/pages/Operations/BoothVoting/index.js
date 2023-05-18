@@ -140,26 +140,29 @@ const BoothVoting = () => {
               </Col>
             </Row>
           </div> : ""}
+          <div className="card p-4 border">
           <Row className='mb-3'>
-            <Col>
+            <Col className="col-md-3 col-6 mb-4">
               <Label>{t('Arabic Character')}</Label>
 							{/* <SearchTextBox initialData={BoothVoters} setData={setData} id="alpha" /> */}
               <Input type="text" className={i18n.language === 'ar' ? 'form-control float-start mw-400' : 'form-control float-end mw-400'} placeholder={t('Search') + '...'}
                 id="alpha"
                 onChange={(e) => handleArabicCharacter(e.target.value)} />
 						</Col>
-						<Col>
+						<Col className="col-md-3 col-6 mb-4">
               <Label>{t('Voter ID')}</Label>
 							<SearchTextBox initialData={alphaData} filter="VotersNo" setData={setData} id="voterId" />
 						</Col>
-            <Col>
+            <Col className="col-md-3 col-6 mb-4">
               <Label>{t('Voter Name')}</Label>
 							<SearchTextBox initialData={BoothVoters} filter="FirstName" setData={setData} id="voterName" />
 						</Col>
+            <Col className="col-md-3 col-6 mb-4">
+              <Label>&nbsp; </Label> <br />
+                <Button onClick={handleClear} className="cis-width-120">{t('Clear')} < i className="ri-filter-off-line"></i></Button>
+            </Col>
 					</Row>
-          <Row className='mb-3'>
-              <Button onClick={handleClear}>{t('Clear')}</Button>
-          </Row>
+          </div>
           <Row>
 						<Col>
 							{isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>

@@ -72,9 +72,9 @@ const AddUsers = () => {
     isAddOrEdit === "isEdit" && (usersObj["_id"] = users["_id"]);
     isAddOrEdit === "isEdit" && (usersObj["IsDelete"] = users["IsDelete"]);
     isAddOrEdit === "isEdit" && (usersObj["IsActive"] = users["IsActive"]);
-    usersObj["FullNameEnglish"] = users.FullNameEnglish;
+    usersObj["FullNameEnglish"] = users.FullNameArabic;
     usersObj["FullNameArabic"] = users.FullNameArabic;
-    usersObj["MobileNumber"] = users.MobileNumber;
+    usersObj["MobileNumber"] = '+965' + users.MobileNumber;
     usersObj["IsDelete"] = false;
     usersObj["IsActive"] = true;
     usersObj["RoleID"] = +users.RoleID;

@@ -13,7 +13,7 @@ export const columns = (columnNames, i18n, t, addReferVoterHandler) => {
 
   return filteredColumns(columnNames, i18n)?.map((column) => {
     let col;
-    switch (column?.FieldName) {
+    switch (column?.FieldName) {   //VotersStatus
       case "DateOfBirth":
         return (col = {
           name: (
@@ -31,7 +31,7 @@ export const columns = (columnNames, i18n, t, addReferVoterHandler) => {
           },
         });
 
-      case "VoterStatus":
+      case "VotersStatus":
         return (col = {
           name: (
             <span className="font-weight-bold fs-13">
@@ -43,7 +43,7 @@ export const columns = (columnNames, i18n, t, addReferVoterHandler) => {
           selector: (cell) => {
             return (
               <>
-                {cell.VoterStatus ? (
+                {cell.VotersStatus ? (
                   <i
                     style={checkStyle}
                     className="ri-check-fill"
@@ -75,18 +75,26 @@ export const columns = (columnNames, i18n, t, addReferVoterHandler) => {
             return (
               <>
                 {!alreadyRefered ? (
-                  <i
+                  <span className="badge badge-soft-success"
                     onClick={() => addReferVoterHandler(cell, "add")}
-                    style={{ fontSize: "18px", cursor: "pointer" }}
-                    className="ri-add-circle-line"
-                    title="Refer this voter"
-                  ></i>
+                  >
+                    <i
+                      style={{ fontSize: "18px", cursor: "pointer" }}
+                      className="ri-add-circle-line"
+                      title="Refer this voter"
+                    ></i>
+                  </span>
+
                 ) : (
-                  <i
+                  <span className="badge badge-soft-primary"
                     onClick={() => addReferVoterHandler(cell, "edit")}
-                    style={{ fontSize: "18px", cursor: "pointer" }}
-                    className="ri-eye-line"
-                  ></i>
+                  >
+                    <i
+                      style={{ fontSize: "18px", cursor: "pointer" }}
+                      className="ri-eye-line"
+                    ></i>
+                  </span>
+
                 )}
               </>
             );

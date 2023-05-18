@@ -1,5 +1,5 @@
 {
-  "name": "saas-velzon-react",
+  "name": "kw-elections2023",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -104,6 +104,7 @@
     "build": "react-scripts build --max_old_space_size=8000 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "deploy": "firebase hosting:channel:deploy Testing --only admin-panel-getyasa",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write \"**/*.{js,jsx,json,md,html,css,less,scss}\""

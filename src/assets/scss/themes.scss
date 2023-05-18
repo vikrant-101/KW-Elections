@@ -251,3 +251,9 @@ input:-webkit-autofill:active{
     color: var(--#{$prefix}body-color) !important;
     -webkit-text-fill-color: var(--#{$prefix}body-color) !important;
 }
+.cis-width-120 {
+  min-width: 120px;
+}
+.mw-400 {
+  max-width: 400px;
+}
