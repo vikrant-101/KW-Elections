@@ -1,3 +1,4 @@
+import { Button } from "reactstrap";
 import { filteredColumns } from "../../../helpers/Filter/FilterColumns";
 
 export const columns = (
@@ -37,7 +38,7 @@ export const columns = (
           },
         });
 
-      case "VoterStatus":
+      case "VotersStatus":
         return (col = {
           name: (
             <span className="font-weight-bold fs-13">
@@ -49,7 +50,7 @@ export const columns = (
           selector: (cell) => {
             return (
               <>
-                {cell.VoterStatus ? (
+                {cell.VotersStatus ? (
                   <i
                     style={checkStyle}
                     className="ri-check-fill"
@@ -79,18 +80,25 @@ export const columns = (
           cell: (cell) => {
             return (
               <>
-                <i
+                <span className="badge badge-soft-primary"
                   onClick={() => onEditClickHandler(cell)}
-                  style={{ fontSize: "18px", cursor: "pointer" }}
-                  className="ri-edit-box-fill"
-                  title="Edit"
-                ></i>
-                <i
-                  onClick={() => onDeleteClickHandler(cell)}
-                  style={{ fontSize: "18px", cursor: "pointer" }}
-                  className="ri-delete-bin-fill"
-                  title="Undo Refer"
-                ></i>
+                >
+                  <i
+                    style={{ fontSize: "18px", cursor: "pointer" }}
+                    className="ri-edit-box-fill"
+                    title="Edit"
+                  ></i>
+                </span>
+
+
+                <span className="badge badge-soft-danger"
+                  onClick={() => onDeleteClickHandler(cell)}>
+                  <i
+                    style={{ fontSize: "18px", cursor: "pointer" }}
+                    className="ri-delete-bin-fill"
+                    title="Undo Refer"
+                  ></i>
+                </span>
               </>
             );
           },

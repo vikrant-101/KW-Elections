@@ -179,7 +179,7 @@ const exportToCsv = (data, columns) => {
 				<Container fluid>
 					<Row className='mb-3'>
 						<Col>
-							<BreadCrumb title={t('All Refered Voters')} />
+							<BreadCrumb title={t('All Voters List')} />
 						</Col>
 					</Row>
 					<Row className='mb-3'>

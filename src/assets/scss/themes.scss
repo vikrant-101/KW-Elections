@@ -257,3 +257,13 @@ input:-webkit-autofill:active{
 .mw-400 {
   max-width: 400px;
 }
+[dir="rtl"] .btn-close {
+  margin-left: 0;
+  margin-right: auto;
+}
+[dir='rtl'] input[type=number]:placeholder {
+  text-align:right;
+}
+[dir='rtl'] input[type=number]::placeholder {
+  text-align:right;
+}
