@@ -18,7 +18,7 @@ import {
           return col = {
             name: <span className='font-weight-bold fs-13'>{i18n.language === 'ar' ? column?.ValueAr : column?.ValueEn}</span>,
             selector: row => {
-                let status = row[column?.Title] ? "Yes" : "No";
+                let status = row[column?.Title] ? t("Yes") : t("No");
               return  t(status)
             },
             sortable: true,

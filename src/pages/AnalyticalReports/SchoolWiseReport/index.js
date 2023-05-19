@@ -61,16 +61,29 @@ const printTable = (e, columns) => {
   newWindow.document.write(`<style>title { text-align: center; }</style><title>School Wise List</title>`);
   newWindow.document.write('<style>.logo-container { display: flex; justify-content: space-between; margin-bottom: 20px; }</style>');
   newWindow.document.write('</head><body>');
-  newWindow.document.write(`<div class="logo-container" >
-    <div>
+  if (printDetail?.CandidateName != undefined && printDetail?.ElectionName != undefined) {
+    newWindow.document.write(`<div class="logo-container" >
+      <div>
       <p>${printDetail?.CandidateName}</p>
-      <p ${printDetail?.ElectionName}</p>
+      <p>${printDetail?.ElectionName}</p>
+      </div>
+      <div>
+      <h2 style="text-align: left;">Refer Voter List</h2>
+      <img src=${yasaLight} onload="window.print()" width="200px" height="33px" />
+      </div>
+    </div>`);
+  } else {
+    newWindow.document.write(`<div class="logo-container" >
+    <div>
+    <p>Candidate Name :- ______</p>
+    <p>Election Name :- ______</p>
     </div>
     <div>
-    <h2 style="text-align: left;">Booth Name Wise List</h2>
+    <h2 style="text-align: left;">Refer Voter List</h2>
     <img src=${yasaLight} onload="window.print()" width="200px" height="33px" />
     </div>
   </div>`);
+  }
 
 
   // Set page orientation to landscape
@@ -114,15 +127,27 @@ const printTable = (e, columns) => {
   });
   newWindow.document.write('</tbody></table></body>')
   // newWindow.document.write(`<p>${printDetail?.FullName}</html>`);
-  newWindow.document.write(`<footer
-  style="position: fixed;
-   left: 5;
-   bottom: 0;
-   width: 100%;
-   background-color: white;
-   color: black;
-   text-align: left;"
-  >${printDetail?.FullName}</footer>`);
+  if (printDetail?.FullNameArabic != undefined) {
+    newWindow.document.write(`<footer
+    style="position: fixed;
+     left: 5;
+     bottom: 0;
+     width: 100%;
+     background-color: white;
+     color: black;
+     text-align: left;"
+    >${printDetail?.FullNameArabic}</footer>`);
+  } else {
+    newWindow.document.write(`<footer
+    style="position: fixed;
+     left: 5;
+     bottom: 0;
+     width: 100%;
+     background-color: white;
+     color: black;
+     text-align: left;"
+    >Print By :- ______</footer>`);
+  }
   newWindow.document.write('</html>');
   newWindow.document.write('<style>tr:nth-child(odd) { background-color: #ffffff; }</style>');
   newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');
