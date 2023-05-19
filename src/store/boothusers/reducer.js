@@ -58,9 +58,10 @@ const boothuser = (state = INIT_STATE, action) => {
       };
 
     case ADD_BOOTHUSERS_SUCCESS:
+      console.log(action.payload.Data)
       state = {
         ...state,
-        boothuser: [action.payload.Data[0], ...state.boothuser],
+        boothuser: action.payload.Data,
       };
       toast.success(action.payload.Message);
       break;
@@ -70,11 +71,13 @@ const boothuser = (state = INIT_STATE, action) => {
         ...state,
         error: action.payload,
       };
-      toast.error(action.payload);
+      action.payload.Message ?
+        toast.error(action.payload.Message) :
+        toast.error(action.payload);
       break;
 
     case UPDATE_BOOTHUSERS_SUCCESS:
-		console.log(action.payload)
+      console.log(action.payload)
       state = {
         ...state,
         boothuser: state.boothuser.map((boothuser) =>

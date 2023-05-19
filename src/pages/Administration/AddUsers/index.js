@@ -155,12 +155,12 @@ const AddUsers = () => {
           </Row>
           <Row>
             <Col>
-            {isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>
-								<Spinner style={{
-									height: '3rem',
-									width: '3rem',
-								}} className='me-2'> Loading... </Spinner>
-							</div>  : (
+              {isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Spinner style={{
+                  height: '3rem',
+                  width: '3rem',
+                }} className='me-2'> Loading... </Spinner>
+              </div> : (
                 <BasicTable
                   data={data}
                   columns={columns(
