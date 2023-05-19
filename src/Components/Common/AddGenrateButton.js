@@ -11,7 +11,7 @@ const AddGenrateButton = ({handleClassesClicks}) => {
         onClick={() => handleClassesClicks('isAdd')}
       >
         <i className="ri-task-line label-icon align-middle rounded-pill fs-16 me-2"></i>{" "}
-        {t('Genrate')}
+        {t('Generate')}
       </button>
     </React.Fragment>
   )

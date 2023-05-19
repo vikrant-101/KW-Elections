@@ -40,7 +40,7 @@ const BoothUsers = () => {
 	}
 
 	const onFullNameBlurHandler = (e, col) => {
-		dispatch(updateBoothUsers({ "_id": col._id, "FullName": e.target.value }))
+		dispatch(updateBoothUsers({ "_id": col._id, "FullNameEnglish": e.target.value, "FullNameArabic": e.target.value }))
 	}
 
 	useEffect(() => {

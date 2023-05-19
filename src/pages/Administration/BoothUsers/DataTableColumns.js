@@ -1,4 +1,6 @@
 
+import { t } from "i18next";
+import { Input } from "reactstrap";
 import { filteredColumns } from "../../../helpers/Filter/FilterColumns";
 
 
@@ -28,15 +30,15 @@ export const columns = (columnNames, i18n , onMobileNumberBlurHandler, onFullNam
 					name: <span className='font-weight-bold fs-13'>{i18n.language === 'ar' ? column?.ValueAr : column?.ValueEn}</span>,
 					selector: row => {
 						return ['CreatedDate', 'ModifiedDate'].includes(column?.Title) ? new Date(row[column?.Title]).toDateString() : column?.Title === 'MobileNumber'?(<div className="form" >
-						<input type="text" 
-						placeholder="Enter Mobile Number"
+						<Input type="text" 
+						placeholder={t('Enter Mobile Number')}
 						defaultValue={row.MobileNumber}
 						onBlur={(e)=>{onMobileNumberBlurHandler(e, row)}}
 						/>
-					</div>): column?.Title === 'FullName' ? (<div className="form" >
-						<input type="text" 
-						placeholder="Enter Full Name"
-						defaultValue={row.FullName}
+					</div>): column?.Title === 'FullNameEnglish' ? (<div className="form" >
+						<Input type="text" 
+						placeholder={t('Enter Full Name')}
+						defaultValue={row.FullNameEnglish}
 						onBlur={(e)=>{onFullNameBlurHandler(e,row)}}
 						/>
 					</div>): row[column?.Title]
