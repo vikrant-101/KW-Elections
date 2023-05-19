@@ -159,7 +159,7 @@ const BoothVoting = () => {
 						</Col>
             <Col className="col-md-3 col-6 mb-4">
               <Label>&nbsp; </Label> <br />
-                <Button onClick={handleClear} className="cis-width-120">{t('Clear')} < i className="ri-filter-off-line"></i></Button>
+                <Button onClick={handleClear} className="cis-width-120">{t('Clear')} <i className="ri-filter-off-line"></i></Button>
             </Col>
 					</Row>
           </div>

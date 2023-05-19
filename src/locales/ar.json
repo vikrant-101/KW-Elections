@@ -296,5 +296,9 @@
     "Download Report":"تنزيل التقرير",
     "Export":"يصدّر",
     "Import":"يستورد",
-    "Report":"تقرير"
+    "Report":"تقرير",
+    "Voter Alphabet": "أبجدية الناخب",
+    "Voter Number": "رقم الناخب",
+    "Yes": "نعم",
+    "No": "لا"
 }

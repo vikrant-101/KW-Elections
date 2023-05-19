@@ -71,6 +71,10 @@ const VotersManagement = () => {
 
   useEffect(() => {
     setData(VotersManagement)
+    return () => {
+      // Clear or reset state before the component is unmounted
+      setData([]);
+    };
   }, [VotersManagement]);
 
   const handleClass = (value) => {
@@ -81,10 +85,10 @@ const VotersManagement = () => {
       setData(VotersManagement)
       classData = VotersManagement;
     } else {
-      setData(VotersManagement.filter((item) => {
+      setData(VotersManagement?.filter((item) => {
         return Object.values(item['voterAlphabet']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
       }))
-      classData = VotersManagement.filter((item) => {
+      classData = VotersManagement?.filter((item) => {
         return Object.values(item['voterAlphabet']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
       })
     }
@@ -96,11 +100,11 @@ const VotersManagement = () => {
       alphaData = VotersManagement;
       setData(VotersManagement)
     } else {
-      setData(VotersManagement.filter((item) => {
-        return Object.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
+      setData(VotersManagement?.filter((item) => {
+        return Object?.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
       }))
-      alphaData = VotersManagement.filter((item) => {
-        return Object.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
+      alphaData = VotersManagement?.filter((item) => {
+        return Object?.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
       })
     }
   }
@@ -168,14 +172,14 @@ const VotersManagement = () => {
                 {/* <DropDownTextBox initialData={dummyData} options={options} filter="voterAlphabet" setData={setData} /> */}
               </Col>
               <Col className="col-md-3 col-6 mb-4">
-                <Label>{t('Arabic Character')}</Label>
+                <Label>{t('Voter Alphabet')}</Label>
                 {/* <SearchTextBox initialData={VotersManagement} setData={setData} id="alpha" /> */}
                 <Input type="text" className={i18n.language === 'ar' ? 'form-control float-start mw-400' : 'form-control float-end mw-400'} placeholder={t('Search') + '...'}
                   id="alpha"
                   onChange={(e) => handleArabicCharacter(e.target.value)} />
               </Col>
               <Col className="col-md-3 col-6 mb-4">
-                <Label>{t('Voter ID')}</Label>
+                <Label>{t('Voter Number')}</Label>
                 <SearchTextBox initialData={alphaData} filter="VotersNo" setData={setData} id="voterId" />
               </Col>
               <Col className="col-md-3 col-6 mb-4">
@@ -183,7 +187,7 @@ const VotersManagement = () => {
                 <SearchTextBox initialData={VotersManagement} filter="FirstName" setData={setData} id="voterName" />
               </Col>
               <Col className="col-md-3">
-                <Button onClick={handleClear} className="cis-width-120">{t('Clear')} < i className="ri-filter-off-line"></i></Button>
+                <Button onClick={handleClear} className="cis-width-120">{t('Clear')} <i className="ri-filter-off-line"></i></Button>
               </Col>
 
             </Row>
