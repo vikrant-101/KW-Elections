@@ -199,14 +199,14 @@ const Navdata = () => {
           label: "Add Users",
           link: "/administration/add-users",
           parentId: "administration",
-          ModuleID: 0
+          ModuleID: auth?.RoleID === 1 ? 2: 0
         },
         {
           id: "booth-users",
           label: "Booth Users",
           link: "/administration/booth-users",
           parentId: "administration",
-          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
+          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : auth?.RoleID === 1 ? 2: 0
         },
       ],
     },
