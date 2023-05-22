@@ -2,34 +2,20 @@ import React from 'react';
 import { Input } from "reactstrap";
 import { useTranslation } from 'react-i18next'
 
-const SearchTextBox = ({ initialData, currentData=[], filter="", setData, id="search-options" }) => {
+const SearchTextBox = ({ initialData, filter="", setData, id="search-options" }) => {
   const { t, i18n } = useTranslation()
   const onChangeData = (value) => {
-    if (value === "" && currentData.length === 0) {
+    if (value === "") {
       setData(initialData)
-    } else if (value === "" && currentData.length > 0) {
-      setData(currentData)
+    } else if (value !== "" && filter !== "") {
+      setData(initialData.filter((item) => {
+        let obj = {filter: item[filter]}
+          return Object.values(obj).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
+        }))
     } else {
-      // setData(initialData.filter((item) => {
-      //   return Object.values(item).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-      // }))
-      if (filter !== "" && currentData.length > 0) {
-        setData(currentData.filter((item) => {
-            return Object.values(item[filter]).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-          }))
-      } else  if (filter === "" && currentData.length > 0) {
-        setData(currentData.filter((item) => {
-            return Object.values(item).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-          }))
-      } else  if (filter !== "" && currentData.length === 0) {
-        setData(initialData.filter((item) => {
-            return Object.values(item).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-          }))
-      } else {
-          setData(initialData.filter((item) => {
-            return Object.values(item).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-          }))
-      }
+      setData(initialData.filter((item) => {
+        return Object.values(item).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
+      }))
     }
   }
 
