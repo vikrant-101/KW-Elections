@@ -8,26 +8,14 @@ import { columns } from "./DataTableColumns";
 import SearchTextBox from "../../../Components/Common/SearchTextBox";
 import DropDownTextBox from "../../../Components/Common/DropDownTextBox";
 import { getClassVoters, getVotersTableColumnNames, activateDeactivateVoters } from "../../../store/boothVoters/actions";
-import { getVotersManagement, getVotersManagementTableColumnNames, activateDeactivateVotersManagement } from "../../../store/votersManagement/actions";
+import { getVotersManagement, getVotersManagementTableColumnNames, activateDeactivateVotersManagement, resetVotersManagement } from "../../../store/votersManagement/actions";
 import { getClasses } from "../../../store/classes/actions";
 
 
 let alphaData = [];
-let classData = [];
+let classNumber = "";
 
 
-
-const voterAlpabet = [
-  { label: "A", value: "a" },
-  { label: "B", value: "b" },
-  { label: "C", value: "c" },
-  { label: "D", value: "d" }]
-
-const voterClass = [
-  { label: "X", value: "x" },
-  { label: "Y", value: "y" },
-  { label: "Z", value: "z" }
-]
 
 const VotersManagement = () => {
   const { t, i18n } = useTranslation();
@@ -40,11 +28,8 @@ const VotersManagement = () => {
       isLoadingClasses: state.Classes.isLoading
     }
   })
-
+  
   const [optionsClass, setOptionsClass] = useState(Classes)
-  const [optionsAlpha, setOptionsAlpha] = useState(voterAlpabet)
-
-
 
   useEffect(() => {
     dispatch(getClasses())
@@ -52,6 +37,10 @@ const VotersManagement = () => {
 
   useEffect(() => {
     setOptionsClass(Classes)
+    dispatch(getVotersManagementTableColumnNames())
+    if (!isNaN(classNumber)) {
+      document.getElementById('voterClass').value = classNumber;
+    }
   }, [Classes]);
 
 
@@ -69,29 +58,19 @@ const VotersManagement = () => {
     alphaData = VotersManagement
   }
 
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(resetVotersManagement())
+  //   };
+  // }, [])
+
   useEffect(() => {
     setData(VotersManagement)
-    return () => {
-      // Clear or reset state before the component is unmounted
-      setData([]);
-    };
   }, [VotersManagement]);
 
   const handleClass = (value) => {
+    classNumber = value;
     dispatch(getVotersManagement({ "classNo": Number(value) }))
-    dispatch(getVotersManagementTableColumnNames())
-
-    if (value === "") {
-      setData(VotersManagement)
-      classData = VotersManagement;
-    } else {
-      setData(VotersManagement?.filter((item) => {
-        return Object.values(item['voterAlphabet']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-      }))
-      classData = VotersManagement?.filter((item) => {
-        return Object.values(item['voterAlphabet']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-      })
-    }
   }
 
 
@@ -158,7 +137,7 @@ const VotersManagement = () => {
                   name="arabic"
                   type="select"
                   className="form-select"
-                  id="arabic-character"
+                  id="voterClass"
                   onChange={(e) => handleClass(e.target.value)}
                 // onBlur={(e) => handleClass(e.target.value)}
                 >
@@ -184,7 +163,7 @@ const VotersManagement = () => {
               </Col>
               <Col className="col-md-3 col-6 mb-4">
                 <Label>{t('Voter Name')}</Label>
-                <SearchTextBox initialData={VotersManagement} filter="FirstName" setData={setData} id="voterName" />
+                <SearchTextBox initialData={VotersManagement} filter="FullName" setData={setData} id="voterName" />
               </Col>
               <Col className="col-md-3">
                 <Button onClick={handleClear} className="cis-width-120">{t('Clear')} <i className="ri-filter-off-line"></i></Button>
@@ -205,7 +184,7 @@ const VotersManagement = () => {
 					</Row> */}
             <Row>
               <Col>
-                {isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {(isLoadingClasses && isLoading) ? <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <Spinner style={{
                     height: '3rem',
                     width: '3rem',

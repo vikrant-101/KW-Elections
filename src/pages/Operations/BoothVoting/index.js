@@ -143,19 +143,19 @@ const BoothVoting = () => {
           <div className="card p-4 border">
           <Row className='mb-3'>
             <Col className="col-md-3 col-6 mb-4">
-              <Label>{t('Arabic Character')}</Label>
+              <Label>{t('Voter Alphabet')}</Label>
 							{/* <SearchTextBox initialData={BoothVoters} setData={setData} id="alpha" /> */}
               <Input type="text" className={i18n.language === 'ar' ? 'form-control float-start mw-400' : 'form-control float-end mw-400'} placeholder={t('Search') + '...'}
                 id="alpha"
                 onChange={(e) => handleArabicCharacter(e.target.value)} />
 						</Col>
 						<Col className="col-md-3 col-6 mb-4">
-              <Label>{t('Voter ID')}</Label>
+              <Label>{t('Voter Number')}</Label>
 							<SearchTextBox initialData={alphaData} filter="VotersNo" setData={setData} id="voterId" />
 						</Col>
             <Col className="col-md-3 col-6 mb-4">
               <Label>{t('Voter Name')}</Label>
-							<SearchTextBox initialData={BoothVoters} filter="FirstName" setData={setData} id="voterName" />
+							<SearchTextBox initialData={BoothVoters} filter="FullName" setData={setData} id="voterName" />
 						</Col>
             <Col className="col-md-3 col-6 mb-4">
               <Label>&nbsp; </Label> <br />

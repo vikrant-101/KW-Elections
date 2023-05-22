@@ -16,7 +16,8 @@ import {
     ON_ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT_SUCCESS,
     UPDATE_VOTERSMANAGEMENT,
     UPDATE_VOTERSMANAGEMENT_FAIL,
-    UPDATE_VOTERSMANAGEMENT_SUCCESS
+    UPDATE_VOTERSMANAGEMENT_SUCCESS,
+    RESET_VOTERSMANAGEMENT
   } from "./actionTypes"
   
   
@@ -109,7 +110,10 @@ import {
     type: ON_ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT_FAIL,
     payload: error
   });
-  
+
+  export const resetVotersManagement = () => ({
+    type: RESET_VOTERSMANAGEMENT
+  });
   
   
   

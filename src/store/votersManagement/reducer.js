@@ -11,7 +11,8 @@ import {
 	ON_ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT_FAIL,
 	ON_ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT_SUCCESS,
 	UPDATE_VOTERSMANAGEMENT_FAIL,
-	UPDATE_VOTERSMANAGEMENT_SUCCESS
+	UPDATE_VOTERSMANAGEMENT_SUCCESS,
+	RESET_VOTERSMANAGEMENT,
 } from "./actionTypes";
 import { toast } from 'react-toastify';
 
@@ -140,7 +141,13 @@ const votersmanagement = (state = INIT_STATE, action) => {
 			};
 			toast.error(action.payload.Message);
 			break;
-
+		
+		case RESET_VOTERSMANAGEMENT:
+			return {
+				...state,
+				votersmanagement: [],
+				isLoading: false
+			};
 
 		default:
 			state = { ...state };
