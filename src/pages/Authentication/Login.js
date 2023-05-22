@@ -184,6 +184,7 @@ const Login = (props) => {
                                                 </div>
                                                   <div className="mt-4">
                                                     <Button color="success" className="btn btn-success w-100" type="submit">
+                                                    {loading ? <Spinner size="sm" className='me-2'> Loading... </Spinner> : null}
                                                         {t('Send code via SMS ')}
                                                         <i className="ri-phone-lock-line"></i>
                                                     </Button>
