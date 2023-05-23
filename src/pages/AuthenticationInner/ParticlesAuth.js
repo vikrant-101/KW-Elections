@@ -26,7 +26,7 @@ const ParticlesAuth = ({ children }) => {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="text-center">
-                                    <p className="mb-0 text-muted">&copy; {new Date().getFullYear()} {t('KW-Elections. Crafted with')} <i className="mdi mdi-heart text-danger"></i> {t('by KW-Elections')}</p>
+                                    <p className="mb-0 text-muted">&copy; {new Date().getFullYear()} {t('Crafted with')} <i className="mdi mdi-heart text-danger"></i> <a href="https://www.alkhomasi.com" target="_blank">{t('by Al Khomasi Soft')}</a></p>
                                 </div>
                             </div>
                         </div>

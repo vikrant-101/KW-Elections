@@ -10,17 +10,17 @@ const StoreVisits = () => {
             <Col xl={4}>
                 <Card className="card-height-100">
                     <CardHeader className="align-items-center d-flex">
-                        <h4 className="card-title mb-0 flex-grow-1">{t('Store Visits by Source')}</h4>
+                        <h4 className="card-title mb-0 flex-grow-1">{t('Top 10 Families Voted/Voting')}</h4>
                         <div className="flex-shrink-0">
                             <UncontrolledDropdown className="card-header-dropdown" direction='start'>
                                 <DropdownToggle tag="a" className="text-reset dropdown-btn" role="button">
                                     <span className="text-muted">{t('Report')}<i className="mdi mdi-chevron-down ms-1"></i></span>
                                 </DropdownToggle>
-                                <DropdownMenu className="dropdown-menu-end">
+                                {/* <DropdownMenu className="dropdown-menu-end">
                                     <DropdownItem>{t('Download Report')}</DropdownItem>
                                     <DropdownItem>{t('Export')}</DropdownItem>
                                     <DropdownItem>{t('Import')}</DropdownItem>
-                                </DropdownMenu>
+                                </DropdownMenu> */}
                             </UncontrolledDropdown>
                         </div>
                     </CardHeader>

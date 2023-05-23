@@ -51,6 +51,7 @@ const AddUsers = () => {
   const { t, i18n } = useTranslation();
   document.title = t("KW-Elections | Create Add Users");
   const dispatch = useDispatch();
+  const auth = JSON.parse(sessionStorage.getItem('auth'))
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -126,10 +127,11 @@ const AddUsers = () => {
   }));
 
   useEffect(() => {
+    console.log(auth['RoleID'], 'AUTH')
     dispatch(getUsers());
     dispatch(getUsersTableColumnNames());
     dispatch(getCandidates())
-    dispatch(getRoles())
+    dispatch(getRoles({RoleID: auth['RoleID']}))
   }, [dispatch]);
 
   useEffect(() => {

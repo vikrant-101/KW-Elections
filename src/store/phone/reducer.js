@@ -20,7 +20,7 @@ const phone = (state = INIT_STATE, action) => {
 				phone: action.payload.Data,
 			};
 			if (action.payload.Success === false) {
-				toast.success(action.payload.Message);
+				toast.error(action.payload.Message);
 			}
 
 			break;

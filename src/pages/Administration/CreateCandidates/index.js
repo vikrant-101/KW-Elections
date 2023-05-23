@@ -45,7 +45,7 @@ const labels = [
 	{
 		id: 5,
 		labelName: 'Mobile Number',
-		fieldName: 'text-box',
+		fieldName: 'mobile-number',
 		name: 'MobileNumber',
 		value: 'MobileNumber'
 	},
@@ -95,7 +95,7 @@ const CreateCandidates = () => {
 		candidateObj['FullNameArabic'] = candidates.FullNameArabic;
     candidateObj['ElectionID'] = candidates.ElectionID;
 		candidateObj['DomainName'] = candidates.DomainName;
-		candidateObj['MobileNumber'] = candidates.MobileNumber;
+		candidateObj['MobileNumber'] = '+965' +candidates.MobileNumber;
 		candidateObj['UsersLimit'] = candidates.UsersLimit;
 		candidateObj['IsDelete'] =  false;
 		candidateObj['IsActive'] = true;
@@ -189,7 +189,7 @@ const CreateCandidates = () => {
 					</Row>
 				</Container>
 			</div>
-			<AddModal show={show} setShow={setShow} onSubmitHandler={onSubmitHandler} title={isAddOrEdit === 'isAdd' ? t('Add New Circles') : t('Edit Circles')} modalBody={<AddCandidatesForm onChangeHandler={onChangeHandler} labels={labels} show={show} classRow={classRow} isAddOrEdit={isAddOrEdit} />} />
+			<AddModal show={show} setShow={setShow} onSubmitHandler={onSubmitHandler} title={isAddOrEdit === 'isAdd' ? t('Add New Candidate') : t('Edit Candidate')} modalBody={<AddCandidatesForm onChangeHandler={onChangeHandler} labels={labels} show={show} classRow={classRow} isAddOrEdit={isAddOrEdit} />} />
 			<DeleteModal showDelete={showDelete} setShowDelete={setShowDelete} onDeleteClick={onDeleteClick} />
 		</React.Fragment>
 	)

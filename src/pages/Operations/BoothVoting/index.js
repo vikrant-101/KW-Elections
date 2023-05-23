@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
 
 const BoothVoting = () => {
   const { t, i18n } = useTranslation();
+  document.title = t('KW-Elections | Booth Voting');
   const [boothUser, setBoothUser] = useState(false)
 
 	const dispatch = useDispatch();

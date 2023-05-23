@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal, ModalBody } from "reactstrap";
 import OtpInput from 'react-otp-input';
 
-const OtpModal = ({ showDelete, setShowDelete, onOTPVerify,otp,setOtp }) => {
+const OtpModal = ({ showDelete, setShowDelete, onOTPVerify,otp,setOtp, otpErrorMsg }) => {
   const { t } = useTranslation();
+
   return (
     <Modal isOpen={showDelete} centered={true}>
       <ModalBody className="py-3 px-5">
@@ -37,8 +38,11 @@ const OtpModal = ({ showDelete, setShowDelete, onOTPVerify,otp,setOtp }) => {
             id="delete-record"
             onClick={onOTPVerify}
           >
-            {t('verify')}
+            {t('Verify')}
           </button>
+        </div>
+        <div className="otp-error mt-4 mb-2">
+           <small className="text-danger"><b>{otpErrorMsg}</b></small>
         </div>
       </ModalBody>
     </Modal>

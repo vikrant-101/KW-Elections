@@ -79,7 +79,8 @@ const UploadVoters = () => {
     const file = e.target.files[0];
     const convertedFile = await getBase64(file);
     const base64File = convertedFile?.split(",")[1];
-    const data = { base64Csv: base64File, TabelID: uploadingCSVfor };
+    // const data = { base64Csv: base64File, TabelID: uploadingCSVfor };
+    const data = { ObjectID: uploadingCSVfor };
     dispatch(csvBeingUploaded(uploadingCSVfor));
     dispatch(addUploadVoters(data));
   };
@@ -96,11 +97,14 @@ const UploadVoters = () => {
   const [filteredCircleList, setFilteredCircleList] = useState([]);
 
   const onChangeHandler = (e) => {
+    const circleObject = JSON.parse(e.target.value);
+    const electionObject = JSON.parse(e.target.value);
     if (e.target.name === "Election") {
-      const electionObject = JSON.parse(e.target.value);
       setFormData((prev) => ({
         ...prev,
         Election: electionObject["ElectionNameEnglish"],
+        ElectionID: electionObject["_id"],
+
       }));
       setFilteredCircleList(
         circleList?.filter((circle) => circle.ElectionID === electionObject._id)
@@ -108,7 +112,8 @@ const UploadVoters = () => {
     } else {
       setFormData((prev) => ({
         ...prev,
-        Circle: e.target.value,
+        Circle: circleObject['CircleNameEnglish'],
+        CircleID: circleObject['_id']
       }));
     }
   };

@@ -490,7 +490,8 @@ export const getElectionCircle = () => api.get(url.GET_ELECTION_CIRCLE);
 export const getUploadVotersTableColumnNames = ({ moduleName: module }) =>
   api.create(url.GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES, { module });
 export const addUploadVoters = (uploadVoters) =>
-  api.create(url.POST_UPLOAD_VOTERS, uploadVoters);
+  // api.create(url.POST_UPLOAD_VOTERS, uploadVoters);
+  api.create('https://kwelections.uc.r.appspot.com/CSVtoJSON', uploadVoters);
 export const addElectionCircle = (electionCircle) =>
   api.create(url.POST_ELECTION_CIRCLE, electionCircle);
 export const updateUploadVoters = (uploadVoters) =>
@@ -529,7 +530,6 @@ export const activateDeactivateBoothVoters = (boothvoters) => api.update(url.ACT
 export const activateBoothVoters = (boothvoters) => api.update(url.ACTIVATE_BOOTHVOTERS, boothvoters)
 export const getClassBoothVoters = ({classNo: classNo}) => api.update(url.GET_CLASS_BOOTHVOTERS, { classNo });
 export const getBoothUserDetail = ({userID}) => {
-  console.log('userID: helper', userID);
   return api.update(url.GET_BOOTHUSER_DETAIL, {userID: userID});
 };
 
@@ -561,7 +561,7 @@ export const activateDeactivateBoothUsers = (boothusers) => api.update(url.ACTIV
 
 
 //add Roles
-export const getRoles = () => api.get(url.GET_ROLES);
+export const getRoles = (roles) => api.create(url.GET_ROLES, roles);
 export const getRolesTableColumnNames = ({ moduleName: module }) => api.create(url.GET_ROLES_TABLE_COLUMN_NAMES, { module });
 export const addRoles = (roles) => api.create(url.POST_ROLES, roles);
 export const updateRoles = (roles) => api.update(url.UPDATE_ROLES, roles);

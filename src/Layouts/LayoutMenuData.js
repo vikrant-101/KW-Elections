@@ -199,14 +199,14 @@ const Navdata = () => {
           label: "Add Users",
           link: "/administration/add-users",
           parentId: "administration",
-          ModuleID: auth?.RoleID === 1 ? 2: 0
+          ModuleID: auth?.RoleID === 1 ? 2 : 0
         },
         {
           id: "booth-users",
           label: "Booth Users",
           link: "/administration/booth-users",
           parentId: "administration",
-          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : auth?.RoleID === 1 ? 2: 0
+          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : auth?.RoleID === 1 ? 2 : 0
         },
       ],
     },
@@ -215,7 +215,7 @@ const Navdata = () => {
       label: "Operations",
       icon: "bx bx-layer",
       link: "/#",
-      ModuleID: auth.RoleID === 6 ? 6 : 0,
+      ModuleID: auth.RoleID === 6 ? 6 : auth.RoleID === 1 ? 3 : 0,
       click: function (e) {
         e.preventDefault();
         setIsApps(!isApps);
@@ -250,7 +250,7 @@ const Navdata = () => {
           label: "Booth Voting",
           link: "/operations/booth-voting",
           parentId: "operations",
-          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
+          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : auth.RoleID === 2 ? 3: 0
         },
       ],
     },
@@ -263,7 +263,7 @@ const Navdata = () => {
       label: "Data Reports",
       icon: "ri-database-line",
       link: "/#",
-      ModuleID: auth.RoleID === 6 ? 6 : 0,
+      ModuleID: auth.RoleID === 6 ? 6 : auth.RoleID === 1 ? 3 : 0,
       click: function (e) {
         e.preventDefault();
         setIsAuth(!isAuth);
@@ -277,7 +277,7 @@ const Navdata = () => {
           label: "All Voters List",
           link: "/data-reports/all-voters-list",
           parentId: "data-reports",
-          ModuleID:  auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
+          ModuleID: auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
         },
         {
           id: "all-refered-voters-list",
@@ -298,7 +298,7 @@ const Navdata = () => {
           label: "Booth Wise Report",
           link: "/data-reports/booth-wise-report",
           parentId: "data-reports",
-          ModuleID:  auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
+          ModuleID: auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
         },
       ],
     },
@@ -307,7 +307,7 @@ const Navdata = () => {
       label: "Analytical Reports",
       icon: "bx bx-file",
       link: "/#",
-      ModuleID:  auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 :  auth.RoleID === 6 ? 6 : 0,
+      ModuleID: auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : auth.RoleID === 6 ? 6 : auth.RoleID === 1 ? 3 : 0,
       click: function (e) {
         e.preventDefault();
         setIsPages(!isPages);
@@ -352,6 +352,7 @@ const Navdata = () => {
       icon: "ri-file-chart-line",
       link: "/#",
       stateVariables: isLanding,
+      ModuleID: auth.RoleID === 1 ? 3 : 0,
       click: function (e) {
         e.preventDefault();
         setIsLanding(!isLanding);

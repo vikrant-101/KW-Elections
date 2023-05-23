@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Button, Col, Input, Row } from "reactstrap";
+import { Button, Col, Input, InputGroup, InputGroupText, Row } from "reactstrap";
 // import SelectDropDown from "../Select-DropDown/SelectDropDown";
 
 
 
 // ************* MODAL FORM ****************
 const AddCandidatesForm = ({ onChangeHandler, countryData, labels, classRow, isAddOrEdit, onTranslateClickHandler, show }) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [formData, setFormData] = useState({
     ScreenID: null,
     ScreenNameEnglish: '',
@@ -60,6 +60,35 @@ const AddCandidatesForm = ({ onChangeHandler, countryData, labels, classRow, isA
                   </div>
                 </Col>
               )
+
+              case 'mobile-number':
+                return (
+                  <Col key={items?.id} sm={6}>
+                    <div className="mb-3">
+                      <label htmlFor={items?.labelName} className="col-form-label">{items?.labelName}</label>
+  
+                      <div className="lang-change-wrap">
+                      <InputGroup>
+											<InputGroupText>+965</InputGroupText>
+											<Input
+												placeholder={t(items?.labelName)}
+												defaultValue={(isAddOrEdit === 'isEdit' && formData[items?.value]) ? formData[items?.value].replace("+965", "") : ""}
+												name={items?.name}
+												type="number"
+												maxLength={8} 
+												onChange={(e) => onChangeHandler(e)}
+												onInput={(e) => {
+													e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 8); // Limit the input to 8 characters
+												}}
+							
+												id={items?.labelName}
+												required
+											/>
+										</InputGroup>
+                      </div>
+                    </div>
+                  </Col>
+                )
 
               case 'number-box':
                 return (

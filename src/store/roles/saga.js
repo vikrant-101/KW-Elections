@@ -42,9 +42,9 @@ import {
 
 
 // Fetch Users 
-function* fetchRoles() {
+function* fetchRoles({payload: roles}) {
 	try {
-		const response = yield call(getRoles);
+		const response = yield call(getRoles, roles);
 		yield put(getRolesSuccess(response.Data));
 	} catch (error) {
 		yield put(getRolesFail(error));

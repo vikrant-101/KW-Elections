@@ -19,13 +19,11 @@ import yasaLight from '../../../assets/images/horizonatal-view.png'
 const AllVotersList = () => {
 
 	const { t, i18n } = useTranslation();
-
-
- const dispatch = useDispatch();
+  document.title = t('KW-Elections | All Voters');
+  const dispatch = useDispatch();
 
 
  const { Voters, isLoading, columnNames, printDetail } = useSelector((state) => {
-   console.log('state: ', state);
    return {
     Voters: state.Voters.voters,
    columnNames: state.Voters.columnNames,

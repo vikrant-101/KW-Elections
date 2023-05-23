@@ -34,6 +34,7 @@ const Login = (props) => {
     const [showOTP, setShowOTP] = useState(false);
     const [user, setUser] = useState(null);
     const [showDelete, setShowDelete] = useState(false);
+    const [otpErrorMsg, setOTPErrorMsg] = useState('')
 
     useEffect(() => {
         if (!window.recaptchaVerifier) {
@@ -67,7 +68,7 @@ const Login = (props) => {
     }
 
     useEffect(() => {
-        if (Phone[0] !== null && Phone.length !== 0) {
+        if (Phone[0] !== null && Phone.length !== 0 && Phone[0].IsActive === true) {
             const appVerifier = window.recaptchaVerifier;
             const formatPh = '+' + ph;
             signInWithPhoneNumber(auth, formatPh, appVerifier)
@@ -79,12 +80,14 @@ const Login = (props) => {
                     console.log(error);
                     setLoading(false);
                 });
+        } else {
+            setLoading(false)  
         }
     }, [Phone]);
 
     function onOTPVerify() {
         setLoading(true);
-        setShowDelete(false)
+        setShowDelete(true);
         window.confirmationResult
             .confirm(otp)
             .then(async (res) => {
@@ -98,20 +101,21 @@ const Login = (props) => {
                     FullNameArabic: Phone[0].FullNameArabic,
                     idToken: res._tokenResponse.idToken,
                 }
+                console.log(res.user, 'USER');
                 if (res.user) {
                     sessionStorage.setItem('auth', JSON.stringify(responseObj));
                     props.router.navigate('/dashboard');
                     setUser(res.user);
                     setLoading(false);
+                   
                 } else {
-                    console.log(res, 'Res')
                     props.router.navigate('/login');
                 }
 
             })
             .catch((err) => {
                 console.log(err);
-                toast.error(err.message)
+                setOTPErrorMsg(t('Wrong OTP'))
                 setLoading(false);
             });
     }
@@ -141,7 +145,7 @@ const Login = (props) => {
     return (
         <React.Fragment>
             <Toaster />
-            <OtpModal otp={otp} showDelete={showDelete} setShowDelete={setShowDelete} onOTPVerify={onOTPVerify} setOtp={setOtp} />
+            <OtpModal otp={otp} showDelete={showDelete} setShowDelete={setShowDelete} otpErrorMsg={otpErrorMsg} onOTPVerify={onOTPVerify} setOtp={setOtp} />
             <ParticlesAuth>
                 <div id="recaptcha-container"></div>
 
@@ -155,7 +159,7 @@ const Login = (props) => {
                                             <img src={KwElectionsLight} alt="" height="40" />
                                         </Link>
                                     </div>
-                                    <p className="mt-3 fs-15 fw-medium">{t('KW-Elections Template')}</p>
+                                    <p className="mt-3 fs-15 fw-medium"></p>
                                 </div>
                             </Col>
                         </Row>
@@ -166,7 +170,7 @@ const Login = (props) => {
                                     <CardBody className="p-4">
                                         <div className="text-center mt-2">
                                             <h5 className="text-primary">{t('Welcome Back !')}</h5>
-                                            <p className="text-muted">{t('Sign in to continue to KW-Elections.')}</p>
+                                            <p className="text-muted">{t('Sign in to continue')}</p>
                                         </div>
                                         <div className="p-2 mt-4">
                                             <Form
@@ -175,7 +179,7 @@ const Login = (props) => {
 
                                                 <div className="mb-3">
                                                     <Label htmlFor="phone" className="form-label">{t('Mobile Number')}</Label>
-                                                    <PhoneInput country={"in"} value={ph} onChange={setPh} />
+                                                    <PhoneInput country={"kw"} onlyCountries={['kw']} value={ph} onChange={setPh} />
                                                 </div>
 
                                                 <div className="mb-3">

@@ -19,6 +19,7 @@ let classNumber = "";
 
 const VotersManagement = () => {
   const { t, i18n } = useTranslation();
+  document.title = t('KW-Elections | Voters Management');
 
   const dispatch = useDispatch();
 

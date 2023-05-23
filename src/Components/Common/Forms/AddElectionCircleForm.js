@@ -70,7 +70,7 @@ const AddElectionCircleForm = ({
                       return (
                         <option
                           key={item?._id}
-                          value={item?.CircleNameEnglish}
+                          value={JSON.stringify(item)}
                           name={item?.CircleNameEnglish}
                         >
                           {i18n?.language === "en"

@@ -26,12 +26,6 @@ const INIT_STATE = {
 const roles = (state = INIT_STATE, action) => {
 	let _id, IsActive, updatedElections;
 	switch (action.type) {
-		case GET_ROLES:
-			return {
-				...state,
-				isLoading: true
-			};
-
 		case GET_ROLES_SUCCESS:
 			return {
 				...state,
