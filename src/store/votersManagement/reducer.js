@@ -25,7 +25,7 @@ const INIT_STATE = {
 };
 
 const votersmanagement = (state = INIT_STATE, action) => {
-	let _id, IsActive, updatedVotersManagement;
+	let _id, IsActive, updatedVotersManagement, VotersStatus;
 	switch (action.type) {
 		case GET_VOTERSMANAGEMENT:
 			return {
@@ -115,23 +115,23 @@ const votersmanagement = (state = INIT_STATE, action) => {
 
 		case ON_ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT_SUCCESS:
 			_id = action.payload._id;
-			IsActive = action.payload.IsActive;
+			VotersStatus = action.payload.VotersStatus;
 			updatedVotersManagement = state.votersmanagement.map((votersmanagement) => {
 				if (votersmanagement._id === _id) {
 					return {
 						...votersmanagement,
-						IsActive: !IsActive // flip the IsActive value
+						VotersStatus: !VotersStatus // flip the IsActive value
 					};
 				} else {
 					return votersmanagement;
 				}
 			});
 
-			toast.success(`VotersManagement ${IsActive ? 'deactivated' : 'activated'} successfully`);
 			state = {
 				...state,
 				votersmanagement: updatedVotersManagement
 			};
+			toast.success(`${VotersStatus ? 'Not voted' : 'Voted'} successfully`);
 			break;
 
 		case ON_ACTIVATE_DEACTIVATE_VOTERSMANAGEMENT_FAIL:

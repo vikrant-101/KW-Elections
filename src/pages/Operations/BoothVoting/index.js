@@ -57,12 +57,7 @@ const BoothVoting = () => {
 	}, [dispatch]);
 
   useEffect(() => {
-    let classNo = Number(Boothuserdetail?.ClassNo)
-    console.log('classNo ---: ', classNo);
-    if (!isNaN(classNo)) {
-      console.log("number")
-      dispatch(getClassBoothVoters({ "classNo": classNo }))
-    }
+    dispatch(getClassBoothVoters({ "classNo": Boothuserdetail?.ClassNo }))
   }, [Boothuserdetail])
 
   useEffect(() => {
@@ -118,9 +113,6 @@ const BoothVoting = () => {
     setData(BoothVoters);
   }
 
-  // let areaName = "gwalior";
-  // let schoolName = "padav";
-  // let className = "krishan";
 
   
 
