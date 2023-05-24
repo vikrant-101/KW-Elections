@@ -20,8 +20,9 @@ import {
   } from "./actionTypes"
   
   
-  export const getReferVoters = () => ({
+  export const getReferVoters = (refervoters) => ({
     type: GET_REFERVOTERS,
+    payload: refervoters
   });
   
   export const getReferVotersSuccess = refervoters => ({

@@ -75,14 +75,23 @@ const UploadVoters = () => {
     });
   };
 
+  // const handleFileInput = async (e) => {
+  //   const file = e.target.files[0];
+  //   const convertedFile = await getBase64(file);
+  //   const base64File = convertedFile?.split(",")[1];
+  //   // const data = { base64Csv: base64File, TabelID: uploadingCSVfor };
+    
+  //   dispatch(csvBeingUploaded(uploadingCSVfor));
+  //   dispatch(addUploadVoters(data));
+  // };
+
   const handleFileInput = async (e) => {
     const file = e.target.files[0];
-    const convertedFile = await getBase64(file);
-    const base64File = convertedFile?.split(",")[1];
-    // const data = { base64Csv: base64File, TabelID: uploadingCSVfor };
-    const data = { ObjectID: uploadingCSVfor };
-    dispatch(csvBeingUploaded(uploadingCSVfor));
-    dispatch(addUploadVoters(data));
+    const formData = new FormData();
+    formData.append("file", file);
+    // console.log('uploadingCSVfor', uploadingCSVfor)
+    dispatch(addUploadVoters({formData,ObjectID:uploadingCSVfor }));
+    // dispatch(csvBeingUploaded(uploadingCSVfor));
   };
 
   const updaloadVotersHandlers = (electionCircle) => {
@@ -167,8 +176,7 @@ const UploadVoters = () => {
                     }}
                     className="me-2"
                   >
-                    {" "}
-                    Loading...{" "}
+                   {" Loading..."}
                   </Spinner>
                 </div>
               ) : (

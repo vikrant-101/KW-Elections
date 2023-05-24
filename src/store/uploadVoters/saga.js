@@ -43,7 +43,8 @@ import {
 	deleteUploadVoters,
 	getElectionCircle,
 	getUploadVotersTableColumnNames,
-	updateUploadVoters
+	updateUploadVoters,
+	UploadVoters
 } from "../../helpers/fakebackend_helper";
 
 
@@ -71,8 +72,15 @@ function* fetchUploadVotersTableColumnNames(moduleName) {
 // Add Upload Voters  
 function* onAddUploadVoters({ payload: uploadVoters }) {
 	try {
-		const response = yield call(addUploadVoters, uploadVoters);
-		yield put(addUploadVotersSuccess(response));
+		const response = yield call(addUploadVoters, uploadVoters.formData);
+		if(response.Url) {
+			const obj = {
+				ObjectID:uploadVoters.ObjectID,
+				FileURL: response.Url
+			}
+			const response1 = yield call(UploadVoters, obj);
+			yield put(addUploadVotersSuccess(response1));
+		}
 	} catch (error) {
 		yield put(addUploadVotersFail(error));
 	}

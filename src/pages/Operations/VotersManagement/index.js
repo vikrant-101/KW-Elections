@@ -20,74 +20,16 @@ let classNumber = "";
 const VotersManagement = () => {
   const { t, i18n } = useTranslation();
   document.title = t('KW-Elections | Voters Management');
-
+  const [optionsClass, setOptionsClass] = useState()
   const dispatch = useDispatch();
-
-  const { Classes, isLoadingClasses } = useSelector((state) => {
-    return {
-      Classes: state.Classes.classes,
-      isLoadingClasses: state.Classes.isLoading
-    }
-  })
-  
-  const [optionsClass, setOptionsClass] = useState(Classes)
-
-  useEffect(() => {
-    dispatch(getClasses())
-  }, [dispatch])
-
-  useEffect(() => {
-    setOptionsClass(Classes)
-    dispatch(getVotersManagementTableColumnNames())
-    if (!isNaN(classNumber)) {
-      document.getElementById('voterClass').value = classNumber;
-    }
-  }, [Classes]);
-
-
-
-  const { VotersManagement, isLoading, columnNames } = useSelector((state) => {
-    return {
-      VotersManagement: state.VotersManagement.votersmanagement,
-      columnNames: state.VotersManagement.columnNames,
-      isLoading: state.VotersManagement.isLoading,
-    }
-  });
-
-  const [data, setData] = useState(VotersManagement);
-  if (alphaData.length === 0) {
-    alphaData = VotersManagement
-  }
-
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(resetVotersManagement())
-  //   };
-  // }, [])
-
-  useEffect(() => {
-    setData(VotersManagement)
-  }, [VotersManagement]);
+  const [data, setData] = useState();
 
   const handleClass = (value) => {
     classNumber = value;
-    dispatch(getVotersManagement({ "classNo": Number(value) }))
+    dispatch(getVotersManagement({ "classNo": Number(value) }));
+    dispatch(getVotersManagementTableColumnNames());
   }
 
-
-  const handleArabicCharacter = (value) => {
-    if (value === "") {
-      alphaData = VotersManagement;
-      setData(VotersManagement)
-    } else {
-      setData(VotersManagement?.filter((item) => {
-        return Object?.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-      }))
-      alphaData = VotersManagement?.filter((item) => {
-        return Object?.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-      })
-    }
-  }
 
   function onActiveOrDeactiveChange(votersmanagement, e) {
     const votersObj = {}
@@ -105,12 +47,58 @@ const VotersManagement = () => {
     }
   }
 
+  const { Classes, isLoadingClasses, VotersManagement, isLoading, columnNames } = useSelector((state) => {
+    return {
+      Classes: state.Classes.classes,
+      VotersManagement: state.VotersManagement.votersmanagement,
+      columnNames: state.VotersManagement.columnNames,
+      isLoading: state.VotersManagement.isLoading,
+    }
+  })
+
   const handleClear = () => {
     document.getElementById('alpha').value = ''
     document.getElementById('voterId').value = ''
     document.getElementById('voterName').value = ''
     setData(VotersManagement);
   }
+
+
+  const handleArabicCharacter = (value) => {
+    if (value === "") {
+      alphaData = VotersManagement;
+      setData(VotersManagement)
+    } else {
+      setData(VotersManagement?.filter((item) => {
+        return Object?.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
+      }))
+      alphaData = VotersManagement?.filter((item) => {
+        return Object?.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (alphaData?.length === 0) {
+      alphaData = VotersManagement
+    }
+  }, [VotersManagement, alphaData])
+
+
+  useEffect(() => {
+    setData(VotersManagement)
+  }, [VotersManagement]);
+
+  useEffect(()=> {
+    dispatch(getClasses());
+  },[dispatch]);
+
+  useEffect(() => {
+    setOptionsClass(Classes);
+  }, [dispatch,Classes]);
+
+
+
 
 
 
@@ -129,7 +117,7 @@ const VotersManagement = () => {
             <Spinner style={{
               height: '3rem',
               width: '3rem',
-            }} className='me-2'> Loading... </Spinner>
+            }} className='me-2'> {'Loading...'} </Spinner>
           </div> : <div className="card p-4 border">
             <Row className='mb-3'>
               <Col className="col-md-3 col-6 mb-4">
@@ -145,7 +133,7 @@ const VotersManagement = () => {
                   <option value='' default>{t('Select')}</option>
                   {
                     <React.Fragment>
-                      {optionsClass.map((item, key) => (<option value={item.ClassNo} key={key}>{item.ClassName}</option>))}
+                      {optionsClass?.map((item, key) => (<option value={item.ClassNo} key={item._id}>{item.ClassName}</option>))}
                     </React.Fragment>
                   }
                 </Input>
@@ -178,23 +166,19 @@ const VotersManagement = () => {
             <Spinner style={{
               height: '3rem',
               width: '3rem',
-            }} className='me-2'> Loading... </Spinner>
-          </div> : <div>
-            {/* <Row className='mb-3'>
-						
-					</Row> */}
+            }} className='me-2'> {'Loading...'} </Spinner>
+          </div> :
             <Row>
               <Col>
                 {(isLoadingClasses && isLoading) ? <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <Spinner style={{
                     height: '3rem',
                     width: '3rem',
-                  }} className='me-2'> Loading... </Spinner>
+                  }} className='me-2'> {'Loading...'} </Spinner>
                 </div> : <BasicTable data={data} columns={columns(columnNames, i18n, t, onActiveOrDeactiveChange)} />
                 }
               </Col>
             </Row>
-          </div>
           }
         </Container>
       </div>

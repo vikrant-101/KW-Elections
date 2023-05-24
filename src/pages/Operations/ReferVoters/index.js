@@ -76,7 +76,7 @@ const ReferVoters = () => {
   user = JSON.parse(user)
   
   useEffect(() => {
-    dispatch(getReferVoters({userID: user.id}));
+    dispatch(getReferVoters({UserID: user.id}));
     dispatch(getReferVotersTableColumnNames());
   }, [dispatch]);
 

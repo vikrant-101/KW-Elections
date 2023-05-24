@@ -15,6 +15,7 @@ import {
   ON_ACTIVATE_DEACTIVATE_UPLOAD_VOTERS_SUCCESS,
   UPDATE_UPLOAD_VOTERS_FAIL,
   UPDATE_UPLOAD_VOTERS_SUCCESS,
+  ADD_UPLOAD_VOTERS,
 } from "./actionTypes";
 import { toast } from "react-toastify";
 
@@ -23,7 +24,7 @@ const INIT_STATE = {
   electionCircle: [],
   columnNames: [],
   isLoading: false,
-  beingUploaded: null,
+  beingUploaded: 1,
   error: {},
 };
 
@@ -67,11 +68,16 @@ const uploadVoters = (state = INIT_STATE, action) => {
         beingUploaded: action.payload,
       };
 
+    case ADD_UPLOAD_VOTERS: 
+    return {
+      ...state,
+      beingUploaded: 0,
+    }
+
     case ADD_UPLOAD_VOTERS_SUCCESS:
       state = {
         ...state,
-        beingUploaded: null,
-        // uploadVoters: [action.payload.Data[0], ...state.uploadVoters],
+        beingUploaded: 1,
       };
       toast.success(`Successfully uploaded ${action.payload.Data} voters`);
       break;

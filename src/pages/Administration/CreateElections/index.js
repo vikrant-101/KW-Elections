@@ -117,6 +117,7 @@ const CreateElections = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
+		console.log(Elections, 'Elections')
 		setData(Elections)
 	}, [Elections]);
 	return (

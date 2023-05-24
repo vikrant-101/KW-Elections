@@ -460,7 +460,7 @@ export const activateDeactivateCircles = (circles) =>
   api.update(url.ACTIVATE_DEACTIVATE_CIRCLES, circles);
 
 //Refer Voters
-export const getReferVoters = () => api.get(url.GET_REFER_VOTERS);
+export const getReferVoters = (refervoters) => api.create(url.GET_REFER_VOTERS, refervoters);
 export const getReferVotersTableColumnNames = ({ moduleName: module }) =>
   api.create(url.GET_REFER_VOTERS_TABLE_COLUMN_NAMES, { module });
 export const addReferVoters = (referVoters) =>
@@ -487,11 +487,9 @@ export const activateDeactivateMyReferedVoters = (myReferVoters) =>
 
 //Upload Voters
 export const getElectionCircle = () => api.get(url.GET_ELECTION_CIRCLE);
-export const getUploadVotersTableColumnNames = ({ moduleName: module }) =>
-  api.create(url.GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES, { module });
-export const addUploadVoters = (uploadVoters) =>
-  // api.create(url.POST_UPLOAD_VOTERS, uploadVoters);
-  api.create('https://kwelections.uc.r.appspot.com/CSVtoJSON', uploadVoters);
+export const getUploadVotersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES, { module });
+export const addUploadVoters = (uploadVoters) => api.create('https://kwelections.uc.r.appspot.com/uploadHandler', uploadVoters);
+export const UploadVoters = (voters)=>  api.create('https://us-central1-kwelections.cloudfunctions.net/CSVtoJSON', voters)
 export const addElectionCircle = (electionCircle) =>
   api.create(url.POST_ELECTION_CIRCLE, electionCircle);
 export const updateUploadVoters = (uploadVoters) =>

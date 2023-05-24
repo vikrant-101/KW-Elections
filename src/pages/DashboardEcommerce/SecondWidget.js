@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col } from 'reactstrap';
 import io from 'socket.io-client';
-const socket = io('http://localhost:9000'); // Connect to the server's socket.io endpoint
+
+const socket = process.env.REACT_APP_SOCKET_ENVIRONMENT === 'Development' ? 
+io(process.env.REACT_APP_SOCKET_DEVELOPMENT):
+io(process.env.REACT_APP_SOCKET_PRODUCTION) 
 
 const SecondWidget = () => {
     const { i18n, t } = useTranslation();

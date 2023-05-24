@@ -26,7 +26,7 @@ export const columns = (
             const alreadyRefered = cell?.ReferBy?.length > 0;
             return (
               <>
-                {beingUploaded === cell._id ? (
+                {beingUploaded === 0 ? (
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Spinner
                       style={{
@@ -35,9 +35,8 @@ export const columns = (
                       }}
                       className="me-2"
                     >
-                      {" "}
-                      Loading...{" "}
-                    </Spinner>{" "}
+                     {'Loading...'}
+                    </Spinner>
                     {t("Uploading...")}
                   </div>
                 ) : (

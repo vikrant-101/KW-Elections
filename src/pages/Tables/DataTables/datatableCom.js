@@ -36,7 +36,7 @@ const BasicTable = ({ title, data, columns }) => {
 				defaultPage: 1,
 				defaultRowsPerPage: 50,
 				rowsPerPageOptions: [50, 100, 200],
-				totalRows: data.length,
+				totalRows: data?.length,
 			}}
 			paginationPerPage={50}
 			paginationRowsPerPageOptions={[50, 100, 200]}

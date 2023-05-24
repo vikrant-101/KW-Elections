@@ -257,7 +257,7 @@ export const ACTIVATE_DEACTIVATE_CIRCLES = '/ActivateCircles'
 export const POST_REFER_VOTERS = '/SaveReferVoterTest';
 export const UPDATE_REFER_VOTERS = '/UpdateReferVoterTest';
 export const DELETE_REFER_VOTERS= '/DeleteReferVoters';
-export const GET_REFER_VOTERS = '/GetVoterTest';
+export const GET_REFER_VOTERS = '/GetReferVoter';
 export const GET_REFER_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_REFER_VOTERS = '/ActivateReferVoters'
 
@@ -265,7 +265,7 @@ export const ACTIVATE_DEACTIVATE_REFER_VOTERS = '/ActivateReferVoters'
 export const POST_MY_REFERED_VOTERS = '/SaveMyReferVoterTest';
 export const UPDATE_MY_REFERED_VOTERS = '/UpdateReferVoterTest';
 export const DELETE_MY_REFERED_VOTERS= '/DeleteReferVoterTest';
-export const GET_MY_REFERED_VOTERS = '/GetReferVotersTest';
+export const GET_MY_REFERED_VOTERS = '/GetMyReferVoters';
 export const GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_MY_REFERED_VOTERS = '/ActivateMyReferedVoters'
 

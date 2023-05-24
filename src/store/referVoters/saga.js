@@ -48,9 +48,10 @@ import {
 } from "../../helpers/fakebackend_helper";
 
 // Fetch ReferVoters
-function* fetchReferVoters() {
+function* fetchReferVoters({payload: refervoters}) {
+  console.log('payload', refervoters)
   try {
-    const response = yield call(getReferVoters);
+    const response = yield call(getReferVoters, refervoters);
     yield put(getReferVotersSuccess(response.Data));
   } catch (error) {
     yield put(getReferVotersFail(error));
