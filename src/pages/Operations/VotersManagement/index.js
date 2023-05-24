@@ -6,14 +6,13 @@ import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { columns } from "./DataTableColumns";
 import SearchTextBox from "../../../Components/Common/SearchTextBox";
-import DropDownTextBox from "../../../Components/Common/DropDownTextBox";
-import { getClassVoters, getVotersTableColumnNames, activateDeactivateVoters } from "../../../store/boothVoters/actions";
 import { getVotersManagement, getVotersManagementTableColumnNames, activateDeactivateVotersManagement, resetVotersManagement } from "../../../store/votersManagement/actions";
 import { getClasses } from "../../../store/classes/actions";
+import Toaster from "../../../Components/Common/Toaster";
 
 
-let alphaData = [];
-let classNumber = "";
+// let alphaData = [];
+// let classNumber = "";
 
 
 
@@ -25,16 +24,20 @@ const VotersManagement = () => {
   const [data, setData] = useState();
 
   const handleClass = (value) => {
-    classNumber = value;
-    dispatch(getVotersManagement({ "classNo": Number(value) }));
-    dispatch(getVotersManagementTableColumnNames());
+    // classNumber = value;
+    if (value !== '') {
+      dispatch(getVotersManagement({ "classNo": value }));
+      dispatch(getVotersManagementTableColumnNames());
+    } else {
+      dispatch(resetVotersManagement())
+    }
   }
 
 
   function onActiveOrDeactiveChange(votersmanagement, e) {
     const votersObj = {}
-    votersObj['_id'] = votersmanagement._id;
-    votersObj['VotersStatus'] = votersmanagement.VotersStatus;
+    votersObj['_id'] = votersmanagement?._id;
+    votersObj['VotersStatus'] = votersmanagement?.VotersStatus;
     if (votersmanagement.Voters_Status !== true) {
       let votedDateTime = new Date().toLocaleString();
       votedDateTime = votedDateTime.replaceAll('/', '-')
@@ -58,31 +61,80 @@ const VotersManagement = () => {
 
   const handleClear = () => {
     document.getElementById('alpha').value = ''
-    document.getElementById('voterId').value = ''
+    document.getElementById('votersNo').value = ''
     document.getElementById('voterName').value = ''
-    setData(VotersManagement);
+    setData(VotersManagement)
   }
 
+
+  const filterData = (data, filter, value) => {
+    return data.filter((item) => {
+      let obj = {[filter]: item[filter]}
+      return Object.values(obj)
+        .map((entry) => entry?.toString().toLowerCase())
+        .find((v) => v?.substring(0, value?.length) === value?.toString().toLowerCase());
+    });
+  };
 
   const handleArabicCharacter = (value) => {
-    if (value === "") {
-      alphaData = VotersManagement;
-      setData(VotersManagement)
-    } else {
-      setData(VotersManagement?.filter((item) => {
-        return Object?.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-      }))
-      alphaData = VotersManagement?.filter((item) => {
-        return Object?.values(item['Alpha']).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
-      })
-    }
-  }
+    const voterIdValue = document.getElementById('votersNo')?.value;
+    const voterNameValue = document.getElementById('voterName')?.value;
+  
+    let filteredData = VotersManagement;
+    // if (value !== "") {
+      if (voterIdValue !== "") {
+        filteredData = filterData(filteredData, 'VotersNo', voterIdValue);
+      }
+      if (voterNameValue !== "") {
+        filteredData = filterData(filteredData, 'FullName', voterNameValue);
+      }
+      filteredData = filterData(filteredData, 'Alpha', value);
+    // }
+    
+    setData(filteredData);
+  };
 
-  useEffect(() => {
-    if (alphaData?.length === 0) {
-      alphaData = VotersManagement
-    }
-  }, [VotersManagement, alphaData])
+  const handleVotersNo = (value) => {
+    const alphaValue = document.getElementById('alpha')?.value;
+    const voterNameValue = document.getElementById('voterName')?.value;
+  
+    let filteredData = VotersManagement;
+    // if (value !== "") {
+      if (alphaValue !== "") {
+        filteredData = filterData(filteredData, 'Alpha', alphaValue);
+      }
+      if (voterNameValue !== "") {
+        filteredData = filterData(filteredData, 'FullName', voterNameValue);
+      }
+      filteredData = filterData(filteredData, 'VotersNo', value);
+    // }
+  
+    setData(filteredData);
+  };
+  
+  const handleFullName = (value) => {
+    const alphaValue = document.getElementById('alpha')?.value;
+    const voterIdValue = document.getElementById('votersNo')?.value;
+  
+    let filteredData = VotersManagement;
+    // if (value !== "") {
+      if (alphaValue !== "") {
+        filteredData = filterData(filteredData, 'Alpha', alphaValue);
+      }
+      if (voterIdValue !== "") {
+        filteredData = filterData(filteredData, 'VotersNo', voterIdValue);
+      }
+      filteredData = filterData(filteredData, 'FullName', value);
+    // }
+  
+    setData(filteredData);
+  };
+
+  // useEffect(() => {
+  //   if (alphaData?.length === 0) {
+  //     alphaData = VotersManagement
+  //   }
+  // }, [VotersManagement, alphaData])
 
 
   useEffect(() => {
@@ -98,12 +150,18 @@ const VotersManagement = () => {
   }, [dispatch,Classes]);
 
 
+   useEffect(() => {
+    return () => {
+      dispatch(resetVotersManagement())
+    };
+  }, [])
 
 
 
 
   return (
     <React.Fragment>
+			<Toaster />
       <div className="page-content">
         <Container fluid>
           {/* <h1>Booth Voting Component</h1> */}
@@ -113,12 +171,6 @@ const VotersManagement = () => {
             </Col>
           </Row>
 
-          {isLoadingClasses ? <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Spinner style={{
-              height: '3rem',
-              width: '3rem',
-            }} className='me-2'> {'Loading...'} </Spinner>
-          </div> : <div className="card p-4 border">
             <Row className='mb-3'>
               <Col className="col-md-3 col-6 mb-4">
                 <Label>{t('Class')}</Label>
@@ -148,25 +200,29 @@ const VotersManagement = () => {
               </Col>
               <Col className="col-md-3 col-6 mb-4">
                 <Label>{t('Voter Number')}</Label>
-                <SearchTextBox initialData={alphaData} filter="VotersNo" setData={setData} id="voterId" />
+                {/* <SearchTextBox initialData={data} filter="VotersNo" setData={setData} id="voterId" /> */}
+                <Input type="text" className={i18n.language === 'ar' ? 'form-control float-start mw-400' : 'form-control float-end mw-400'} placeholder={t('Search') + '...'}
+                  id="votersNo"
+                  onChange={(e) => handleVotersNo(e.target.value)} />
               </Col>
               <Col className="col-md-3 col-6 mb-4">
                 <Label>{t('Voter Name')}</Label>
-                <SearchTextBox initialData={VotersManagement} filter="FullName" setData={setData} id="voterName" />
+                {/* <SearchTextBox initialData={data} filter="FullName" setData={setData} id="voterName" /> */}
+                <Input type="text" className={i18n.language === 'ar' ? 'form-control float-start mw-400' : 'form-control float-end mw-400'} placeholder={t('Search') + '...'}
+                  id="voterName"
+                  onChange={(e) => handleFullName(e.target.value)} />
               </Col>
               <Col className="col-md-3">
                 <Button onClick={handleClear} className="cis-width-120">{t('Clear')} <i className="ri-filter-off-line"></i></Button>
               </Col>
 
             </Row>
-          </div>
-          }
 
           {isLoading ? <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Spinner style={{
               height: '3rem',
               width: '3rem',
-            }} className='me-2'> {'Loading...'} </Spinner>
+            }} className='me-2'> Loading... </Spinner>
           </div> :
             <Row>
               <Col>
@@ -174,7 +230,7 @@ const VotersManagement = () => {
                   <Spinner style={{
                     height: '3rem',
                     width: '3rem',
-                  }} className='me-2'> {'Loading...'} </Spinner>
+                  }} className='me-2'> Loading... </Spinner>
                 </div> : <BasicTable data={data} columns={columns(columnNames, i18n, t, onActiveOrDeactiveChange)} />
                 }
               </Col>

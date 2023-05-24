@@ -9,7 +9,7 @@ const SearchTextBox = ({ initialData, filter="", setData, id="search-options" })
       setData(initialData)
     } else if (value !== "" && filter !== "") {
       setData(initialData.filter((item) => {
-        let obj = {filter: item[filter]}
+        let obj = {[filter]: item[filter]}
           return Object.values(obj).map((entry) => entry?.toString().toLowerCase()).find((v) => v?.substring(0, value?.length) === (value?.toString().toLowerCase()));
         }))
     } else {
