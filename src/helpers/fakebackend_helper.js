@@ -473,7 +473,7 @@ export const activateDeactivateReferVoters = (referVoters) =>
   api.update(url.ACTIVATE_DEACTIVATE_REFER_VOTERS, referVoters);
 
 //My Refer Voters
-export const getMyReferedVoters = () => api.get(url.GET_MY_REFERED_VOTERS);
+export const getMyReferedVoters = (myReferedVoters) => api.create(url.GET_MY_REFERED_VOTERS, myReferedVoters);
 export const getMyReferedVotersTableColumnNames = ({ moduleName: module }) =>
   api.create(url.GET_MY_REFERED_VOTERS_TABLE_COLUMN_NAMES, { module });
 export const addMyReferedVoters = (myReferVoters) =>
@@ -541,7 +541,7 @@ export const activateDeactivateClasses = (classes) => api.update(url.ACTIVATE_DE
 
 //addUsers
 
-export const getUsers = () => api.get(url.GET_USERS);
+export const getUsers = (users) => api.create(url.GET_USERS, users);
 export const getUsersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_USERS_TABLE_COLUMN_NAMES, { module });
 export const addUsers = (users) => api.create(url.POST_USERS, users);
 export const updateUsers = (users) => api.update(url.UPDATE_USERS, users);

@@ -68,7 +68,7 @@ const Login = (props) => {
     }
 
     useEffect(() => {
-        if (Phone[0] !== null && Phone.length !== 0 && Phone[0].IsActive === true) {
+        if (Phone[0] !== null && Phone.length !== 0 && Phone[0].IsActive === true && Phone[0].IsDelete === false) {
             const appVerifier = window.recaptchaVerifier;
             const formatPh = '+' + ph;
             signInWithPhoneNumber(auth, formatPh, appVerifier)
@@ -101,7 +101,7 @@ const Login = (props) => {
                     FullNameArabic: Phone[0].FullNameArabic,
                     idToken: res._tokenResponse.idToken,
                 }
-                console.log(res.user, 'USER');
+                
                 if (res.user) {
                     sessionStorage.setItem('auth', JSON.stringify(responseObj));
                     props.router.navigate('/dashboard');

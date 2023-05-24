@@ -127,8 +127,7 @@ const AddUsers = () => {
   }));
 
   useEffect(() => {
-    console.log(auth['RoleID'], 'AUTH')
-    dispatch(getUsers());
+    dispatch(getUsers({_id: auth['id']}));
     dispatch(getUsersTableColumnNames());
     dispatch(getCandidates())
     dispatch(getRoles({RoleID: auth['RoleID']}))

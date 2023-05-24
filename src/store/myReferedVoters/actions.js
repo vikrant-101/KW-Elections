@@ -20,8 +20,9 @@ import {
 } from "./actionTypes"
 
 
-export const getMyReferedVoters = () => ({
+export const getMyReferedVoters = (myReferedVoters) => ({
   type: GET_MY_REFERED_VOTERS,
+  payload: myReferedVoters
 });
 
 export const getMyReferedVotersSuccess = myReferedVoters => ({
