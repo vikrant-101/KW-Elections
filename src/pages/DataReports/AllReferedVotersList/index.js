@@ -31,7 +31,6 @@ const AllReferedVotersList = () => {
   });
 
   const [data, setData] = useState(AllReferedVotersList)
-  console.log('printDetail: ', printDetail);
 
   useEffect(() => {
     setData(AllReferedVotersList)
