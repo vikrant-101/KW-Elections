@@ -44,9 +44,9 @@ import {
 
 
 // Fetch MyReferedVoters 
-function* fetchMyReferedVoters() {
+function* fetchMyReferedVoters({payload: myReferedVoters}) {
 	try {
-		const response = yield call(getMyReferedVoters);
+		const response = yield call(getMyReferedVoters, myReferedVoters);
 		yield put(getMyReferedVotersSuccess(response.Data));
 	} catch (error) {
 		yield put(getMyReferedVotersFail(error));

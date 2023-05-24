@@ -74,7 +74,7 @@ const MyReferedVoters = () => {
   };
 
   useEffect(() => {
-    dispatch(getMyReferedVoters());
+    dispatch(getMyReferedVoters({UserID: currentUser}));
     dispatch(getMyReferedVotersTableColumnNames());
   }, [dispatch]);
 
