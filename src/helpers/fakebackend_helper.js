@@ -499,6 +499,10 @@ export const deleteUploadVoters = (uploadVoters) =>
 export const activateDeactivateUploadVoters = (uploadVoters) =>
   api.update(url.ACTIVATE_DEACTIVATE_UPLOAD_VOTERS, uploadVoters);
 
+//Election Day Report
+export const getElectionDayReport = (userId) => api.create(url.GET_ELECTIONDAY_REPORT, userId);
+export const getElectionDayReportColumnNames = ({ moduleName: module }) => api.create(url.GET_ELECTIONDAY_REPORT_COLUMN_NAMES, { module });
+
 //Candidates
 export const getCandidates = () => api.get(url.GET_CANDIDATES);
 export const getCandidatesTableColumnNames = ({ moduleName: module }) => api.create(url.GET_CANDIDATES_TABLE_COLUMN_NAMES, { module });
