@@ -278,6 +278,10 @@ export const GET_ELECTION_CIRCLE = '/FetchElectionCircle';
 export const GET_UPLOAD_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_UPLOAD_VOTERS = '/ActivateUploadVoters'
 
+// Election Day Report
+export const GET_ELECTIONDAY_REPORT = '/electionReports';
+export const GET_ELECTIONDAY_REPORT_COLUMN_NAMES = '/GetHeaders';
+
 // Candidate
 export const POST_CANDIDATES = '/AddCandidates';
 export const UPDATE_CANDIDATES = '/UpdateCandidates';
