@@ -150,7 +150,7 @@ const Navdata = () => {
       label: "Administration",
       icon: "bx bxs-dashboard",
       link: "/#",
-      ModuleID: auth.RoleID === 6 ? 6 : 0,
+      ModuleID: auth.RoleID === 6 ? 6 : auth.RoleID === 5 ? 6: 0,
       stateVariables: isDashboard,
       click: function (e) {
         e.preventDefault();
@@ -215,7 +215,7 @@ const Navdata = () => {
       label: "Operations",
       icon: "bx bx-layer",
       link: "/#",
-      ModuleID: auth.RoleID === 6 ? 6 : auth.RoleID === 1 ? 3 : 0,
+      ModuleID: auth.RoleID === 1 ? 3 : 0,
       click: function (e) {
         e.preventDefault();
         setIsApps(!isApps);
@@ -229,28 +229,28 @@ const Navdata = () => {
           label: "Voters Management",
           link: "/operations/voters-management",
           parentId: "operations",
-          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : 0
+          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : auth.RoleID === 6 ? 6 : 0
         },
         {
           id: "refer-voters",
           label: "Refer Voters",
           link: "/operations/refer-voters",
           parentId: "operations",
-          ModuleID: 0
+          ModuleID: auth.RoleID === 6 ? 6 : 0
         },
         {
           id: "my-refered-voters",
           label: "My Refered Voters",
           link: "/operations/my-refered-voters",
           parentId: "operations",
-          ModuleID: 0
+          ModuleID: auth.RoleID === 6 ? 6 : 0
         },
         {
           id: "booth-voting",
           label: "Booth Voting",
           link: "/operations/booth-voting",
           parentId: "operations",
-          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : auth.RoleID === 2 ? 3: 0
+          ModuleID: auth.RoleID === 3 ? 3 : auth.RoleID === 4 ? 4 : auth.RoleID === 5 ? 5 : auth.RoleID === 2 ? 3 : 0
         },
       ],
     },
@@ -352,7 +352,7 @@ const Navdata = () => {
       icon: "ri-file-chart-line",
       link: "/#",
       stateVariables: isLanding,
-      ModuleID: auth.RoleID === 1 ? 3 : 0,
+      ModuleID: auth.RoleID === 2 ? 6 : auth.RoleID === 3 ? 6 : auth.RoleID === 4 ? 6 : auth.RoleID === 5 ? 6 : auth.RoleID === 6 ? 6 : 0,
       click: function (e) {
         e.preventDefault();
         setIsLanding(!isLanding);
