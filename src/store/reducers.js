@@ -74,6 +74,7 @@ import Circles from './circles/reducer';
 import MyReferedVoters from './myReferedVoters/reducer';
 import ReferVoters from './referVoters/reducer';
 import UploadVoters from './uploadVoters/reducer';
+import ElectionDayReport from './electionDayReport/reducer';
 import Candidates from './candidates/reducer';
 import Phone from './phone/reducer';
 import Voters from './voters/reducer';
@@ -120,6 +121,7 @@ const rootReducer = combineReducers({
   MyReferedVoters,
   ReferVoters,
   UploadVoters,
+  ElectionDayReport,
   Candidates,
   Phone,
   Voters,
