@@ -513,7 +513,7 @@ export const activateDeactivateCandidates = (candidates) => api.update(url.ACTIV
 export const checkPhoneNumber = (phone) => api.create(url.CHECK_PHONE_NUMBER, phone)
 
 // Voters
-export const getVoters = () => api.get(url.GET_VOTERS);
+export const getVoters = (voters) => api.create(url.GET_VOTERS, voters);
 export const getVotersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_VOTERS_TABLE_COLUMN_NAMES, { module });
 export const addVoters = (voters) => api.create(url.POST_VOTERS, voters);
 export const updateVoters = (voters) => api.update(url.UPDATE_VOTERS, voters);
