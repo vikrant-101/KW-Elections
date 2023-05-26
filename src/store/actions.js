@@ -61,6 +61,8 @@ export * from "./myReferedVoters/actions";
 export * from "./referVoters/actions";
 //Upload Voters
 export * from "./uploadVoters/actions";
+//Election Day Report
+export * from "./electionDayReport/actions";
 //Candidates
 export * from "./candidates/actions";
 //Phone

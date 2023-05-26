@@ -66,6 +66,7 @@ import CirclesSaga from "./circles/saga";
 import ReferVotersSaga from "./referVoters/saga";
 import MyReferedVotersSaga from "./myReferedVoters/saga";
 import UploadVotersSaga from "./uploadVoters/saga";
+import ElectionDayReportSaga from "./electionDayReport/saga";
 import CandidatesSaga from "./candidates/saga";
 import PhoneSaga from "./phone/saga";
 import VotersSaga from "./voters/saga";
@@ -112,6 +113,7 @@ export default function* rootSaga() {
     fork(MyReferedVotersSaga),
     fork(ReferVotersSaga),
     fork(UploadVotersSaga),
+    fork(ElectionDayReportSaga),
     fork(CandidatesSaga),
     fork(PhoneSaga),
     fork(VotersSaga),
