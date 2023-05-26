@@ -591,3 +591,6 @@ export const getFamilyNameWiseTableColumnNames = ({ moduleName: module }) => api
 // All Refer Voter List
 export const getAllReferVotersList = (userID) => api.create(url.GET_ALLREFERVOTERSLIST, userID);
 export const getAllReferVotersListTableColumnNames = ({ moduleName: module }) => api.create(url.GET_ALLREFERVOTERSLIST_TABLE_COLUMN_NAMES, { module });
+
+//Dashboard
+export const getTotalCount = (votersCount)=> api.create(url.GET_COUNT, votersCount );

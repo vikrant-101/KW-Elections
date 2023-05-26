@@ -86,6 +86,7 @@ import BoothUsers from "./boothusers/reducer";
 import VotersManagement from "./votersManagement/reducer";
 import AnalyticalReports from "./analyticalReport/reducer";
 import AllReferedVotersList from "./allReferVotersList/reducer";
+import Dashboard from "./dashboard/reducer";
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -132,7 +133,8 @@ const rootReducer = combineReducers({
   BoothUsers,
   VotersManagement,
   AnalyticalReports,
-  AllReferedVotersList
+  AllReferedVotersList,
+  Dashboard
 });
 
 export default rootReducer;

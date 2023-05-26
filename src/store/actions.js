@@ -87,4 +87,6 @@ export * from './votersManagement/actions'
 export * from './analyticalReport/actions'
 // All Refer Voter List
 export * from './allReferVotersList/actions'
+// dashboard
+export * from './dashboard/actions'
 

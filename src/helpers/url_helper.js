@@ -376,3 +376,6 @@ export const GET_FAMILYNAMEWISE_TABLE_COLUMN_NAMES = '/GetHeaders';
 // All Refer Voters List
 export const GET_ALLREFERVOTERSLIST = '/GetAllReferVotersList';
 export const GET_ALLREFERVOTERSLIST_TABLE_COLUMN_NAMES = '/GetHeaders';
+
+// Dashboard
+export const GET_COUNT = "/GetTotalCount"
