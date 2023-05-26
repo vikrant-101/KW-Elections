@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import CountUp from "react-countup";
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col } from 'reactstrap';
-import io from 'socket.io-client';
+import { getTotalCount } from '../../store/dashboard/actions';
 
-const socket = process.env.REACT_APP_SOCKET_ENVIRONMENT === 'Development' ? 
-io(process.env.REACT_APP_SOCKET_DEVELOPMENT):
-io(process.env.REACT_APP_SOCKET_PRODUCTION) 
 
 const Widgets = () => {
     const { i18n, t } = useTranslation();
+    const dispatch = useDispatch();
     const auth = JSON.parse(sessionStorage.getItem('auth'));
     const [totalVoters, setTotalVoters] = useState(0);
     const [totalVoted, setTotalVoted] = useState(0);
@@ -114,153 +113,88 @@ const Widgets = () => {
             suffix: "k",
             path: '/data-reports/all-refered-voters-list'
         },
-    ])
+    ]);
+
+    const { Voters, Voted, ToBeVoted, Refered, ReferedVoted, ReferedToBeVoted } = useSelector((state) => ({
+        Voters: state.Dashboard.votersCount,
+        Voted: state.Dashboard.votedCount,
+        ToBeVoted: state.Dashboard.toBeVotedCount,
+        Refered: state.Dashboard.referedCount,
+        ReferedVoted: state.Dashboard.referedVotedCount,
+        ReferedToBeVoted: state.Dashboard.referedToBeVotedCount,
+    }));
+
+
+    const fetchTotalCount = () => {
+        dispatch(getTotalCount({ UserID: auth.id }));
+    };
+
 
     useEffect(() => {
-        // Establish socket connection
-        socket.connect();
-
-        const fetchTotalVotes = () => {
-            socket.emit('fetchTotalVotes', auth.id);
-        };
-
-        const fetchTotalVoted = () => {
-            socket.emit('fetchTotalVoted', auth.id);
-        };
-
-        const fetchTotalToBeVoted = () => {
-            socket.emit('fetchTotalToBeVoted', auth.id);
-        };
-        const fetchTotalRefered = () => {
-            socket.emit('fetchTotalRefered', auth.id);
-        };
-        const fetchTotalReferedVoted = () => {
-            socket.emit('fetchTotalReferedVoted', auth.id);
-        };
-
-        const fetchTotalReferedToBeVoted = () => {
-            socket.emit('fetchTotalReferedToBeVoted', auth.id);
-        };
-
-        // Event listener for 'totalVotes' event
-        const handleTotalVotes = (count) => {
-            setTotalVoters(count);
-        };
-
-        // Event listener for 'totalVoted' event
-        const handleTotalVoted = (count) => {
-            setTotalVoted(count);
-        };
-
-        // Event listener for 'totalToBeVoted' event
-        const handleTotalToBeVoted = (count) => {
-            setTotalToBeVoted(count);
-        };
-        // Event listener for 'totalRefered' event
-        const handleTotalRefered = (count) => {
-            setTotalRefered(count);
-        };
-
-        // Event listener for 'handleTotalReferedVoted' event
-        const handleTotalReferedVoted = (count) => {
-            setTotalReferedVoted(count);
-        };
-
-        const handleTotalReferedToBeVoted = (count) => {
-            setTotalReferedToBeVoted(count);
-        };
-
-        // Subscribe to 'totalVotes' event
-        socket.on('totalVoters', handleTotalVotes);
-
-        // Subscribe to 'totalVoted' event
-        socket.on('totalVoted', handleTotalVoted);
-
-        // Subscribe to 'totalToBeVoted' event
-        socket.on('totalToBeVoted', handleTotalToBeVoted);
-
-        // Subscribe to 'totalRefered' event
-        socket.on('totalRefered', handleTotalRefered);
-
-        // Subscribe to 'totalReferedVoted' event
-        socket.on('totalReferedVoted', handleTotalReferedVoted);
-
-        socket.on('totalReferedToBeVoted', handleTotalReferedToBeVoted)
-
-        // Initial fetch
-        fetchTotalVotes();
-        fetchTotalVoted();
-        fetchTotalToBeVoted();
-        fetchTotalRefered();
-        fetchTotalReferedVoted();
-        fetchTotalReferedToBeVoted();
-
-        // Set interval for triggering events every 2 seconds
+        fetchTotalCount();
         const interval = setInterval(() => {
-            fetchTotalVotes();
-            fetchTotalVoted();
-            fetchTotalToBeVoted();
-            fetchTotalRefered();
-            fetchTotalReferedVoted();
-            fetchTotalReferedToBeVoted();
-        }, 2000);
+            fetchTotalCount();
+        }, 10000);
 
-        // Clean up the socket connection, event listener, and interval on component unmount
         return () => {
-            socket.off('totalVotes', handleTotalVotes);
-            socket.off('totalVoted', handleTotalVoted);
-            socket.off('totalToBeVoted', handleTotalToBeVoted);
-            socket.off('totalRefered', handleTotalRefered);
-            socket.off('totalReferedVoted', handleTotalReferedVoted);
-            socket.off('totalReferedToBeVoted',handleTotalReferedToBeVoted )
             clearInterval(interval);
-            socket.disconnect();
         };
-    }, [auth]);
+    }, [dispatch]);
+
+    useEffect(() => {
+        setTotalVoters(Voters);
+        setTotalVoted(Voted);
+        setTotalToBeVoted(ToBeVoted);
+        setTotalRefered(Refered);
+        setTotalReferedVoted(ReferedVoted);
+        setTotalReferedToBeVoted(ReferedToBeVoted)
+    }, [Voters, Voted, ToBeVoted, Refered, ReferedVoted, ReferedToBeVoted])
 
 
     const updatedEcomWidgets = ecomWidgets.map((widget) => {
         if (widget.label === 'Total Voters') {
             return {
                 ...widget,
-                counter: totalVoters.toString(), // Update counter with totalVoters
+                counter: totalVoters, // Update counter with totalVoters
             };
         }
         if (widget.label === 'Total Voted') {
             return {
                 ...widget,
-                counter: totalVoted.toString(), // Update counter with totalVoted
+                counter: totalVoted, // Update counter with totalVoted
             };
         }
         if (widget.label === 'Total To Be Voted') {
             return {
                 ...widget,
-                counter: totalToBeVoted.toString(), // Update counter with totalToBeVoted
+                counter: totalToBeVoted, // Update counter with totalToBeVoted
             };
         }
 
         if (widget.label === 'Total Referred Voters') {
             return {
                 ...widget,
-                counter: totalRefered.toString(), // Update counter with totalRefered
+                counter: totalRefered, // Update counter with totalRefered
             };
         }
 
         if (widget.label === 'Total Referred Voted') {
             return {
                 ...widget,
-                counter: totalReferedVoted.toString(), // Update counter with totalReferedVoted
+                counter: totalReferedVoted, // Update counter with totalReferedVoted
             };
         }
 
         if (widget.label === 'Total Referred To Be Voted') {
             return {
                 ...widget,
-                counter: totalReferedToBeVoted.toString(), // Update counter with totalReferedToBeVoted
+                counter: totalReferedToBeVoted, // Update counter with totalReferedToBeVoted
             };
         }
         return widget;
     });
+
+
 
     return (
         <React.Fragment>
