@@ -75,7 +75,11 @@ const AddUsers = () => {
     isAddOrEdit === "isEdit" && (usersObj["IsActive"] = users["IsActive"]);
     usersObj["FullNameEnglish"] = users.FullNameArabic;
     usersObj["FullNameArabic"] = users.FullNameArabic;
-    usersObj["MobileNumber"] = '+965' + users.MobileNumber;
+    if (users?.MobileNumber.includes('+965')) {
+      usersObj["MobileNumber"] = users.MobileNumber;
+    } else {
+      usersObj["MobileNumber"] = '+965' + users.MobileNumber;
+    }
     usersObj["IsDelete"] = false;
     usersObj["IsActive"] = true;
     usersObj["RoleID"] = +users.RoleID;

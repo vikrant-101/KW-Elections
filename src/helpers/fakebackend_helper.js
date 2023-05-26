@@ -532,7 +532,7 @@ export const getBoothUserDetail = ({userID}) => {
 };
 
 // Classes
-export const getClasses = () => api.get(url.GET_CLASSES);
+export const getClasses = ({userID}) => api.update(url.GET_CLASSES, {userID: userID});
 export const getClassesTableColumnNames = ({ moduleName: module }) => api.create(url.GET_CLASSES_TABLE_COLUMN_NAMES, { module });
 export const addClasses = (classes) => api.create(url.POST_CLASSES, classes);
 export const updateClasses = (classes) => api.update(url.UPDATE_CLASSES, classes);

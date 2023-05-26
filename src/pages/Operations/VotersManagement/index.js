@@ -142,7 +142,10 @@ const VotersManagement = () => {
   }, [VotersManagement]);
 
   useEffect(()=> {
-    dispatch(getClasses());
+    let user = JSON.parse(sessionStorage.getItem('auth'));
+    if (user !== null) {
+      dispatch(getClasses({userID: user.id}));
+    }
   },[dispatch]);
 
   useEffect(() => {
