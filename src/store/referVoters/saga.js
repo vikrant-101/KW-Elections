@@ -49,7 +49,7 @@ import {
 
 // Fetch ReferVoters
 function* fetchReferVoters({payload: refervoters}) {
-  console.log('payload', refervoters)
+  // console.log('payload', refervoters)
   try {
     const response = yield call(getReferVoters, refervoters);
     yield put(getReferVotersSuccess(response.Data));

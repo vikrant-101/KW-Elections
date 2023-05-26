@@ -11,6 +11,8 @@ export const columns = (columnNames, i18n, t, addReferVoterHandler) => {
     color: "red",
   };
 
+  let user =  JSON.parse(sessionStorage.getItem('auth'));
+
   return filteredColumns(columnNames, i18n)?.map((column) => {
     let col;
     switch (column?.FieldName) {   //VotersStatus
@@ -71,7 +73,12 @@ export const columns = (columnNames, i18n, t, addReferVoterHandler) => {
           sortable: false,
           wrap: true,
           cell: (cell) => {
-            const alreadyRefered = cell?.ReferBy?.length > 0;
+            let alreadyRefered = false;
+            cell?.ReferBy?.forEach((voter) => {
+              if (voter?.ReferID === user.id) {
+                alreadyRefered = true;
+              }
+            })
             return (
               <>
                 {!alreadyRefered ? (

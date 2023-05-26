@@ -85,7 +85,10 @@ const EditReferVoterModal = ({
             type="button"
             className="btn w-sm btn-light"
             data-bs-dismiss="modal"
-            onClick={() => setShowEditReferModal(false)}
+            onClick={() => {
+              setReferedVoterDetails();
+              return setShowEditReferModal(false)
+              }}
           >
             {t("Close")}
           </button>

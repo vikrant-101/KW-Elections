@@ -71,7 +71,7 @@ const localization = (state = INIT_STATE, action) => {
 
     // Add Localization
     case ADD_LOCALIZATION_SUCCESS:
-      console.log('PAYLOAD', action.payload.Data)
+      // console.log('PAYLOAD', action.payload.Data)
       state = {
         ...state,
         localization: [action.payload.Data[0], ...state.localization],

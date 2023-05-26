@@ -112,8 +112,7 @@ const MyReferedVoters = () => {
                     }}
                     className="me-2"
                   >
-                    {" "}
-                    Loading...{" "}
+                    Loading...
                   </Spinner>
                 </div>
               ) : (

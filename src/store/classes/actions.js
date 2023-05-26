@@ -20,8 +20,9 @@ import {
   } from "./actionTypes"
   
   
-  export const getClasses = () => ({
+  export const getClasses = ({userID}) => ({
     type: GET_CLASSES,
+    userID: userID
   });
   
   export const getClassesSuccess = classes => ({

@@ -44,9 +44,9 @@ import {
 
 
 // Fetch Classes 
-function* fetchClasses() {
+function* fetchClasses(userID) {
 	try {
-		const response = yield call(getClasses);
+		const response = yield call(getClasses, userID);
 		yield put(getClassesSuccess(response.Data));
 	} catch (error) {
 		yield put(getClassesFail(error));

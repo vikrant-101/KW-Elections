@@ -111,8 +111,7 @@ const ReferVoters = () => {
                     }}
                     className="me-2"
                   >
-                    {" "}
-                    Loading...{" "}
+                    Loading...
                   </Spinner>
                 </div>
               ) : (
