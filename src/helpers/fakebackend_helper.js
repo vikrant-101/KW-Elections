@@ -523,7 +523,7 @@ export const activateVoters = (voters) => api.update(url.ACTIVATE_VOTERS, voters
 export const getPrintDetail = (userID) => api.update(url.GET_PRINTDETAIL, userID );
 
 // Booth Voters
-export const getBoothVoters = () => api.get(url.GET_BOOTHVOTERS);
+export const getBoothVoters = (boothvoters) => api.create(url.GET_BOOTHVOTERS, boothvoters);
 export const getBoothVotersTableColumnNames = ({ moduleName: module }) => api.create(url.GET_BOOTHVOTERS_TABLE_COLUMN_NAMES, { module });
 export const addBoothVoters = (boothvoters) => api.create(url.POST_BOOTHVOTERS, boothvoters);
 export const updateBoothVoters = (boothvoters) => api.update(url.UPDATE_BOOTHVOTERS, boothvoters);
