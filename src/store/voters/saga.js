@@ -55,9 +55,9 @@ import {
 
 
 // Fetch Voters 
-function* fetchVoters() {
+function* fetchVoters({payload: voters}) {
 	try {
-		const response = yield call(getVoters);
+		const response = yield call(getVoters, voters);
 		yield put(getVotersSuccess(response.Data));
 	} catch (error) {
 		yield put(getVotersFail(error));

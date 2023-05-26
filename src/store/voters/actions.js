@@ -26,8 +26,9 @@ import {
   } from "./actionTypes"
   
   
-  export const getVoters = () => ({
+  export const getVoters = (voters) => ({
     type: GET_VOTERS,
+    payload: voters
   });
   
   export const getVotersSuccess = voters => {

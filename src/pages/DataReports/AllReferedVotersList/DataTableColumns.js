@@ -62,10 +62,12 @@ export const columns = (columnNames, i18n, t, onActiveOrDeactiveChange, onViewSe
             name: <span className='font-weight-bold fs-13'>{i18n.language === 'ar' ? column?.ValueAr : column?.ValueEn}</span>,
             selector: row => {
                 let ReferByList = row[column?.Title].reduce((ReferBy, value, index) => {
-                  if (index === 0) {
-                    return ReferBy + value.ReferName;
+                  if (value.ReferName  !== null) {
+                    if (index === 0) {
+                      return ReferBy + value.ReferName;
+                    }
+                    return ReferBy + ", " + value.ReferName;
                   }
-                  return ReferBy + ", " + value.ReferName;
                 }, "")
                 // return  row[column?.Title][0].ReferID
                 return ReferByList;

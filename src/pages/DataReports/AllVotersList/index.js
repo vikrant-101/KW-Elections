@@ -41,7 +41,7 @@ let user = sessionStorage.getItem('auth')
 user = JSON.parse(user)
  
  useEffect(() => {
-    dispatch(getVoters())  
+    dispatch(getVoters({userID: user.id}))  
     dispatch(getVotersTableColumnNames())
     dispatch(getPrintDetail({userID: user.id}))
 }, [dispatch]);

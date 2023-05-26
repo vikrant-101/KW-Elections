@@ -87,7 +87,7 @@ const EditReferVoterModal = ({
             data-bs-dismiss="modal"
             onClick={() => {
               setReferedVoterDetails();
-              return setShowEditReferModal(false)
+              setShowEditReferModal(false)
               }}
           >
             {t("Close")}

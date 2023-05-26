@@ -57,6 +57,7 @@ const referVoters = (state = INIT_STATE, action) => {
       };
 
     case ADD_REFERVOTERS_SUCCESS:
+      console.log(' action.payload: ',  action.payload);
       state = {
         ...state,
         referVoters: state.referVoters.map((referVoters) =>
