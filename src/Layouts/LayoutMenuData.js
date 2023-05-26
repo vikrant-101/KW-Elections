@@ -352,7 +352,7 @@ const Navdata = () => {
       icon: "ri-file-chart-line",
       link: "/#",
       stateVariables: isLanding,
-      ModuleID: auth.RoleID === 2 ? 6 : auth.RoleID === 3 ? 6 : auth.RoleID === 4 ? 6 : auth.RoleID === 5 ? 6 : auth.RoleID === 6 ? 6 : 0,
+      ModuleID: auth.RoleID === 1 ? 6 : auth.RoleID === 3 ? 6 : auth.RoleID === 4 ? 6 : auth.RoleID === 5 ? 6 : auth.RoleID === 6 ? 6 : 0,
       click: function (e) {
         e.preventDefault();
         setIsLanding(!isLanding);

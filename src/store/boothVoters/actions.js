@@ -29,12 +29,12 @@ import {
   } from "./actionTypes"
   
   
-  export const getBoothVoters = () => ({
+  export const getBoothVoters = (boothvoters) => ({
     type: GET_BOOTHVOTERS,
+    payload: boothvoters
   });
   
   export const getBoothVotersSuccess = boothvoters => {
-    console.log('boothvoters success: ', boothvoters);
     return {
     type: GET_BOOTHVOTERS_SUCCESS,
     payload: boothvoters,
@@ -46,7 +46,6 @@ import {
   });
 
   export const getBoothUserDetail = ({userID}) => {
-    console.log('userID : ', userID);
     return {
       type: GET_BOOTHUSER_DETAIL,
       userID: userID
@@ -68,7 +67,6 @@ import {
   });
   
   export const getClassBoothVotersSuccess = boothvoters => {
-    console.log('class boothvoters success: ', boothvoters);
     return {
     type: GET_CLASS_BOOTHVOTERS_SUCCESS,
     payload: boothvoters,

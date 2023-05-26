@@ -58,9 +58,9 @@ import {
 
 
 // Fetch BoothVoters 
-function* fetchBoothVoters() {
+function* fetchBoothVoters({payload: boothvoters }) {
 	try {
-		const response = yield call(getBoothVoters);
+		const response = yield call(getBoothVoters, boothvoters);
 		yield put(getBoothVotersSuccess(response.Data));
 	} catch (error) {
 		yield put(getBoothVotersFail(error));
