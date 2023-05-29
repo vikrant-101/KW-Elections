@@ -378,4 +378,5 @@ export const GET_ALLREFERVOTERSLIST = '/GetAllReferVotersList';
 export const GET_ALLREFERVOTERSLIST_TABLE_COLUMN_NAMES = '/GetHeaders';
 
 // Dashboard
-export const GET_COUNT = "/GetTotalCount"
+export const GET_COUNT = "/GetTotalCount";
+export const GET_SECOND_COUNT = "/GetCount";
