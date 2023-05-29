@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import CountUp from "react-countup";
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col } from 'reactstrap';
-import io from 'socket.io-client';
+import { getCount } from '../../store/dashboard/actions';
 
-const socket = process.env.REACT_APP_SOCKET_ENVIRONMENT === 'Development' ? 
-io(process.env.REACT_APP_SOCKET_DEVELOPMENT):
-io(process.env.REACT_APP_SOCKET_PRODUCTION) 
 
 const SecondWidget = () => {
     const { i18n, t } = useTranslation();
+    const dispatch = useDispatch();
     const auth = JSON.parse(sessionStorage.getItem('auth'));
     const [totalSubAdmin, setTotalSubAdmin] = useState(0);
     const [totalReference, setTotalReference] = useState(0);
@@ -110,149 +109,78 @@ const SecondWidget = () => {
         },
     ])
 
+    const { SubAdmin, References, SubReferences, Areas, Schools, Classes } = useSelector((state) => ({
+        SubAdmin: state.Dashboard.totalSubAdmins,
+        References: state.Dashboard.totalReferences,
+        SubReferences: state.Dashboard.totalSubReferences,
+        Areas: state.Dashboard.totalAreas,
+        Schools: state.Dashboard.totalSchools,
+        Classes: state.Dashboard.totalClasses,
+    }));
+
+    const fetchTotalCount = () => {
+        dispatch(getCount({ UserID: auth.id }));
+    };
+
     useEffect(() => {
-        // Establish socket connection
-        socket.connect();
-
-        const fetchTotalSubAdmin = () => {
-            socket.emit('fetchTotalSubAdmins', auth.id);
-        };
-
-        const fetchTotalReference = () => {
-            socket.emit('fetchTotalReference', auth.id);
-        };
-
-        const fetchTotalSubReference = () => {
-            socket.emit('fetchTotalSubReference', auth.id);
-        };
-        const fetchTotalAreas = () => {
-            socket.emit('fetchTotalAreas', auth.id);
-        };
-        const fetchTotalSchools = () => {
-            socket.emit('fetchTotalSchools', auth.id);
-        };
-
-        const fetchTotalClasses = () => {
-          socket.emit('fetchTotalClasses', auth.id);
-      };
-
-        // Event listener for 'totalVotes' event
-        const handleTotalSubAdmins = (count) => {
-          setTotalSubAdmin(count);
-        };
-
-        // Event listener for 'totalReference' event
-        const handleTotalReference = (count) => {
-            setTotalReference(count);
-        };
-
-        // Event listener for 'totalSubReference' event
-        const handleTotalSubReference = (count) => {
-            setTotalSubReference(count);
-        };
-        // Event listener for 'totalAreas' event
-        const handleTotalAreas = (count) => {
-            setTotalAreas(count);
-        };
-
-        // Event listener for 'handleTotalSchools' event
-        const handleTotalSchools = (count) => {
-            setTotalSchools(count);
-        };
-
-          // Event listener for 'handleTotalSchools' event
-          const handleTotalClasses = (count) => {
-            setTotalClasses(count);
-        };
-
-        // Subscribe to 'totalSubAdmins' event
-        socket.on('totalSubAdmins', handleTotalSubAdmins);
-
-        // Subscribe to 'totalReference' event
-        socket.on('totalReference', handleTotalReference);
-
-        // Subscribe to 'totalSubReference' event
-        socket.on('totalSubReference', handleTotalSubReference);
-
-        // Subscribe to 'totalAreas' event
-        socket.on('totalAreas', handleTotalAreas);
-
-        // Subscribe to 'totalSchools' event
-        socket.on('totalSchools', handleTotalSchools);
-
-         // Subscribe to 'totalClasses' event
-         socket.on('totalClasses', handleTotalClasses);
-
-        // Initial fetch
-        fetchTotalSubAdmin();
-        fetchTotalReference();
-        fetchTotalSubReference();
-        fetchTotalAreas();
-        fetchTotalSchools();
-        fetchTotalClasses();
-
-        // Set interval for triggering events every 2 seconds
+        fetchTotalCount();
         const interval = setInterval(() => {
-            fetchTotalSubAdmin();
-            fetchTotalReference();
-            fetchTotalSubReference();
-            fetchTotalAreas();
-            fetchTotalSchools();
-            fetchTotalClasses();
-        }, 2000);
+            fetchTotalCount();
+        }, 10000);
 
-        // Clean up the socket connection, event listener, and interval on component unmount
         return () => {
-            socket.off('totalSubAdmins', handleTotalSubAdmins);
-            socket.off('totalReference', handleTotalReference);
-            socket.off('totalSubReference', handleTotalSubReference);
-            socket.off('totalAreas', handleTotalAreas);
-            socket.off('totalSchools', handleTotalSchools);
-            socket.off('totalSchools', handleTotalClasses);
             clearInterval(interval);
-            socket.disconnect();
         };
-    }, [auth]);
+    }, [dispatch]);
+
+    useEffect(() => {
+        setTotalSubAdmin(SubAdmin);
+        setTotalReference(References);
+        setTotalSubReference(SubReferences);
+        setTotalAreas(Areas);
+        setTotalSchools(Schools);
+        setTotalClasses(Classes)
+    }, [SubAdmin, References, SubReferences, Areas, Schools, Classes])
 
 
     const updatedEcomWidgets = ecomWidgets.map((widget) => {
         if (widget.label === 'Total Sub Admins') {
             return {
                 ...widget,
-                counter: totalSubAdmin.toString(), // Update counter with totalSubAdmin
+                counter: totalSubAdmin, // Update counter with totalSubAdmin
             };
         }
         if (widget.label === 'Total References') {
             return {
                 ...widget,
-                counter: totalReference.toString(), // Update counter with totalReference
+                counter: totalReference, // Update counter with totalReference
             };
         }
         if (widget.label === 'Total Sub References') {
             return {
                 ...widget,
-                counter: totalSubReference.toString(), // Update counter with totalSubReference
+                counter: totalSubReference, // Update counter with totalSubReference
             };
         }
 
         if (widget.label === 'Total Areas') {
             return {
                 ...widget,
-                counter: totalAreas.toString(), // Update counter with totalAreas
+                counter: totalAreas, // Update counter with totalAreas
             };
         }
 
         if (widget.label === 'Total Schools') {
             return {
                 ...widget,
-                counter: totalSchools.toString(), // Update counter with totalSchools
+                counter: totalSchools, // Update counter with totalSchools
             };
         }
 
         if (widget.label === 'Total Classes') {
             return {
                 ...widget,
-                counter: totalClasses.toString(), // Update counter with totalClasses
+                counter: totalClasses, // Update counter with totalClasses
             };
         }
         return widget;

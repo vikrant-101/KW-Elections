@@ -1,4 +1,6 @@
 import {
+	GET_COUNT_FAIL,
+	GET_COUNT_SUCCESS,
 	GET_TOTAL_COUNT_FAIL,
 	GET_TOTAL_COUNT_SUCCESS,
 } from "./actionTypes";
@@ -11,6 +13,12 @@ const INIT_STATE = {
 	referedCount: null,
 	referedVotedCount: null,
 	referedToBeVotedCount: null,
+	totalSubAdmins: null,
+	totalReferences:  null,
+	totalSubReferences:  null,
+	totalAreas:  null,
+	totalSchools:  null,
+	totalClasses:  null,
 	error: {},
 };
 
@@ -33,6 +41,23 @@ const dashboard = (state = INIT_STATE, action) => {
 				...state,
 				error: action.payload,
 			};
+
+			case GET_COUNT_SUCCESS:
+				return {
+					...state,
+					totalSubAdmins: action.payload.totalSubAdmins,
+					totalReferences:  action.payload.totalReferences,
+					totalSubReferences:  action.payload.totalSubReferences,
+					totalAreas:  action.payload.totalAreas,
+					totalSchools:  action.payload.totalSchools,
+					totalClasses:  action.payload.totalClasses,
+				};
+	
+			case GET_COUNT_FAIL:
+				return {
+					...state,
+					error: action.payload,
+				};
 
 		default:
 			state = { ...state };
