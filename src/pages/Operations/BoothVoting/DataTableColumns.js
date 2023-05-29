@@ -8,6 +8,8 @@ import { filteredColumns } from "../../../helpers/Filter/FilterColumns";
 
 
 export const columns = (columnNames, i18n,t, onActiveChange) => {
+	let user = JSON.parse(sessionStorage.getItem('auth'));
+	
 	return filteredColumns(columnNames, i18n)?.map((column) => {
 		
 		let col;
@@ -38,14 +40,13 @@ export const columns = (columnNames, i18n,t, onActiveChange) => {
 					sortable: false,
 					wrap: true,
 					selector: (cell) => {
-						let id = localStorage.getItem("_id")
 						let status = {};
 						let checkOrNot = cell?.VotedMarkedBy?.filter(item => {
-							if(item.BoothCoordinatorID === "645babd779ae9002d3058af8") {
-								status[cell?._id] = true
-								return true
+							if(item.BoothCoordinatorID === user.id) {
+								status[cell?.Marked] = true
+								// return true
 							}
-							return false;
+							// return false;
 						});
 						// if (checkOrNot.length !== 0) {
 						// }
@@ -57,9 +58,10 @@ export const columns = (columnNames, i18n,t, onActiveChange) => {
 							onChange={(e) => {
 								onActiveChange(cell,e)
 								// status = true
-								console.log('status: ', status);
+								// console.log('status: ', status);
 							}}
-							checked={status[cell?._id]} />
+							disabled={status[cell?.Marked]}
+							checked={status[cell?.Marked]} />
 							<label className="form-check-label" htmlFor="flexSwitchCheckDefault"></label>
 						</div>
 

@@ -48,6 +48,7 @@ const BoothWiseReports = () => {
 
   const printTable = (e, columns) => {
     e.preventDefault();
+    let date =  new Date().toLocaleString();
     const newWindow = window.open();
     newWindow.document.write('<html><head>');
     newWindow.document.write('<style>table { border-collapse: collapse; width: 100%; }');
@@ -67,33 +68,44 @@ const BoothWiseReports = () => {
       <p>${printDetail?.ElectionName}</p>
       </div>
       <div>
-      <h2 style="text-align: left;">Refer Voter List</h2>
-      <img src=${yasaLight} onload="window.print()" width="200px" height="33px" />
+      <h2>القائمة الحكيمة لاسم الكابينة</h2>
+      </div>
+      <div>
+      <img style="margin-top: 20px" src=${yasaLight} onload="window.print()" width="200px" height="33px" />
       </div>
     </div>`);
-    } else {
-      newWindow.document.write(`<div class="logo-container" >
-    <div>
-    <p>Candidate Name :- ______</p>
-    <p>Election Name :- ______</p>
-    </div>
-    <div>
-    <h2 style="text-align: left;">Refer Voter List</h2>
-    <img src=${yasaLight} onload="window.print()" width="200px" height="33px" />
-    </div>
-  </div>`);
-    }
+    } 
+  //   else {
+  //     newWindow.document.write(`<div class="logo-container" >
+  //   <div>
+  //   <p>Candidate Name :- ______</p>
+  //   <p>Election Name :- ______</p>
+  //   </div>
+  //   <div>
+  //   <h2 style="text-align: left;">Refer Voter List</h2>
+  //   <img src=${yasaLight} onload="window.print()" width="200px" height="33px" />
+  //   </div>
+  // </div>`);
+  //   }
 
 
     // Set page orientation to landscape
     // newWindow.document.write('<style>@page  { size: landscape; }</style>');
-    newWindow.document.write(`<style type="text/css" media="print">
+  //   newWindow.document.write(`<style type="text/css" media="print">
+  //   @page {
+  //     size: auto;  
+  //     margin: 0; 
+  //     margin-top: 10;
+  //     margin-bottom: 15;
+  //   }
+  // </style>`)
+
+  newWindow.document.write(`<style>
+  @media print {
     @page {
-      size: auto;  
-      margin: 0; 
-      margin-top: 10;
-      margin-bottom: 15;
+      margin-top: 0.5px; 
     }
+  }
   </style>`)
 
     newWindow.document.write('</head><body>');
@@ -135,18 +147,26 @@ const BoothWiseReports = () => {
      background-color: white;
      color: black;
      text-align: left;"
-    >${printDetail?.FullNameArabic}</footer>`);
-    } else {
-      newWindow.document.write(`<footer
-    style="position: fixed;
-     left: 5;
-     bottom: 0;
-     width: 100%;
-     background-color: white;
-     color: black;
-     text-align: left;"
-    >Print By :- ______</footer>`);
-    }
+     >
+     <div>
+       ${printDetail?.FullNameArabic}
+     </div>
+     <div style="font-size: smaller">
+       ${date}
+     </div>
+     </footer>`);
+    } 
+    // else {
+    //   newWindow.document.write(`<footer
+    // style="position: fixed;
+    //  left: 5;
+    //  bottom: 0;
+    //  width: 100%;
+    //  background-color: white;
+    //  color: black;
+    //  text-align: left;"
+    // >Print By :- ______</footer>`);
+    // }
     newWindow.document.write('</html>');
     newWindow.document.write('<style>tr:nth-child(odd) { background-color: #ffffff; }</style>');
     newWindow.document.write('<style>tr:nth-child(even) { background-color: #f2f2f2; }</style>');

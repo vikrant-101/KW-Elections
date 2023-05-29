@@ -34,7 +34,7 @@ const INIT_STATE = {
 };
 
 const boothvoters = (state = INIT_STATE, action) => {
-	let _id, IsActive, updatedBoothVoters, BoothVoters_Status;
+	let _id, IsActive, updatedBoothVoters, BoothVoters_Status, VotedMarkedBy;
 	switch (action.type) {
 		case GET_BOOTHVOTERS:
 			return {
@@ -179,11 +179,11 @@ const boothvoters = (state = INIT_STATE, action) => {
 				}
 			});
 	
-			toast.success(`BoothVoters ${IsActive ? 'deactivated' : 'activated'} successfully`);
 			state = {
 				...state,
 				boothvoters: updatedBoothVoters
 			};
+			toast.success(`BoothVoters ${IsActive ? 'deactivated' : 'activated'} successfully`);
 			break;
 			
 		case ON_ACTIVATE_DEACTIVATE_BOOTHVOTERS_FAIL:
@@ -198,23 +198,24 @@ const boothvoters = (state = INIT_STATE, action) => {
 
 		case ON_ACTIVATE_BOOTHVOTERS_SUCCESS:
 			_id = action.payload._id;
-			BoothVoters_Status = action.payload.BoothVoters_Status;
+			VotedMarkedBy = [action.payload.VotedMarkedBy];
 			updatedBoothVoters = state.boothvoters.map((boothvoters) => {
 				if (boothvoters._id === _id) {
 					return {
 						...boothvoters,
-						BoothVotersStatus: true // true the BoothVoters_Status value
+						VotersStatus: true, // true the BoothVoters_Status value
+						VotedMarkedBy: VotedMarkedBy
 					};
 				} else {
 					return boothvoters;
 				}
 			});
 	
-			toast.success(`BoothVoters ${IsActive ? 'deactivated' : 'activated'} successfully`);
 			state = {
 				...state,
 				boothvoters: updatedBoothVoters
 			};
+			toast.success(`BoothVoters ${IsActive ? 'deactivated' : 'activated'} successfully`);
 			break;
 			
 		case ON_ACTIVATE_BOOTHVOTERS_FAIL:
