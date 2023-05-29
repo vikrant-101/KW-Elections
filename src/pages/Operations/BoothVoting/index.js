@@ -7,6 +7,7 @@ import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { columns } from "./DataTableColumns";
 import SearchTextBox from "../../../Components/Common/SearchTextBox";
 import { getBoothVoters, getBoothVotersTableColumnNames, activateBoothVoters, getClassBoothVoters, getBoothUserDetail } from "../../../store/boothVoters/actions";
+import Toaster from "../../../Components/Common/Toaster";
 
 let alphaData = [];
 
@@ -14,7 +15,7 @@ const BoothVoting = () => {
   const { t, i18n } = useTranslation();
   document.title = t('KW-Elections | Booth Voting');
   const user = JSON.parse(sessionStorage.getItem('auth'));
-  const [boothUser, setBoothUser] = useState(false)
+  // const [boothUser, setBoothUser] = useState(false)
   const dispatch = useDispatch();
   const { BoothVoters, isLoading, columnNames, Boothuserdetail } = useSelector((state) => {
     return {
@@ -66,20 +67,31 @@ const BoothVoting = () => {
     let votedDateTime = new Date().toLocaleString();
     votedDateTime = votedDateTime.replaceAll('/', '-')
     votedDateTime = votedDateTime.replaceAll(',', '')
-    votedMarkedBY['BoothCoordinatorID'] = "645babd779ae9002d3058af8"
-    votedMarkedBY['RoleID'] = 6
+
+    votedMarkedBY['BoothCoordinatorID'] = user.id
+    votedMarkedBY['RoleID'] = user.RoleID.toString();
     votedMarkedBY['Status'] = true
     votedMarkedBY['Date'] = votedDateTime;
 
-    if (voters.VotersStatus !== true) {
-      votersObj['_id'] = voters._id;
-      votersObj['VotersStatus'] = voters.Voters_Status;
-      votersObj['VotedDateTime'] = votedDateTime;
-      votersObj['VotedMarkedBy'] = votedMarkedBY
-      dispatch(activateBoothVoters(votersObj))
-    } else {
-      alert('Voter Status Cannot Changed')
-    }
+
+    votersObj['_id'] = voters._id;
+    votersObj['Alpha'] = voters.Alpha;
+    votersObj['FullName'] = voters.FullName;
+    votersObj['VotersNo'] = voters.VotersNo;
+    votersObj['VotersStatus'] = true;
+    votersObj['VotedDateTime'] = votedDateTime;
+    votersObj['VotedMarkedBy'] = votedMarkedBY
+    dispatch(activateBoothVoters(votersObj))
+
+    // if (voters.VotersStatus !== true) {
+    //   votersObj['_id'] = voters._id;
+    //   votersObj['VotersStatus'] = voters.Voters_Status;
+    //   votersObj['VotedDateTime'] = votedDateTime;
+    //   votersObj['VotedMarkedBy'] = votedMarkedBY
+    //   dispatch(activateBoothVoters(votersObj))
+    // } else {
+    //   alert('Voter Status Cannot Changed')
+    // }
   }
 
   const handleClear = () => {
@@ -94,6 +106,7 @@ const BoothVoting = () => {
 
   return (
     <React.Fragment>
+      <Toaster />
       <div className="page-content">
         <Container fluid>
           <Row className='mb-3'>
