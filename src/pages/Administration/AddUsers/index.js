@@ -83,7 +83,14 @@ const AddUsers = () => {
     usersObj["IsDelete"] = false;
     usersObj["IsActive"] = true;
     usersObj["RoleID"] = +users.RoleID;
-    usersObj["CandidateID"] = JSON.parse(sessionStorage.getItem("auth"))["id"];
+    if(auth.RoleID === 2) {
+      usersObj["CandidateID"] = JSON.parse(sessionStorage.getItem("auth"))["id"];
+      usersObj["CreatedBy"] = auth.id;
+    } else {
+      usersObj["CandidateID"] = JSON.parse(sessionStorage.getItem("auth"))["id"];
+      usersObj["CreatedBy"] = auth?.CandidateID;
+    }
+    
     usersObj["CreatedDate"] = currentDate.toISOString().slice(0, 10);
     usersObj["ModifiedDate"] = currentDate.toISOString().slice(0, 10);
     isAddOrEdit === "isAdd"

@@ -4,7 +4,7 @@ import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { checkPhoneNumber } from "../../store/actions";
+import { checkPhoneNumber, getElections } from "../../store/actions";
 import KwElectionsLight from '../../assets/images/KW-Elections-Light.png'
 import withRouter from "../../Components/Common/withRouter";
 //import images
@@ -34,7 +34,8 @@ const Login = (props) => {
     const [showOTP, setShowOTP] = useState(false);
     const [user, setUser] = useState(null);
     const [showDelete, setShowDelete] = useState(false);
-    const [otpErrorMsg, setOTPErrorMsg] = useState('')
+    const [otpErrorMsg, setOTPErrorMsg] = useState('');
+    const [election, setElection] = useState({})
 
     useEffect(() => {
         if (!window.recaptchaVerifier) {
@@ -53,9 +54,12 @@ const Login = (props) => {
         }
     })
 
-    const { Phone } = useSelector((state) => ({
+    const { Phone, Elections } = useSelector((state) => ({
         Phone: state.Phone.phone,
+        Elections: state.Elections.elections,
+
     }));
+
 
 
     async function onSignup(e) {
@@ -81,7 +85,7 @@ const Login = (props) => {
                     setLoading(false);
                 });
         } else {
-            setLoading(false)  
+            setLoading(false)
         }
     }, [Phone]);
 
@@ -96,18 +100,19 @@ const Login = (props) => {
                     isAnonymous: res.user.isAnonymous,
                     phoneNumber: res.user.phoneNumber,
                     RoleID: Phone[0].RoleID,
+                    CandidateID: Phone[0]?.CandidateID ? Phone[0]?.CandidateID : null,
                     id: Phone[0]._id,
                     FullNameEnglish: Phone[0].FullNameEnglish,
                     FullNameArabic: Phone[0].FullNameArabic,
                     idToken: res._tokenResponse.idToken,
                 }
-                
+
                 if (res.user) {
                     sessionStorage.setItem('auth', JSON.stringify(responseObj));
                     props.router.navigate('/dashboard');
                     setUser(res.user);
                     setLoading(false);
-                   
+
                 } else {
                     props.router.navigate('/login');
                 }
@@ -125,6 +130,17 @@ const Login = (props) => {
         const currentLanguage = localStorage.getItem("I18N_LANGUAGE");
         setSelectedLang(!currentLanguage ? 'en' : currentLanguage);
     }, []);
+
+    useEffect(() => {
+        dispatch(getElections());
+    }, [dispatch])
+
+    useEffect(() => {
+        const defaultElection = Elections.find((election) => election.Default === true);
+        if (defaultElection) {
+            setElection({_id: defaultElection._id,ElectionNameArabic: defaultElection.ElectionNameArabic});
+        }
+    }, [Elections])
 
     const changeLanguageAction = lang => {
         //set language as i18n
@@ -183,12 +199,28 @@ const Login = (props) => {
                                                 </div>
 
                                                 <div className="mb-3">
+                                                    <Label htmlFor="election" className="form-label">{t('Election')}</Label>
+                                                    <select className='form-control'>
+                                                        
+                                                        {
+                                                            Elections.map((election) => {
+                                                            <option defaultValue={election?.Default && election?._id} >{election?.Default && election?.ElectionNameArabic}</option>
+                                                                return (
+                                                                    <option key={election._id} value={election._id}>{election.ElectionNameArabic}</option>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
+
+                                                </div>
+
+                                                <div className="mb-3">
                                                     <div className="float-end">
                                                     </div>
                                                 </div>
-                                                  <div className="mt-4">
+                                                <div className="mt-4">
                                                     <Button color="success" className="btn btn-success w-100" type="submit">
-                                                    {loading ? <Spinner size="sm" className='me-2'> Loading... </Spinner> : null}
+                                                        {loading ? <Spinner size="sm" className='me-2'> Loading... </Spinner> : null}
                                                         {t('Send code via SMS ')}
                                                         <i className="ri-phone-lock-line"></i>
                                                     </Button>
