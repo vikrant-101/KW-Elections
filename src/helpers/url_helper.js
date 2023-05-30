@@ -346,7 +346,7 @@ export const ACTIVATE_DEACTIVATE_ROLES = '/ActivateRoles'
 // booth users
 export const POST_BOOTHUSERS = '/GeneratePassword';
 export const UPDATE_BOOTHUSERS = '/UpdateUserMobileOrFullName';
-export const DELETE_BOOTHUSERS= '/DeleteUsers';
+export const DELETE_BOOTHUSERS= '/DeleteBoothUsers';
 export const GET_BOOTHUSERS = '/GetBoothUsers';
 export const GET_BOOTHUSERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_BOOTHUSERS = '/ActivateUsers';
