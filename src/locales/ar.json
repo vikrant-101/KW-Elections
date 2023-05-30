@@ -315,5 +315,6 @@
     "Sign in to continue": "تسجيل الدخول للمتابعة",
     "Send code via SMS ": "أرسل الرمز عبر الرسائل القصيرة",
     "Verify": "يؤكد",
-    "Wrong OTP": "OTP خاطئ"
+    "Wrong OTP": "OTP خاطئ",
+    "Delete Booth Users": "حذف مستخدمي الكابينة"
 }

@@ -81,8 +81,8 @@ const boothuser = (state = INIT_STATE, action) => {
       state = {
         ...state,
         boothuser: state.boothuser.map((boothuser) =>
-          boothuser._id.toString() === action.payload.Data[0]._id.toString()
-            ? action.payload.Data[0]
+          boothuser._id.toString() === action.payload.Data._id.toString()
+            ? action.payload.Data
             : boothuser
         ),
       };
@@ -100,10 +100,7 @@ const boothuser = (state = INIT_STATE, action) => {
     case DELETE_BOOTHUSERS_SUCCESS:
       state = {
         ...state,
-        boothuser: state.boothuser.filter(
-          (boothuser) =>
-            boothuser._id.toString() !== action.payload.Data[0]._id.toString()
-        ),
+        boothuser: action.payload.Data
       };
       toast.success(action.payload.Message);
       break;

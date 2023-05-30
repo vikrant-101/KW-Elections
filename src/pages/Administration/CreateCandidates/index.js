@@ -95,7 +95,11 @@ const CreateCandidates = () => {
 		candidateObj['FullNameArabic'] = candidates.FullNameArabic;
     candidateObj['ElectionID'] = candidates.ElectionID;
 		candidateObj['DomainName'] = candidates.DomainName;
-		candidateObj['MobileNumber'] = '+965' +candidates.MobileNumber;
+		if (candidates?.MobileNumber.includes('+965')) {
+			candidateObj['MobileNumber'] = candidates.MobileNumber;
+		} else {
+			candidateObj['MobileNumber'] = '+965' +candidates.MobileNumber;
+		}
 		candidateObj['UsersLimit'] = candidates.UsersLimit;
 		candidateObj['IsDelete'] =  false;
 		candidateObj['IsActive'] = true;

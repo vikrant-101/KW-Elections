@@ -9,11 +9,14 @@ import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { columns } from "./DataTableColumns";
 import AddpdfButton from "../../../Components/Common/AddpdfButton";
 import AddGenrateButton from "../../../Components/Common/AddGenrateButton";
+import DeleteBoothUser from "../../../Components/Common/DeleteBoothUser";
+
 import {
 	addBoothUsers,
 	getBoothUsers,
 	getBoothUsersTableColumnNames,
-	updateBoothUsers
+	updateBoothUsers,
+	deleteBoothUsers
 } from "../../../store/boothusers/actions";
 import yasaLight from '../../../assets/images/horizonatal-view.png'
 
@@ -34,9 +37,12 @@ const BoothUsers = () => {
 		isLoading: state.BoothUsers.isLoading,
 	}));
 
+	const handleDeleteBoothUsers = () => {
+		dispatch(deleteBoothUsers({candidateID: JSON.parse(sessionStorage.getItem("auth"))["id"]}))
+	}
 
 	const onMobileNumberBlurHandler = (e, col) => {
-		dispatch(updateBoothUsers({ "_id": col._id, "MobileNumber": e.target.value }))
+		dispatch(updateBoothUsers({ "_id": col._id, "MobileNumber": "+965" + e.target.value }))
 	}
 
 	const onFullNameBlurHandler = (e, col) => {
@@ -109,6 +115,7 @@ const BoothUsers = () => {
 						<Col>
 							<AddpdfButton handleClassesClicks={(e) => printTable(columns(columnNames, i18n, t))} />&nbsp;
 							{data?.length === 0 && <AddGenrateButton handleClassesClicks={getBoothUsersClicks} />}
+							{data?.length > 0 && <DeleteBoothUser handleDeleteBoothUsers={handleDeleteBoothUsers} />}
 						</Col>
 						<Col>
 							<SearchTextBox initialData={BoothUsers} setData={setData} />
