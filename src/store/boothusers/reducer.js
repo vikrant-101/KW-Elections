@@ -32,7 +32,6 @@ const boothuser = (state = INIT_STATE, action) => {
       };
 
     case GET_BOOTHUSERS_SUCCESS:
-      console.log("BOOTH DATA", action.payload.Data);
       return {
         ...state,
         boothuser: action.payload.Data,
@@ -58,12 +57,15 @@ const boothuser = (state = INIT_STATE, action) => {
       };
 
     case ADD_BOOTHUSERS_SUCCESS:
-      console.log(action.payload.Data)
-      state = {
-        ...state,
-        boothuser: action.payload.Data,
-      };
-      toast.success(action.payload.Message);
+      if (action.payload.Code === 1) {
+        state = {
+          ...state,
+          boothuser: action.payload.Data,
+        };
+        toast.success(action.payload.Message);
+      } else {
+        toast.error(action.payload.Message);
+      }
       break;
 
     case ADD_BOOTHUSERS_FAIL:
