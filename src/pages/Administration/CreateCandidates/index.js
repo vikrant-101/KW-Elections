@@ -137,6 +137,7 @@ const CreateCandidates = () => {
 	}
 
 	const onEditClickHandler = (candidates, value) => {
+		dispatch(getCirclesByElectionID({ElectionID: candidates.ElectionID}))
 		setClassRow(candidates);
 		setCandidates(candidates)
 		setIsAddOrEdit(value);
