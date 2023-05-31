@@ -9,7 +9,7 @@ import AddCandidatesForm from "../../../Components/Common/Forms/AddCandidatesFor
 import AddModal from "../../../Components/Common/Modal/AddModal";
 import SearchTextBox from "../../../Components/Common/SearchTextBox";
 import Toaster from "../../../Components/Common/Toaster";
-import { activateDeactivateCandidates, addCandidates, deleteCandidates, getCandidates, getCandidatesTableColumnNames, getCircles, getElections, updateCandidates } from "../../../store/actions";
+import { activateDeactivateCandidates, addCandidates, deleteCandidates, getCandidates, getCandidatesTableColumnNames, getCircles, getElections, updateCandidates, getCirclesByElectionID } from "../../../store/actions";
 import { BasicTable } from "../../Tables/DataTables/datatableCom";
 import { columns } from "./DataTableColumns";
 
@@ -113,6 +113,14 @@ const CreateCandidates = () => {
 		setShow(false);
 	}
 
+	const onSelectHandler = (e) => {
+		dispatch(getCirclesByElectionID({ElectionID: e.target.value}))
+		setCandidates((preValue) => ({
+			...preValue,
+			[e.target.name]: e.target.value
+		}))
+	}
+
 	const onChangeHandler = (e) => {
 		setCandidates((preValue) => ({
 			...preValue,
@@ -193,7 +201,7 @@ const CreateCandidates = () => {
 					</Row>
 				</Container>
 			</div>
-			<AddModal show={show} setShow={setShow} onSubmitHandler={onSubmitHandler} title={isAddOrEdit === 'isAdd' ? t('Add New Candidate') : t('Edit Candidate')} modalBody={<AddCandidatesForm onChangeHandler={onChangeHandler} labels={labels} show={show} classRow={classRow} isAddOrEdit={isAddOrEdit} />} />
+			<AddModal show={show} setShow={setShow} onSubmitHandler={onSubmitHandler} title={isAddOrEdit === 'isAdd' ? t('Add New Candidate') : t('Edit Candidate')} modalBody={<AddCandidatesForm onSelectHandler={onSelectHandler} onChangeHandler={onChangeHandler} labels={labels} show={show} classRow={classRow} isAddOrEdit={isAddOrEdit} />} />
 			<DeleteModal showDelete={showDelete} setShowDelete={setShowDelete} onDeleteClick={onDeleteClick} />
 		</React.Fragment>
 	)

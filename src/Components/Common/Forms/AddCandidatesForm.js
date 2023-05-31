@@ -7,7 +7,7 @@ import { Button, Col, Input, InputGroup, InputGroupText, Row } from "reactstrap"
 
 
 // ************* MODAL FORM ****************
-const AddCandidatesForm = ({ onChangeHandler, countryData, labels, classRow, isAddOrEdit, onTranslateClickHandler, show }) => {
+const AddCandidatesForm = ({ onSelectHandler, onChangeHandler, countryData, labels, classRow, isAddOrEdit, onTranslateClickHandler, show }) => {
   const { i18n, t } = useTranslation();
   const [formData, setFormData] = useState({
     ScreenID: null,
@@ -23,7 +23,7 @@ const AddCandidatesForm = ({ onChangeHandler, countryData, labels, classRow, isA
 
   const { Elections, Circles } = useSelector((state) => ({
     Elections: state.Elections.elections,
-    Circles: state.Circles.circles,
+    Circles: state.Circles.circlesByElectionID,
   }));
 
 
@@ -108,7 +108,7 @@ const AddCandidatesForm = ({ onChangeHandler, countryData, labels, classRow, isA
                 <Col key={items?.id} sm={6}>
                   <div className="mb-3">
                     <label htmlFor="country" className="col-form-label">{items?.labelName}</label>
-                    <select className="form-control" id={items.labelName} defaultValue={classRow[items?.value]} name={items?.name} onChange={(e) => onChangeHandler(e)}>
+                    <select className="form-control" id={items.labelName} defaultValue={classRow[items?.value]} name={items?.name} onChange={(e) => onSelectHandler(e)}>
                       <option value="">Choose election</option>
                       {
                         Elections.map((item) => {
