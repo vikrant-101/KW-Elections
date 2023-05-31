@@ -107,8 +107,8 @@ const AddCandidatesForm = ({ onSelectHandler, onChangeHandler, countryData, labe
               return (
                 <Col key={items?.id} sm={6}>
                   <div className="mb-3">
-                    <label htmlFor="country" className="col-form-label">{items?.labelName}</label>
-                    <select className="form-control" id={items.labelName} defaultValue={classRow[items?.value]} name={items?.name} onChange={(e) => onSelectHandler(e)}>
+                    <label htmlFor="elections" className="col-form-label">{items?.labelName}</label>
+                    <select className="form-control" id={items.labelName} defaultValue={classRow[items?.value]} disabled={isAddOrEdit === 'isEdit'? true: false} name={items?.name} onChange={(e) => onSelectHandler(e)}>
                       <option value="">Choose election</option>
                       {
                         Elections.map((item) => {
@@ -125,8 +125,10 @@ const AddCandidatesForm = ({ onSelectHandler, onChangeHandler, countryData, labe
               return (
                 <Col key={items?.id} sm={6}>
                   <div className="mb-3">
-                    <label htmlFor="country" className="col-form-label">{items?.labelName}</label>
-                    <select className="form-control" id={items.labelName} defaultValue={classRow[items?.value]} name={items?.name} onChange={(e) => onChangeHandler(e)}>
+                    <label htmlFor="circles" className="col-form-label">{items?.labelName}</label>
+                    {
+                      isAddOrEdit === 'isAdd'?
+                      (  <select className="form-control" id={items.labelName} defaultValue={classRow[items?.value]} name={items?.name}  onChange={(e) => onChangeHandler(e)}>
                       <option value="">Choose circle</option>
                       {
                         Circles.map((item) => {
@@ -135,7 +137,9 @@ const AddCandidatesForm = ({ onSelectHandler, onChangeHandler, countryData, labe
                           )
                         })
                       }
-                    </select>
+                    </select>): (<Input type="text" defaultValue={i18n?.language === 'en' ? classRow['CircleNameEnglish']: classRow['CircleNameArabic'] } disabled={isAddOrEdit === 'isEdit'? true: false} />)
+                    }
+                  
                   </div>
                 </Col>)
             default:
