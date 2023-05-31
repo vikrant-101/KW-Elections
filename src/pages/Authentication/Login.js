@@ -105,6 +105,7 @@ const Login = (props) => {
                     FullNameEnglish: Phone[0].FullNameEnglish,
                     FullNameArabic: Phone[0].FullNameArabic,
                     idToken: res._tokenResponse.idToken,
+                    LinkID: Phone[0].LinkID ? Phone[0]?.LinkID : null
                 }
 
                 if (res.user) {
@@ -138,7 +139,7 @@ const Login = (props) => {
     useEffect(() => {
         const defaultElection = Elections.find((election) => election.Default === true);
         if (defaultElection) {
-            setElection({_id: defaultElection._id,ElectionNameArabic: defaultElection.ElectionNameArabic});
+            setElection({ _id: defaultElection._id, ElectionNameArabic: defaultElection.ElectionNameArabic });
         }
     }, [Elections])
 
@@ -201,10 +202,10 @@ const Login = (props) => {
                                                 <div className="mb-3">
                                                     <Label htmlFor="election" className="form-label">{t('Election')}</Label>
                                                     <select className='form-control'>
-                                                        
+
                                                         {
                                                             Elections.map((election) => {
-                                                            <option defaultValue={election?.Default && election?._id} >{election?.Default && election?.ElectionNameArabic}</option>
+                                                                <option defaultValue={election?.Default && election?._id} >{election?.Default && election?.ElectionNameArabic}</option>
                                                                 return (
                                                                     <option key={election._id} value={election._id}>{election.ElectionNameArabic}</option>
                                                                 )

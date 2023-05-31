@@ -28,7 +28,7 @@ const BoothUsers = () => {
 
 
 	const getBoothUsersClicks = (value) => {
-		dispatch(addBoothUsers({ "CandidateID": JSON.parse(sessionStorage.getItem("auth"))["id"] }))
+		dispatch(addBoothUsers({ "CandidateID": JSON.parse(sessionStorage.getItem("auth"))["id"], "LinkID":JSON.parse(sessionStorage.getItem("auth"))["LinkID"]  }))
 	}
 
 	const { BoothUsers, isLoading, columnNames } = useSelector((state) => ({

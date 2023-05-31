@@ -90,7 +90,7 @@ const AddUsers = () => {
       usersObj["CandidateID"] = JSON.parse(sessionStorage.getItem("auth"))["id"];
       usersObj["CreatedBy"] = auth?.CandidateID;
     }
-    
+    usersObj['LinkID'] = JSON.parse(sessionStorage.getItem("auth"))["LinkID"];
     usersObj["CreatedDate"] = currentDate.toISOString().slice(0, 10);
     usersObj["ModifiedDate"] = currentDate.toISOString().slice(0, 10);
     isAddOrEdit === "isAdd"
