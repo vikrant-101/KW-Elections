@@ -10,6 +10,8 @@ import { filteredColumns } from "../../../helpers/Filter/FilterColumns";
 
 
 export const columns = (columnNames, i18n, t, onActiveOrDeactiveChange, onViewSessionsHistory) => {
+  const user = JSON.parse(sessionStorage.getItem('auth'));
+
   return filteredColumns(columnNames, i18n)?.map((column) => {
     let col;
     switch (column?.FieldName) {
@@ -62,12 +64,13 @@ export const columns = (columnNames, i18n, t, onActiveOrDeactiveChange, onViewSe
             name: <span className='font-weight-bold fs-13'>{i18n.language === 'ar' ? column?.ValueAr : column?.ValueEn}</span>,
             selector: row => {
                 let ReferByList = row[column?.Title].reduce((ReferBy, value, index) => {
-                  if (value.ReferName  !== null) {
+                  if (value.ReferName  !== null && value.LinkID === user.LinkID) {
                     if (index === 0) {
                       return ReferBy + value.ReferName;
                     }
-                    return ReferBy + ", " + value.ReferName;
-                  }
+                    return ReferBy + " " + value.ReferName;
+                  } 
+                  return ReferBy;
                 }, "")
                 // return  row[column?.Title][0].ReferID
                 return ReferByList;
