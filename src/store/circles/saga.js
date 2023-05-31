@@ -15,6 +15,7 @@ import {
 	UPDATE_CIRCLES,
 	DELETE_CIRCLES,
 	ON_ACTIVATE_DEACTIVATE_CIRCLES,
+	GET_CIRCLES_BY_ELECTIONID
 } from "./actionTypes";
 
 import {
@@ -29,7 +30,9 @@ import {
 	getCirclesTableColumnNamesFail,
 	getCirclesTableColumnNamesSuccess,
 	updateCirclesFail,
-	updateCirclesSuccess
+	updateCirclesSuccess,
+	getCirclesByElectionIDFail,
+	getCirclesByElectionIDSuccess
 } from "./actions";
 
 import {
@@ -39,7 +42,8 @@ import {
 	deleteCircles,
 	getCircles,
 	getCirclesTableColumnNames,
-	updateCircles
+	updateCircles,
+	getCirclesByElectionID
 } from "../../helpers/fakebackend_helper";
 
 
@@ -50,6 +54,16 @@ function* fetchCircles() {
 		yield put(getCirclesSuccess(response.Data));
 	} catch (error) {
 		yield put(getCirclesFail(error));
+	}
+}
+
+// Fetch Circles By ElectionID
+function* fetchCirclesByElectionID({payload: ElectionID}) {
+	try {
+		const response = yield call(getCirclesByElectionID, ElectionID);
+		yield put(getCirclesByElectionIDSuccess(response.Data));
+	} catch (error) {
+		yield put(getCirclesByElectionIDFail(error));
 	}
 }
 
@@ -113,6 +127,7 @@ export function* watchCircles() {
 	yield takeEvery(UPDATE_CIRCLES, onUpdateCircles);
 	yield takeEvery(DELETE_CIRCLES, onDeleteCircles);
 	yield throttle(2000, ON_ACTIVATE_DEACTIVATE_CIRCLES, onActivateDeactivate);
+	yield takeEvery(GET_CIRCLES_BY_ELECTIONID, fetchCirclesByElectionID);
 
 }
 

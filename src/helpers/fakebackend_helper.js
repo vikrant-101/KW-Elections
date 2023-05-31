@@ -458,6 +458,9 @@ export const deleteCircles = (circles) =>
   api.create(url.DELETE_CIRCLES, circles);
 export const activateDeactivateCircles = (circles) =>
   api.update(url.ACTIVATE_DEACTIVATE_CIRCLES, circles);
+  export const getCirclesByElectionID = (ElectionID) =>
+  api.create(url.GET_CIRCLES_BY_ELECTIONID, ElectionID);
+
 
 //Refer Voters
 export const getReferVoters = (refervoters) => api.create(url.GET_REFER_VOTERS, refervoters);

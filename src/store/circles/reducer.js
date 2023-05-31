@@ -11,13 +11,17 @@ import {
 	ON_ACTIVATE_DEACTIVATE_CIRCLES_FAIL,
 	ON_ACTIVATE_DEACTIVATE_CIRCLES_SUCCESS,
 	UPDATE_CIRCLES_FAIL,
-	UPDATE_CIRCLES_SUCCESS
+	UPDATE_CIRCLES_SUCCESS,
+	GET_CIRCLES_BY_ELECTIONID,
+	GET_CIRCLES_BY_ELECTIONID_SUCCESS,
+	GET_CIRCLES_BY_ELECTIONID_FAIL
 } from "./actionTypes";
 import { toast } from 'react-toastify';
 
 
 const INIT_STATE = {
 	circles: [],
+	circlesByElectionID: [],
 	columnNames: [],
 	isLoading: false,
 	error: {},
@@ -40,6 +44,25 @@ const circles = (state = INIT_STATE, action) => {
 			};
 
 		case GET_CIRCLES_FAIL:
+			return {
+				...state,
+				error: action.payload,
+			};
+
+		case GET_CIRCLES_BY_ELECTIONID:
+			return {
+				...state,
+				isLoading: true
+			};
+
+		case GET_CIRCLES_BY_ELECTIONID_SUCCESS:
+			return {
+				...state,
+				circlesByElectionID: action.payload,
+				isLoading: false
+			};
+
+		case GET_CIRCLES_BY_ELECTIONID_FAIL:
 			return {
 				...state,
 				error: action.payload,

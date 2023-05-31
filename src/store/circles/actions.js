@@ -16,7 +16,10 @@ import {
   ON_ACTIVATE_DEACTIVATE_CIRCLES_SUCCESS,
   UPDATE_CIRCLES,
   UPDATE_CIRCLES_FAIL,
-  UPDATE_CIRCLES_SUCCESS
+  UPDATE_CIRCLES_SUCCESS,
+  GET_CIRCLES_BY_ELECTIONID,
+  GET_CIRCLES_BY_ELECTIONID_FAIL,
+  GET_CIRCLES_BY_ELECTIONID_SUCCESS
 } from "./actionTypes"
 
 
@@ -31,6 +34,21 @@ export const getCirclesSuccess = circles => ({
 
 export const getCirclesFail = error => ({
   type: GET_CIRCLES_FAIL,
+  payload: error,
+});
+
+export const getCirclesByElectionID = (electionID) => ({
+  type: GET_CIRCLES_BY_ELECTIONID,
+  payload: electionID
+});
+
+export const getCirclesByElectionIDSuccess = circles => ({
+  type: GET_CIRCLES_BY_ELECTIONID_SUCCESS,
+  payload: circles,
+});
+
+export const getCirclesByElectionIDFail = error => ({
+  type: GET_CIRCLES_BY_ELECTIONID_FAIL,
   payload: error,
 });
 

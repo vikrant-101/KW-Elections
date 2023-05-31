@@ -252,6 +252,7 @@ export const DELETE_CIRCLES= '/DeleteCircles';
 export const GET_CIRCLES = '/GetCircles';
 export const GET_CIRCLES_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_CIRCLES = '/ActivateCircles'
+export const GET_CIRCLES_BY_ELECTIONID = '/GetCirclesByElectionID';
 
 // REFER_VOTERS  
 export const POST_REFER_VOTERS = '/SaveReferVoterTest';
