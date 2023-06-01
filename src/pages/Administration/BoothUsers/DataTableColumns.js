@@ -18,7 +18,7 @@ export const columns = (columnNames, i18n , onMobileNumberBlurHandler, onFullNam
 						return <div className="form" >
 							<input type="number" 
 							placeholder="Enter Number"
-							onBlur={(e)=>{onMobileNumberBlurHandler(e)}}
+							onKeyDown={(e)=>{onMobileNumberBlurHandler(e)}}
 							/>
 						</div>
 
@@ -30,11 +30,6 @@ export const columns = (columnNames, i18n , onMobileNumberBlurHandler, onFullNam
 					name: <span className='font-weight-bold fs-13'>{i18n.language === 'ar' ? column?.ValueAr : column?.ValueEn}</span>,
 					selector: row => {
 						return ['CreatedDate', 'ModifiedDate'].includes(column?.Title) ? new Date(row[column?.Title]).toDateString() : column?.Title === 'MobileNumber'?(<div className="form" >
-						{/* <Input type="text" 
-						placeholder={t('Enter Mobile Number')}
-						defaultValue={row.MobileNumber}
-						onBlur={(e)=>{onMobileNumberBlurHandler(e, row)}}
-						/> */}
 						<InputGroup>
 							<InputGroupText>+965</InputGroupText>
 							<Input
@@ -42,7 +37,7 @@ export const columns = (columnNames, i18n , onMobileNumberBlurHandler, onFullNam
 								defaultValue={row.MobileNumber.replace('+965', '')}
 								type="number"
 								maxLength={8} 
-								onBlur={(e) => onMobileNumberBlurHandler(e, row)}
+								onKeyDown={(e) => onMobileNumberBlurHandler(e, row)}
 								onInput={(e) => {
 									e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 8); // Limit the input to 8 characters
 								}}
@@ -53,7 +48,7 @@ export const columns = (columnNames, i18n , onMobileNumberBlurHandler, onFullNam
 						<Input type="text" 
 						placeholder={t('Enter Full Name')}
 						defaultValue={row.FullNameEnglish}
-						onBlur={(e)=>{onFullNameBlurHandler(e,row)}}
+						onKeyDown={(e)=>{onFullNameBlurHandler(e,row)}}
 						/>
 					</div>): row[column?.Title]
 					},

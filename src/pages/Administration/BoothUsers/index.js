@@ -42,11 +42,17 @@ const BoothUsers = () => {
 	}
 
 	const onMobileNumberBlurHandler = (e, col) => {
-		dispatch(updateBoothUsers({ "_id": col._id, "MobileNumber": "+965" + e.target.value }))
+		console.log(e.key, 'EVENT KEY')
+		if (e.key===  'Tab') {
+			dispatch(updateBoothUsers({ "_id": col._id, "MobileNumber": "+965" + e.target.value }))
+    }
 	}
 
 	const onFullNameBlurHandler = (e, col) => {
-		dispatch(updateBoothUsers({ "_id": col._id, "FullNameEnglish": e.target.value, "FullNameArabic": e.target.value }))
+		console.log('full Name')
+		if (e.key === 'Tab') {
+			dispatch(updateBoothUsers({ "_id": col._id, "FullNameEnglish": e.target.value, "FullNameArabic": e.target.value }))
+		}
 	}
 
 	useEffect(() => {
