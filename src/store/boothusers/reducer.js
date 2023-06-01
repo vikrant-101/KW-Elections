@@ -79,7 +79,6 @@ const boothuser = (state = INIT_STATE, action) => {
       break;
 
     case UPDATE_BOOTHUSERS_SUCCESS:
-      console.log(action.payload)
       state = {
         ...state,
         boothuser: state.boothuser.map((boothuser) =>
