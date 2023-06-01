@@ -87,8 +87,8 @@ const AddUsers = () => {
       usersObj["CandidateID"] = JSON.parse(sessionStorage.getItem("auth"))["id"];
       usersObj["CreatedBy"] = auth.id;
     } else {
-      usersObj["CandidateID"] = JSON.parse(sessionStorage.getItem("auth"))["id"];
-      usersObj["CreatedBy"] = auth?.CandidateID;
+      usersObj["CandidateID"] = auth?.CandidateID;
+      usersObj["CreatedBy"] = auth?.id;
     }
     usersObj['LinkID'] = JSON.parse(sessionStorage.getItem("auth"))["LinkID"];
     usersObj["CreatedDate"] = currentDate.toISOString().slice(0, 10);
