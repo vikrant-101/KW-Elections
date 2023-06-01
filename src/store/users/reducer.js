@@ -58,11 +58,16 @@ const users = (state = INIT_STATE, action) => {
 			};
 
 		case ADD_USERS_SUCCESS:
-			state = {
-				...state,
-				users: [action.payload.Data[0], ...state.users],
-			};
-			toast.success(action.payload.Message);
+			if(action.payload.Code === 0) {
+				toast.error(action.payload.Message)
+			} else {
+				state = {
+					...state,
+					users: [action.payload.Data[0], ...state.users],
+				};
+				toast.success(action.payload.Message);
+			}
+			
 			break;
 
 		case ADD_USERS_FAIL:
