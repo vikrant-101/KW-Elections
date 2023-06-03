@@ -384,3 +384,5 @@ export const GET_ALLREFERVOTERSLIST_TABLE_COLUMN_NAMES = '/GetHeaders';
 // Dashboard
 export const GET_COUNT = "/GetTotalCount";
 export const GET_SECOND_COUNT = "/GetCount";
+export const GET_AGE_COUNT = "/CalculateAgeGroups";
+export const GET_VOTERS_STATS = "/GetChartReports"

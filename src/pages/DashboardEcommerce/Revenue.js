@@ -5,44 +5,46 @@ import CountUp from "react-countup";
 import { useSelector, useDispatch } from "react-redux";
 import { getRevenueChartsData } from "../../store/dashboardEcommerce/action";
 import { useTranslation } from "react-i18next";
+import { getVotersStatistics } from "../../store/actions";
 
 const Revenue = () => {
   const dispatch = useDispatch();
   const {i18n, t} = useTranslation();
+  const auth = JSON.parse(sessionStorage.getItem('auth'))
 
   const [chartData, setchartData] = useState([]);
 
   const { revenueData } = useSelector(state => ({
-    revenueData: state.DashboardEcommerce.revenueData
+    revenueData: state.Dashboard.votersStats
   }));
 
   useEffect(() => {
     setchartData(revenueData);
   }, [revenueData]);
 
-  const onChangeChartPeriod = pType => {
-    dispatch(getRevenueChartsData(pType));
-  };
+  // const onChangeChartPeriod = pType => {
+  //   dispatch(getRevenueChartsData(pType));
+  // };
 
   useEffect(() => {
-    dispatch(getRevenueChartsData("all"));
+    dispatch(getVotersStatistics({userID: auth?.id}));
   }, [dispatch]);
   return (
     <React.Fragment>
       <Card>
         <CardHeader className="border-0 align-items-center d-flex">
           <h4 className="card-title mb-0 flex-grow-1">{t('Voters Statistics')}</h4>
-          <div className="d-flex gap-1">
+          {/* <div className="d-flex gap-1">
             <button type="button" className="btn btn-soft-dark btn-sm" onClick={() => { onChangeChartPeriod("all"); }}>
               {t('Male')}
             </button>
             <button type="button" className="btn btn-soft-dark btn-sm" onClick={() => { onChangeChartPeriod("month"); }}>
               {t('Female')}
             </button>
-          </div>
+          </div> */}
         </CardHeader>
 
-        <CardHeader className="p-0 border-0 bg-soft-light">
+        {/* <CardHeader className="p-0 border-0 bg-soft-light">
           <Row className="g-0 text-center">
             <Col xs={6} sm={3}>
               <div className="p-3 border border-dashed border-start-0">
@@ -90,7 +92,7 @@ const Revenue = () => {
               </div>
             </Col>
           </Row>
-        </CardHeader>
+        </CardHeader> */}
 
         <CardBody className="p-0 pb-2">
           <div className="w-100">

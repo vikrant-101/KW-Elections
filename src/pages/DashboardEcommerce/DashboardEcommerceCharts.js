@@ -1,12 +1,89 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from "react-redux";
+import { Spinner } from "reactstrap";
 
 import getChartColorsArray from "../../Components/Common/ChartsDynamicColor";
 
-const RevenueCharts = ({dataColors, series}) => {
-  const linechartcustomerColors = getChartColorsArray(dataColors)
-  
- 
+const RevenueCharts = ({ dataColors }) => {
+  const linechartcustomerColors = getChartColorsArray(dataColors);
+  const [chartData, setchartData] = useState([]);
+  const { revenueData } = useSelector(state => ({
+    revenueData: state.Dashboard.votersStats
+  }));
+
+  useEffect(() => {
+    setchartData(revenueData);
+    console.log(revenueData.series, 'chartData.series')
+  }, [revenueData]);
+
+//   "series": [
+//     {
+//         "name": "Total Voters",
+//         "type": "area",
+//         "data": [
+//             6015,
+//             17470,
+//             6355,
+//             5425,
+//             20045,
+//             4865,
+//             1086,
+//             286,
+//             17238,
+//             15575,
+//             113,
+//             701,
+//             510,
+//             4094,
+//             1
+//         ]
+//     },
+//     {
+//         "name": "Total Voters Voted",
+//         "type": "bar",
+//         "data": [
+//             0,
+//             0,
+//             1,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0
+//         ]
+//     },
+//     {
+//         "name": "Total Referred Voters",
+//         "type": "line",
+//         "data": [
+//             0,
+//             0,
+//             1,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0,
+//             0
+//         ]
+//     }
+// ]
+
+
   var options = {
     chart: {
       height: 370,
@@ -31,7 +108,7 @@ const RevenueCharts = ({dataColors, series}) => {
       },
     },
     xaxis: {
-      categories: [
+     categories: [
         "Jan",
         "Feb",
         "Mar",
@@ -104,42 +181,46 @@ const RevenueCharts = ({dataColors, series}) => {
             return y;
           },
         },
-        {
-          formatter: function (y) {
-            if (typeof y !== "undefined") {
-              return "$" + y.toFixed(2) + "k";
-            }
-            return y;
-          },
-        },
-        {
-          formatter: function (y) {
-            if (typeof y !== "undefined") {
-              return y.toFixed(0) + " Sales";
-            }
-            return y;
-          },
-        },
+        // {
+        //   formatter: function (y) {
+        //     if (typeof y !== "undefined") {
+        //       return "$" + y.toFixed(2) + "k";
+        //     }
+        //     return y;
+        //   },
+        // },
+        // {
+        //   formatter: function (y) {
+        //     if (typeof y !== "undefined") {
+        //       return y.toFixed(0) + " Sales";
+        //     }
+        //     return y;
+        //   },
+        // },
       ],
     },
   };
   return (
     <React.Fragment>
-      <ReactApexChart
-        dir="ltr"
-        options={options}
-        series={series}
-        type="line"
-        height="370"
-        className="apex-charts"
-      />
+      {revenueData.series && revenueData.series.length > 0 ? (
+        <ReactApexChart
+          dir="ltr"
+          options={options}
+          series={revenueData.series}
+          type="line"
+          height="450"
+          className="apex-charts"
+        />
+      ) : (
+        <div className="text-center"><Spinner/><br/>...Please Wait</div>
+      )}
     </React.Fragment>
   );
 };
 
-const StoreVisitsCharts = ({dataColors}) => {
+const StoreVisitsCharts = ({ dataColors }) => {
   const chartDonutBasicColors = getChartColorsArray(dataColors)
-  
+
   const series = [44, 55, 41, 17, 15];
   var options = {
     labels: ["Direct", "Social", "Email", "Other", "Referrals"],

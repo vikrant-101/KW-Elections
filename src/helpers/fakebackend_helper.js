@@ -601,3 +601,5 @@ export const getAllReferVotersListTableColumnNames = ({ moduleName: module }) =>
 //Dashboard
 export const getTotalCount = (votersCount)=> api.create(url.GET_COUNT, votersCount );
 export const getCount = (count)=> api.create(url.GET_SECOND_COUNT, count);
+export const getAgeCount = (count)=> api.create(url.GET_AGE_COUNT, count);
+export const getVotersStatistics = (votersStats)=> api.create(url.GET_VOTERS_STATS, votersStats);

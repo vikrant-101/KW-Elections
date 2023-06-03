@@ -36,6 +36,7 @@ const Login = (props) => {
     const [showDelete, setShowDelete] = useState(false);
     const [otpErrorMsg, setOTPErrorMsg] = useState('');
     const [election, setElection] = useState({})
+    const [electionID, setElectionID] = useState({})
 
     useEffect(() => {
         if (!window.recaptchaVerifier) {
@@ -67,12 +68,14 @@ const Login = (props) => {
         setLoading(true);
         let payload = {
             MobileNumber: '+' + ph,
+            ElectionID: electionID?.ElectionID
         };
         dispatch(checkPhoneNumber(payload));
     }
 
     useEffect(() => {
         if (Phone[0] !== null && Phone.length !== 0 && Phone[0].IsActive === true && Phone[0].IsDelete === false) {
+            console.log('IF CONDITION')
             const appVerifier = window.recaptchaVerifier;
             const formatPh = '+' + ph;
             signInWithPhoneNumber(auth, formatPh, appVerifier)
@@ -85,6 +88,7 @@ const Login = (props) => {
                     setLoading(false);
                 });
         } else {
+            console.log('ELSE CONDITION')
             setLoading(false)
         }
     }, [Phone]);
@@ -140,8 +144,10 @@ const Login = (props) => {
         const defaultElection = Elections.find((election) => election.Default === true);
         if (defaultElection) {
             setElection({ _id: defaultElection._id, ElectionNameArabic: defaultElection.ElectionNameArabic });
+            setElectionID({ ElectionID: defaultElection._id })
         }
-    }, [Elections])
+    }, [Elections]);
+
 
     const changeLanguageAction = lang => {
         //set language as i18n
@@ -156,6 +162,14 @@ const Login = (props) => {
     const toggleLanguageDropdown = () => {
         setIsLanguageDropdown(!isLanguageDropdown);
     };
+
+    const getElectionID = (e) => {
+        console.log('e: ', e.target.value);
+        setElectionID((preValue) => ({
+            ...preValue,
+            [e.target.name]: e.target.value
+        }))
+    }
 
     document.title = t('SignIn | KW-Elections');
 
@@ -201,7 +215,7 @@ const Login = (props) => {
 
                                                 <div className="mb-3">
                                                     <Label htmlFor="election" className="form-label">{t('Election')}</Label>
-                                                    <select className='form-control'>
+                                                    <select className='form-control' name="ElectionID" onChange={(e) => getElectionID(e)}>
 
                                                         {
                                                             Elections.map((election) => {

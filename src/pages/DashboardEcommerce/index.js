@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
 import Widget from "./Widgets";
 import BestSellingProducts from "./BestSellingProducts";
 import RecentActivity from "./RecentActivity";
@@ -11,10 +11,12 @@ import StoreVisits from "./StoreVisits";
 import TopSellers from "./TopSellers";
 import { useTranslation } from "react-i18next";
 import SecondWidget from "./SecondWidget";
+import { Markers, Negative } from "../Charts/ApexCharts/BarCharts/BarCharts";
+import AgeGroupChart from "./AgeGroupChart";
 
 const DashboardEcommerce = () => {
-  const {i18n, t} = useTranslation();
-  document.title= t('Dashboard | KW-Elections Admin & Dashboard');
+  const { i18n, t } = useTranslation();
+  document.title = t('Dashboard | KW-Elections Admin & Dashboard');
   return (
     <React.Fragment>
       <div className="page-content">
@@ -30,7 +32,8 @@ const DashboardEcommerce = () => {
                   <Col xl={8}>
                     <Revenue />
                   </Col>
-                  <StoreVisits />
+                  {/* <StoreVisits /> */}
+                  <AgeGroupChart/>
                   {/* <SalesByLocations /> */}
                 </Row>
                 <Row>
