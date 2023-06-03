@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactApexChart from "react-apexcharts";
+import { useSelector } from 'react-redux';
+import { Spinner } from 'reactstrap';
 import user from "../../../../assets/images/small/img-4.jpg";
 
 import getChartColorsArray from "../../../../Components/Common/ChartsDynamicColor";
@@ -311,23 +313,31 @@ const Stacked2 = ({ dataColors }) => {
 
 const Negative = ({ dataColors }) => {
     var chartNegativeBarColors = getChartColorsArray(dataColors);
-    const series = [
-        {
-            name: "Males",
-            data: [
-                0.4, 0.65, 0.76, 0.88, 1.5, 2.1, 2.9, 3.8, 3.9, 4.2, 4, 4.3, 4.1, 4.2,
-                4.5, 3.9, 3.5, 3,
-            ],
-        },
-        {
-            name: "Females",
-            data: [
-                -0.8, -1.05, -1.06, -1.18, -1.4, -2.2, -2.85, -3.7, -3.96, -4.22, -4.3,
-                -4.4, -4.1, -4, -4.1, -3.4, -3.1, -2.8,
-            ],
-        },
-    ];
+    const [series, setSeries] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const { ageCount } = useSelector((state) => ({
+        ageCount: state.Dashboard.ageCount,
+    }));
 
+    
+    useEffect(() => {
+        setCategories(ageCount.categories);
+      
+        if (ageCount.series) {
+          const updatedSeries = ageCount.series.map((dataPoint) => {
+            if (dataPoint.name === "Total Voters Count") {
+              return {
+                ...dataPoint,
+                data: dataPoint.data.map((value) => -value),
+              };
+            }
+            return dataPoint;
+          });
+      
+          setSeries(updatedSeries);
+        }
+      }, [ageCount]);
+  
     const options = {
         chart: {
             type: "bar",
@@ -378,43 +388,24 @@ const Negative = ({ dataColors }) => {
             },
             y: {
                 formatter: function (val) {
-                    return Math.abs(val) + "%";
+                    return Math.abs(val)
                 },
             },
         },
         title: {
-            text: "Mauritius population pyramid 2011",
+            text: "Age Group Wise Statistics",
             style: {
                 fontWeight: 600,
             },
         },
         xaxis: {
-            categories: [
-                "85+",
-                "80-84",
-                "75-79",
-                "70-74",
-                "65-69",
-                "60-64",
-                "55-59",
-                "50-54",
-                "45-49",
-                "40-44",
-                "35-39",
-                "30-34",
-                "25-29",
-                "20-24",
-                "15-19",
-                "10-14",
-                "5-9",
-                "0-4",
-            ],
+            categories: categories,
             title: {
-                text: "Percent",
+                text: "Count",
             },
             labels: {
                 formatter: function (val) {
-                    return Math.abs(Math.round(val)) + "%";
+                    return Math.abs(Math.round(val));
                 },
             },
         },
@@ -422,16 +413,20 @@ const Negative = ({ dataColors }) => {
 
     return (
         <React.Fragment>
+          {series && series.length > 0 ? (
             <ReactApexChart
-                dir="ltr"
-                className="apex-charts"
-                options={options}
-                series={series}
-                type="bar"
-                height={350}
+              dir="ltr"
+              className="apex-charts"
+              options={options}
+              series={series}
+              type="bar"
+              height={430}
             />
+          ) : (
+            <div className='text-center'><Spinner/><br/>...Please wait</div>
+          )}
         </React.Fragment>
-    );
+      );
 };
 
 const Markers = ({ dataColors }) => {
