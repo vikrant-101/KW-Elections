@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { Button, Col, Container, Input, Row, Spinner } from "reactstrap";
+import React, { memo, useEffect, useState} from "react";
+import { Button, Col, Container, Input, Row, Spinner, Label } from "reactstrap";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import DeleteModal from "../../../Components/Common/DeleteModal";
 import AddModal from "../../../Components/Common/Modal/AddModal";
@@ -7,9 +7,10 @@ import SearchTextBox from "../../../Components/Common/SearchTextBox";
 import Toaster from "../../../Components/Common/Toaster";
 import { useTranslation } from "react-i18next";
 import { columns } from "./DataTableColumns";
-import { BasicTable } from "../../Tables/DataTables/datatableCom";
+// import { BasicTable } from "../../Tables/DataTables/datatableCom";
+import { BasicTable } from "./BasicTables";
 import { useDispatch, useSelector } from "react-redux";
-import { getVotersTableColumnNames, getVoters, getPrintDetail} from "../../../store/voters/actions";
+import { getVotersTableColumnNames, getVoters, getPrintDetail, getAreaName, getFamilyName, getNextVoters } from "../../../store/voters/actions";
 
 
 import {CSVLink} from 'react-csv'
@@ -22,30 +23,102 @@ const AllVotersList = () => {
   document.title = t('KW-Elections | All Voters');
   const dispatch = useDispatch();
 
+  const user = JSON.parse(sessionStorage.getItem('auth'));
+  
+  const [searchQuery, setSearchQuery] = useState({
+    userID: user.id,
+    FullName: "",
+    FamilyName: "",
+    AreaID: "",
+    SexCode: "",
+    VotersStatus: ""
+  })
 
- const { Voters, isLoading, columnNames, printDetail } = useSelector((state) => {
+  const [data, setData] = useState([])
+  const [familyNameList, setFamilyNameList] = useState([])
+  const [areaNameList, setAreaNameList] = useState([])
+
+  
+ const { Voters, isLoading, columnNames, areaName, familyName, printDetail, } = useSelector((state) => {
    return {
     Voters: state.Voters.voters,
    columnNames: state.Voters.columnNames,
+   areaName: state.Voters.areaName,
+   familyName: state.Voters.familyName,
    isLoading: state.Voters.isLoading,
    printDetail: state.Voters.printDetail[0]
   }});
 
- const [data, setData] = useState(Voters)
 
- useEffect(() => {
-  setData(Voters)
-}, [Voters]);
 
-let user = sessionStorage.getItem('auth')
-user = JSON.parse(user)
  
  useEffect(() => {
-    dispatch(getVoters({userID: user.id}))  
+    dispatch(getVoters(searchQuery))  
     dispatch(getVotersTableColumnNames())
-    dispatch(getPrintDetail({userID: user.id}))
+    dispatch(getAreaName({userID: user.id}))
+    dispatch(getFamilyName({userID: user.id}))
 }, [dispatch]);
 
+const handleChange = (e) => {
+  setSearchQuery((preValue) => ({
+    ...preValue,
+    [e.target.name]: e.target.value,
+  }));
+}
+
+const handleSearch = () => {
+  console.log('searchQuery: ', searchQuery);
+  dispatch(getVoters(searchQuery))
+}
+
+const handleClear = () => {
+  document.getElementById('fullName').value = ''
+  document.getElementById('familyName').value = ''
+  document.getElementById('areaName').value = ''
+  document.getElementById('gender').value = ''
+  document.getElementById('voterStatus').value = ''
+  dispatch(getVoters({
+    userID: user.id, 
+    FullName: "",  
+    FamilyName: "",  
+    AreaID: "",  
+    SexCode: "",  
+    VotersStatus: ""
+  }))
+  setSearchQuery({
+    userID: user.id,
+    FullName: "",
+    FamilyName: "",
+    AreaID: "",
+    SexCode: "",
+    VotersStatus: ""
+  })
+}
+
+const handleNext = (PageNo) => {
+  if (Math.floor(Voters.length/200) === (PageNo-1)) {
+    let nextVoters = JSON.parse(JSON.stringify(searchQuery))
+    nextVoters['PageNo'] = PageNo;
+    dispatch(getNextVoters(nextVoters));
+  }
+}
+
+// function handleNext (PageNo) {
+//   console.log('PageNo: ', PageNo);
+//   if (Math.floor(Voters.length/200) === (PageNo-1)) {
+//     console.log("inside if")
+//     let nextVoters = JSON.parse(JSON.stringify(searchQuery))
+//     nextVoters['PageNo:'] = PageNo
+//     console.log('nextVoters: ', nextVoters);
+//     dispatch(getNextVoters(nextVoters))
+//   }
+// }
+
+useEffect(() => {
+  setData(Voters);
+  setAreaNameList(areaName);
+  setFamilyNameList(familyName)
+}, [Voters, areaName, familyName])
 
 const printTable = (e, columns) => {
   e.preventDefault();
@@ -225,27 +298,83 @@ const exportToCsv = (data, columns) => {
 						</Col>
 					</Row>
 					<Row className='mb-3'>
-						<Col className="col-12 col-md-3 col-lg-4">
+						<Col className="col-12 col-md-2 col-lg-3">
             <div className="mb-3 cis-manage-demo-btn">
-              <Link to="#"  onClick={(e)=>{printTable(e,columns(columnNames, i18n, t))}} className="btn btn-success mr-15px" style={{margin:"5px"
+              {/* <Link to="#"  onClick={(e)=>{printTable(e,columns(columnNames, i18n, t))}} className="btn btn-success mr-15px" style={{margin:"5px"
               }}>
                 <i className="ri-printer-line align-bottom me-1"></i>
                 {t('Print')}
-              </Link>
+              </Link> */}
               {exportToCsv(data, columns(columnNames, i18n, t))}
             </div>
 						</Col>
-						<Col className="col-6 col-md-3 col-lg-2">
+						{/* <Col className="col-6 col-md-3 col-lg-2">
 						</Col>
 						<Col className="col-6 col-md-3 col-lg-2">
 						</Col>
 						<Col className="col-lg-1">
 							<label> &nbsp;</label> <br />
-						</Col>
-						<Col className="col-12 col-md-3 col-lg-3">
+						</Col> */}
+            {/* <Col className="col-md-3 col-6 mb-4"> */}
+            <Col>
+                <Label>{t('Full Name')}</Label>
+                {/* <SearchTextBox initialData={VotersManagement} setData={setData} id="alpha" /> */}
+                <Input type="text" className={i18n.language === 'ar' ? 'form-control float-start mw-400' : 'form-control float-end mw-400'} placeholder={t('Search') + '...'}
+                  id="fullName"
+                  onChange={(e) => handleChange(e)} />
+            </Col>
+            <Col>
+                <Label>{t('Family Name')}</Label>
+                <Input type="select" name="FamilyName" className="form-select" id="familyName" onChange={(e) => handleChange(e)} >
+                  <option value='' default>{t('Select')}</option>
+                  {
+                    <React.Fragment>
+                      {familyNameList?.map((item, key) => (<option value={item.FamilyName} key={item._id}>{item.FamilyName}</option>))}
+                    </React.Fragment>
+                  }
+                </Input>
+                {/* <DropDownTextBox initialData={dummyData} options={options} filter="voterAlphabet" setData={setData} /> */}
+              </Col>
+              <Col>
+                <Label>{t('Area Name')}</Label>
+                <Input type="select" name="AreaID" className="form-select" id="areaName" onChange={(e) => handleChange(e)} >
+                  <option value='' default>{t('Select')}</option>
+                  {
+                    <React.Fragment>
+                      {areaNameList?.map((item, key) => (<option value={item.ID} key={item._id}>{item.AreaName}</option>))}
+                    </React.Fragment>
+                  }
+                </Input>
+              </Col>
+              <Col>
+                <Label>{t('Gender')}</Label>
+                <Input type="select" name="SexCode" className="form-select" id="gender" onChange={(e) => handleChange(e)} >
+                  <option value='' default>{t('Select')}</option>
+                  <option value='1' default>{t('Male')}</option>
+                  <option value='2' default>{t('Female')}</option>
+                </Input>
+              </Col>
+              <Col>
+                <Label>{t('Voter Status')}</Label>
+                <Input type="select" name="VotersStatus" className="form-select" id="voterStatus" onChange={(e) => handleChange(e)} >
+                  <option value='' default>{t('Select')}</option>
+                  <option value={true} default>{t('Voted')}</option>
+                  <option value={false} default>{t('Not voted')}</option>
+                </Input>
+              </Col>
+						{/* <Col className="col-12 col-md-3 col-lg-3"> */}
+            {/* <Col>
 							<label> &nbsp;</label> <br />
 							<SearchTextBox initialData={Voters} setData={setData}  />
-						</Col>
+						</Col> */}
+            <Col>
+                <label> &nbsp;</label> <br />
+                <Button onClick={handleSearch} className="cis-width-120">{t('Search')} <i className="ri-search-2-line"></i></Button>
+            </Col>
+            <Col>
+                <label> &nbsp;</label> <br />
+                <Button onClick={handleClear} className="cis-width-120">{t('Clear')} <i className="ri-filter-off-line"></i></Button>
+            </Col>
 					</Row>
 					<Row>
 						<Col>
@@ -254,9 +383,17 @@ const exportToCsv = (data, columns) => {
 									height: '3rem',
 									width: '3rem',
 								}} className='me-2'> Loading... </Spinner>
-							</div> : <BasicTable data={data} columns={columns(columnNames, i18n, t)}/>}
+							</div> : <BasicTable data={data} columns={columns(columnNames, i18n, t)} handleNext={handleNext}/>}
 						</Col>
 					</Row>
+          {/* <Row>
+          <Col className="col-md-3 col-6 mb-4"></Col>
+          <Col className="col-md-3 col-6 mb-4"></Col>
+            <Col className="col-md-3 col-6 mb-4">
+              <label> &nbsp;</label> <br />
+              <Button onClick={() =>  handleNext()} className="cis-width-120">{t('Load More...')}</Button>
+            </Col>
+          </Row> */}
 				</Container>
 			</div>
 			<AddModal />
@@ -267,4 +404,4 @@ const exportToCsv = (data, columns) => {
   )
 }
 
-export default AllVotersList;
+export default memo(AllVotersList);

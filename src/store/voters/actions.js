@@ -22,13 +22,23 @@ import {
     ON_ACTIVATE_VOTERS_SUCCESS,
     UPDATE_VOTERS,
     UPDATE_VOTERS_FAIL,
-    UPDATE_VOTERS_SUCCESS
+    UPDATE_VOTERS_SUCCESS,
+    GET_AREANAME,
+    GET_AREANAME_FAIL,
+    GET_AREANAME_SUCCESS,
+    GET_FAMILYNAME,
+    GET_FAMILYNAME_FAIL,
+    GET_FAMILYNAME_SUCCESS,
+    GET_NEXT_VOTERS,
+    GET_NEXT_VOTERS_FAIL,
+    GET_NEXT_VOTERS_SUCCESS,
+    RESET_VOTERS
   } from "./actionTypes"
   
   
-  export const getVoters = (voters) => ({
+  export const getVoters = (searchQuery) => ({
     type: GET_VOTERS,
-    payload: voters
+    payload: searchQuery
   });
   
   export const getVotersSuccess = voters => {
@@ -146,6 +156,58 @@ import {
     type: ON_ACTIVATE_VOTERS_FAIL,
     payload: error
   });
+
+  export const getAreaName = (voters) => ({
+    type: GET_AREANAME,
+    payload: voters
+  });
   
+  export const getAreaNameSuccess = voters => {
+    return {
+    type: GET_AREANAME_SUCCESS,
+    payload: voters,
+  }};
+  
+  export const getAreaNameFail = error => ({
+    type: GET_AREANAME_FAIL,
+    payload: error,
+  });
+
+  export const getFamilyName = (voters) => ({
+    type: GET_FAMILYNAME,
+    payload: voters
+  });
+  
+  export const getFamilyNameSuccess = voters => {
+    return {
+    type: GET_FAMILYNAME_SUCCESS,
+    payload: voters,
+  }};
+  
+  export const getFamilyNameFail = error => ({
+    type: GET_FAMILYNAME_FAIL,
+    payload: error,
+  });
+
+  export const resetVoters = () => ({
+    type: RESET_VOTERS
+  });
+  
+
+  export const getNextVoters = (nextVoters) => ({
+    type:GET_NEXT_VOTERS,
+    payload: nextVoters
+  });
+  
+  export const getNextVotersSuccess = voters => {
+    return {
+    type: GET_NEXT_VOTERS_SUCCESS,
+    payload: voters,
+  }};
+  
+  export const getNextVotersFail = error => ({
+    type: GET_NEXT_VOTERS_FAIL,
+    payload: error,
+  });
   
   

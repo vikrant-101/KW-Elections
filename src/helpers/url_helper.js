@@ -300,6 +300,9 @@ export const GET_VOTERS = '/GetVoters';
 export const GET_VOTERS_TABLE_COLUMN_NAMES = '/GetHeaders';
 export const ACTIVATE_DEACTIVATE_VOTERS = '/ActivateDeactivateVoters';
 export const ACTIVATE_VOTERS = '/ActivateVoters';
+export const GET_AREANAME = '/GetAreaName';
+export const GET_FAMILYNAME = '/GetFamilyName';
+export const GET_NEXT_VOTERS = '/GetNextVoters';
 
 // Booth Voters
 export const POST_BOOTHVOTERS = '/AddBoothVoters';
