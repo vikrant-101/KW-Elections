@@ -17,73 +17,6 @@ const RevenueCharts = ({ dataColors }) => {
     console.log(revenueData.series, 'chartData.series')
   }, [revenueData]);
 
-//   "series": [
-//     {
-//         "name": "Total Voters",
-//         "type": "area",
-//         "data": [
-//             6015,
-//             17470,
-//             6355,
-//             5425,
-//             20045,
-//             4865,
-//             1086,
-//             286,
-//             17238,
-//             15575,
-//             113,
-//             701,
-//             510,
-//             4094,
-//             1
-//         ]
-//     },
-//     {
-//         "name": "Total Voters Voted",
-//         "type": "bar",
-//         "data": [
-//             0,
-//             0,
-//             1,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0
-//         ]
-//     },
-//     {
-//         "name": "Total Referred Voters",
-//         "type": "line",
-//         "data": [
-//             0,
-//             0,
-//             1,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0,
-//             0
-//         ]
-//     }
-// ]
-
-
   var options = {
     chart: {
       height: 370,
@@ -108,20 +41,7 @@ const RevenueCharts = ({ dataColors }) => {
       },
     },
     xaxis: {
-     categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+     categories: revenueData.categories,
       axisTicks: {
         show: false,
       },
