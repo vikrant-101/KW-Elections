@@ -20,6 +20,9 @@ import {
 	DELETE_VOTERS,
 	ON_ACTIVATE_VOTERS,
 	ON_ACTIVATE_DEACTIVATE_VOTERS,
+	GET_AREANAME,
+	GET_FAMILYNAME,
+	GET_NEXT_VOTERS
 } from "./actionTypes";
 
 import {
@@ -38,7 +41,13 @@ import {
 	getVotersTableColumnNamesFail,
 	getVotersTableColumnNamesSuccess,
 	updateVotersFail,
-	updateVotersSuccess
+	updateVotersSuccess,
+	getAreaNameFail,
+	getAreaNameSuccess,
+	getFamilyNameFail,
+	getFamilyNameSuccess,
+	getNextVotersFail,
+	getNextVotersSuccess
 } from "./actions";
 
 import {
@@ -50,14 +59,18 @@ import {
 	getVoters,
 	getPrintDetail,
 	getVotersTableColumnNames,
-	updateVoters
+	updateVoters,
+	getAreaName,
+	getFamilyName,
+	getNextVoters
 } from "../../helpers/fakebackend_helper";
 
 
 // Fetch Voters 
-function* fetchVoters({payload: voters}) {
+function* fetchVoters({payload: searchQuery}) {
+	console.log('searchQuery: ', searchQuery);
 	try {
-		const response = yield call(getVoters, voters);
+		const response = yield call(getVoters, searchQuery);
 		yield put(getVotersSuccess(response.Data));
 	} catch (error) {
 		yield put(getVotersFail(error));
@@ -137,6 +150,36 @@ function* onActivateVoters({ payload: voters }) {
 	}
 }
 
+// Fetch AreaName
+function* fetchAreaName({payload: userID}) {
+	try {
+		const response = yield call(getAreaName, userID);
+		yield put(getAreaNameSuccess(response.Data));
+	} catch (error) {
+		yield put(getAreaNameFail(error));
+	}
+}
+
+// Fetch FamilyName
+function* fetchFamilyName({payload: userID}) {
+	try {
+		const response = yield call(getFamilyName, userID);
+		yield put(getFamilyNameSuccess(response.Data));
+	} catch (error) {
+		yield put(getFamilyNameFail(error));
+	}
+}
+
+// Fetch Next Voters 
+function* fetchNextVoters({payload: nextVoters}) {
+	console.log('nextVoters: ', nextVoters);
+	try {
+		const response = yield call(getNextVoters, nextVoters);
+		yield put(getNextVotersSuccess(response.Data));
+	} catch (error) {
+		yield put(getNextVotersFail(error));
+	}
+}
 
 export function* watchVoters() {
 	yield takeEvery(GET_VOTERS, fetchVoters);
@@ -147,6 +190,9 @@ export function* watchVoters() {
 	yield takeEvery(DELETE_VOTERS, onDeleteVoters);
 	yield takeEvery(ON_ACTIVATE_DEACTIVATE_VOTERS, onActivateDeactivate);
 	yield takeEvery(ON_ACTIVATE_VOTERS, onActivateVoters);
+	yield takeEvery(GET_AREANAME, fetchAreaName);
+	yield takeEvery(GET_FAMILYNAME, fetchFamilyName);
+	yield takeEvery(GET_NEXT_VOTERS, fetchNextVoters);
 
 }
 

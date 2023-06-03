@@ -17,7 +17,17 @@ import {
 	ON_ACTIVATE_VOTERS_FAIL,
 	ON_ACTIVATE_VOTERS_SUCCESS,
 	UPDATE_VOTERS_FAIL,
-	UPDATE_VOTERS_SUCCESS
+	UPDATE_VOTERS_SUCCESS,
+	GET_AREANAME,
+    GET_AREANAME_FAIL,
+    GET_AREANAME_SUCCESS,
+    GET_FAMILYNAME,
+    GET_FAMILYNAME_FAIL,
+    GET_FAMILYNAME_SUCCESS,
+	GET_NEXT_VOTERS,
+    GET_NEXT_VOTERS_FAIL,
+    GET_NEXT_VOTERS_SUCCESS,
+	RESET_VOTERS
 } from "./actionTypes";
 import { toast } from 'react-toastify';
 
@@ -26,6 +36,8 @@ const INIT_STATE = {
 	voters: [],
 	columnNames: [],
 	printDetail: [],
+	areaName: [],
+	familyName: [],
 	isLoading: false,
 	error: {},
 };
@@ -203,6 +215,70 @@ const voters = (state = INIT_STATE, action) => {
 			toast.error(action.payload.Message):
 			toast.error(action.payload);
 			break;
+
+		case GET_NEXT_VOTERS:
+			return {
+				...state,
+				isLoading: false
+			};
+
+		case GET_NEXT_VOTERS_SUCCESS:
+			console.log("action.payload: ", action.payload)
+			console.log("state: ", state)
+			return {
+				...state,
+				voters: [...state.voters, ...action.payload],
+				isLoading: false
+			};
+
+		case GET_NEXT_VOTERS_FAIL:
+			return {
+				...state,
+				error: action.payload,
+			};
+
+		case GET_AREANAME:
+			return {
+				...state,
+				isLoading: true
+			};
+	
+		case GET_AREANAME_SUCCESS:
+			return {
+				...state,
+				areaName: action.payload
+			};
+
+		case GET_AREANAME_FAIL:
+			return {
+				...state,
+				error: action.payload,
+			};
+
+		case GET_FAMILYNAME:
+			return {
+				...state,
+				isLoading: true
+			};
+	
+		case GET_FAMILYNAME_SUCCESS:
+			return {
+				...state,
+				familyName: action.payload
+			};
+
+		case GET_FAMILYNAME_FAIL:
+			return {
+				...state,
+				error: action.payload,
+			};
+		
+		case RESET_VOTERS:
+			return {
+				...state,
+				voters: [],
+				isLoading: false
+			};
 
 		default:
 			state = { ...state };

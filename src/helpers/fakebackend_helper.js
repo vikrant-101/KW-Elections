@@ -523,7 +523,10 @@ export const updateVoters = (voters) => api.update(url.UPDATE_VOTERS, voters);
 export const deleteVoters = (voters) => api.create(url.DELETE_VOTERS, voters);
 export const activateDeactivateVoters = (voters) => api.update(url.ACTIVATE_DEACTIVATE_VOTERS, voters)
 export const activateVoters = (voters) => api.update(url.ACTIVATE_VOTERS, voters)
-export const getPrintDetail = (userID) => api.update(url.GET_PRINTDETAIL, userID );
+export const getPrintDetail = (userID) => api.create(url.GET_PRINTDETAIL, userID );
+export const getAreaName = (voters) => api.create(url.GET_AREANAME, voters );
+export const getFamilyName = (voters) => api.create(url.GET_FAMILYNAME, voters );
+export const getNextVoters = (voters) => api.create(url.GET_NEXT_VOTERS, voters);
 
 // Booth Voters
 export const getBoothVoters = (boothvoters) => api.create(url.GET_BOOTHVOTERS, boothvoters);
